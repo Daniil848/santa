@@ -84,12 +84,14 @@ input[type="checkbox"] {
 }
 .group_form_radios {
     width: 100%;
-    flex: none;
-    margin:0 0 10px 10px ;
+    display: flex;
+    flex-direction: column;
+    margin:0 0 0 10px ;
 }
 .light {
     font-weight: 400;
     font-size: 15px;
+    margin-bottom: 6px;
 }
 
 

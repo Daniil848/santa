@@ -4,6 +4,7 @@ const initialState = {
   group : {
     name : "",
     error : false,
+    edit : true,
   },
   date : {
     budget : "",
@@ -11,11 +12,20 @@ const initialState = {
     choosing : "",
     exchange : "",
     error : false,
+    edit : false,
   },
   admin : {
     name : "",
     email : "",
     error : false,
+    edit : false,
+  },
+  gift : {
+    age : "",
+    gender : "",
+    wishes : "",
+    error : false,
+    edit : false,
   },
   step : 1,
 };
@@ -38,8 +48,13 @@ const reducer = (state, action) => {
           ...state,
           group : {
             ...state.group,
-            error : false,
             name : Name, 
+            error : false,
+            edit : false,
+          },
+          date : {
+            ...state.date,
+            edit : true,
           },
           step : 2,
         };
@@ -65,11 +80,16 @@ const reducer = (state, action) => {
           ...state,
           date : {
             ...state.date,
-            error : false,
             budget : Budget,
             registration : Registration,
             choosing : Choosing,
             exchange : Exchange,
+            error : false,
+            edit : false,
+          },
+          admin : {
+            ...state.admin,
+            edit : true,
           },
           step : 3,
         }
@@ -93,14 +113,48 @@ const reducer = (state, action) => {
           ...state,
           admin : {
             ...state.admin,
-            error : false,
             name : Name,
             email : Email,
+            error : false,
+            edit : false,
+          },
+          gift: {
+            ...state.gift,
+            edit : true,
           },
           step : 4,
         }
       }
     }
+    case "YOUR-GIFT-FOR" : {
+      console.log("YOUR-GIFT-FOR", action.payload);
+      const Age = action.payload.gift.age;
+      const Wishes = action.payload.gift.wishes;
+      const Gender = action.payload.gift.gender;
+
+      if(Age === "" || Gender === "") {
+        return {
+          ...state,
+          gift : {
+            ...state.gift,
+            error : true,
+          }
+        }
+      } else {
+        return {
+          ...state,
+          gift : {
+            ...state.gift,
+            age : Age,
+            gender : Gender,
+            wishes : Wishes,
+            edit : false,
+          },
+          step : 5,
+        }
+      }
+    }
+    
     default : {
       return state;
     }

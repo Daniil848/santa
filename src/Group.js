@@ -4,11 +4,12 @@ import GroupName from "./components/GroupName";
 import GroupDate from "./components/GroupDate";
 import GroupAdmin from "./components/GroupAdmin";
 import YourGift from "./components/YourGift";
+import GroupDone from "./components/GroupDone";
 
 const Group = () => {
-  const [groupState, dispatch] = useContext(GroupContext);
+  const [state, dispatch] = useContext(GroupContext);
 
-  const step = groupState.step;
+  const step = state.step;
 
   return (
     <>
@@ -16,6 +17,7 @@ const Group = () => {
       {step === 2 && <GroupDate />}
       {step === 3 && <GroupAdmin />}
       {step === 4 && <YourGift />}
+      {step === 5 && <GroupDone />}
     </>
   );
 };
