@@ -3,8 +3,8 @@ import Steps from "./Pages";
 import { GroupContext } from "../contexts/reduser";
 
 const GroupName = () => {
-  const [groupNameInput, setGroupName] = useState("");
   const [state, dispatch] = useContext(GroupContext);
+  const [groupNameInput, setGroupName] = useState(state.group.name);
 
   // const handleKeyPress = (event) => {
   //   if(event.charCode === 13){

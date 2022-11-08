@@ -154,7 +154,121 @@ const reducer = (state, action) => {
         }
       }
     }
-    
+    case "SWITCH-PAGE-GROUP" : {
+      const Step = state.step;
+
+      if (Step >= 1) {
+        return {
+          ...state,
+          group : {
+            ...state.group,
+            edit : true,
+          },
+          date : {
+            ...state.date,
+            edit : false,
+          },
+          admin: {
+            ...state.admin,
+            edit : false,
+          },
+          gift : {
+            ...state.gift,
+            edit : false,
+          },
+        }
+      } else {
+        return {
+          ...state,
+        }
+      }
+    }
+    case "SWITCH-PAGE-DATE" : {
+      const Step = state.step;
+      if (Step >= 2) {
+        return {
+          ...state,
+          group : {
+            ...state.group,
+            edit : false,
+          },
+          date : {
+            ...state.date,
+            edit : true,
+          },
+          admin: {
+            ...state.admin,
+            edit : false,
+          },
+          gift : {
+            ...state.gift,
+            edit : false,
+          },
+        }
+      } else {
+        return {
+          ...state,
+        }
+      }
+    }
+    case "SWITCH-PAGE-ADMIN" : {
+      const Step = state.step;
+
+      if (Step >= 3) {
+        return {
+          ...state,
+          group : {
+            ...state.group,
+            edit : false,
+          },
+          date : {
+            ...state.date,
+            edit : false,
+          },
+          admin: {
+            ...state.admin,
+            edit : true,
+          },
+          gift : {
+            ...state.gift,
+            edit : false,
+          },
+        }
+      } else {
+        return {
+          ...state,
+        }
+      }
+      
+    }
+    case "SWITCH-PAGE-GIFT" : {
+      const Step = state.step;
+      if (Step >= 4) {
+        return {
+          ...state,
+          group : {
+            ...state.group,
+            edit : false,
+          },
+          date : {
+            ...state.date,
+            edit : false,
+          },
+          admin: {
+            ...state.admin,
+            edit : false,
+          },
+          gift : {
+            ...state.gift,
+            edit : true,
+          },
+        }
+      } else {
+        return {
+          ...state,
+        }
+      } 
+    }
     default : {
       return state;
     }

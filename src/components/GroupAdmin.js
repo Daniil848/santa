@@ -4,8 +4,8 @@ import Steps from "./Pages";
 
 const GroupAdmin = () => {
   const [state, dispatch] = useContext(GroupContext);
-  const [adminNameInput, setAdminName] = useState("");
-  const [adminEmailInput, setAdminEmail] = useState("");
+  const [adminNameInput, setAdminName] = useState(state.admin.name);
+  const [adminEmailInput, setAdminEmail] = useState(state.admin.email);
 
   if (state.admin.edit) {
     return (

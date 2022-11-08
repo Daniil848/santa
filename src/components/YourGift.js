@@ -4,9 +4,9 @@ import { GroupContext } from "../contexts/reduser";
 
 const YourGift = () => {
   const [state, dispatch] = useContext(GroupContext);
-  const [ageInput, setAge] = useState("");
-  const [wishesArea, setWishes] = useState("");
-  const [gender, setGender] = useState("");
+  const [ageInput, setAge] = useState(state.gift.age);
+  const [wishesArea, setWishes] = useState(state.gift.wishes);
+  const [gender, setGender] = useState(state.gift.gender);
 
   if (state.gift.edit) {
     return (

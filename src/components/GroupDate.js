@@ -3,11 +3,11 @@ import { useContext, useState } from "react";
 import Steps from "./Pages";
 
 const GroupDate = () => {
-  const [budgetInput, setBudget] = useState("");
-  const [registrationInput, setRegistration] = useState("");
-  const [choosingInput, setChoosing] = useState("");
-  const [exchangeInput, setExchange] = useState("");
   const [state, dispatch] = useContext(GroupContext);
+  const [budgetInput, setBudget] = useState(state.date.budget);
+  const [registrationInput, setRegistration] = useState(state.date.registration);
+  const [choosingInput, setChoosing] = useState(state.date.choosing);
+  const [exchangeInput, setExchange] = useState(state.date.exchange);
 
   if (state.date.edit) {
     return (

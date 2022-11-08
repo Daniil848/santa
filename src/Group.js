@@ -13,11 +13,11 @@ const Group = () => {
 
   return (
     <>
-      {step === 1 && <GroupName />}
-      {step === 2 && <GroupDate />}
-      {step === 3 && <GroupAdmin />}
-      {step === 4 && <YourGift />}
-      {step === 5 && <GroupDone />}
+      {step >= 1 && <GroupName />}
+      {step >= 2 && <GroupDate />}
+      {step >= 3 && <GroupAdmin />}
+      {step >= 4 && <YourGift />}
+      {step >= 5 && <GroupDone />}
     </>
   );
 };
