@@ -31,6 +31,9 @@ const Snow = () => {
       <div className="snowflake">
       ❄
       </div>
+      <div className="snowflake">
+      ❄
+      </div>
     </div>
   );
 };
