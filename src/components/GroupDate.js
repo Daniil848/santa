@@ -26,12 +26,12 @@ const GroupDate = () => {
               onChange={e => setBudget(e.target.value)}
             >
               <option>Выберите бюджет</option>
-              <option>1000₽</option>
-              <option>2000₽</option>
-              <option>3000₽</option>
-              <option>4000₽</option>
-              <option>5000₽</option>
-              <option>6000₽</option>
+              <option value={1000}>1000₽</option>
+              <option value={2000}>2000₽</option>
+              <option value={3000}>3000₽</option>
+              <option value={4000}>4000₽</option>
+              <option value={5000}>5000₽</option>
+              <option value={6000}>6000₽</option>
             </select>
           </div>
           {state.date.error === true && (<div className="error_text">Бюджет не может быть пустым!</div>)}

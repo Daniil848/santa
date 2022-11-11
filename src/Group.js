@@ -5,14 +5,15 @@ import GroupDate from "./components/GroupDate";
 import GroupAdmin from "./components/GroupAdmin";
 import YourGift from "./components/YourGift";
 import GroupDone from "./components/GroupDone";
+import Snow from "./components/Snow";
 
 const Group = () => {
   const [state, dispatch] = useContext(GroupContext);
-
   const step = state.step;
 
   return (
     <>
+      <Snow/>
       {step >= 1 && <GroupName />}
       {step >= 2 && <GroupDate />}
       {step >= 3 && <GroupAdmin />}
