@@ -20,17 +20,26 @@ const GroupDate = () => {
   
           <div className="group_form_container">
             <label>Бюджет:</label>
-            <input
+            <select
               className="group_input"
               value={budgetInput}
               onChange={e => setBudget(e.target.value)}
-            ></input>
+            >
+              <option>Выберите бюджет</option>
+              <option>1000₽</option>
+              <option>2000₽</option>
+              <option>3000₽</option>
+              <option>4000₽</option>
+              <option>5000₽</option>
+              <option>6000₽</option>
+            </select>
           </div>
           {state.date.error === true && (<div className="error_text">Бюджет не может быть пустым!</div>)}
           
           <div className="group_form_container">
             <label>Регистрация участников до:</label>
             <input
+              type="date"
               className="group_input"
               value={registrationInput}
               onChange={e => setRegistration(e.target.value)}
@@ -41,6 +50,7 @@ const GroupDate = () => {
           <div className="group_form_container">
             <label>Выбор получателей подарков до:</label>
             <input
+              type="date"
               className="group_input"
               value={choosingInput}
               onChange={e => setChoosing(e.target.value)}
@@ -51,6 +61,7 @@ const GroupDate = () => {
           <div className="group_form_container">
             <label>Обмен подарками:</label>
               <input
+                type="date"
                 className="group_input"
                 value={exchangeInput}
                 onChange={e => setExchange(e.target.value)}
