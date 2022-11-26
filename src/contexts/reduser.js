@@ -5,6 +5,7 @@ const initialState = {
     name : "",
     error : false,
     edit : true,
+    id : null,
   },
   date : {
     budget : "",
@@ -28,6 +29,8 @@ const initialState = {
     edit : false,
   },
   step : 1,
+  saveGroup : false,
+  globalEdit : false,
 };
 
 const reducer = (state, action) => {
@@ -148,9 +151,11 @@ const reducer = (state, action) => {
             age : Age,
             gender : Gender,
             wishes : Wishes,
+            error : false,
             edit : false,
           },
           step : 5,
+          saveGroup : true,
         }
       }
     }
@@ -265,9 +270,34 @@ const reducer = (state, action) => {
         }
       } else {
         return {
-          ...state,
+          ...state, 
         }
       } 
+    }
+    case "SET-GROUP-ID" : {
+      const idGroup = action.payload.id;
+      return {
+        ...state,
+        group : {
+          ...state.group,
+          id : idGroup,
+        } 
+      } 
+    }
+    case "SET-GLOBAL-EDIT" : {
+      const globalEdit = action.payload.globalEdit
+      
+      if (state.group.id !== null) {
+        console.log("reduseglobaledit",globalEdit)
+        return {
+          ...state,
+          globalEdit,
+        }
+      } else {
+        return {
+          ...state,
+        }
+      }
     }
     default : {
       return state;

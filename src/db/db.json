@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "group": {
+        "name": "f"
+      },
+      "date": {
+        "budget": "1000",
+        "registration": "2022-11-02",
+        "choosing": "2022-11-05",
+        "exchange": "2022-11-05"
+      },
+      "admin": {
+        "name": "f",
+        "email": "f"
+      },
+      "gift": {
+        "age": "16246356734878969",
+        "gender": "Не важно",
+        "wishes": "fstdjhnjdfghndfhbsdfn"
+      },
+      "id": 1
+    }
+  ]
+}

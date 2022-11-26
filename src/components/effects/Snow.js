@@ -1,3 +1,5 @@
+import "./snow.css";
+
 const Snow = () => {
   return (
     <div>
