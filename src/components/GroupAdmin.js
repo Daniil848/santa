@@ -1,49 +1,35 @@
 import { GroupContext } from "../contexts/reduser";
-import { useContext, useState } from "react";
+import { useContext } from "react";
+import GroupName from "./GroupName";
+import GroupDate from "./GroupDate";
+import GroupAdminName from "./GroupAdminName";
+import YourGift from "./YourGift";
+import GroupDone from "./GroupDone";
+import Snow from "./effects/Snow";
+import Pages from "./Pages";
 
 const GroupAdmin = () => {
-  const [state, dispatch] = useContext(GroupContext);
-  const [adminNameInput, setAdminName] = useState(state.admin.name);
-  const [adminEmailInput, setAdminEmail] = useState(state.admin.email);
+  const [state] = useContext(GroupContext);
+  const step = state.step;
+  const groupActiveName = (state.group.edit) ? "group--active1" : "";
+  const groupActiveDate = (state.date.edit) ? "group--active2" : "";
+  const groupActiveAdmin = (state.admin.edit) ? "group--active3" : "";
+  const groupActiveGift = (state.gift.edit) ? "group--active4" : "";
+  const groupActiveDone = (state.group.edit === false && state.date.edit === false && state.admin.edit === false && state.gift.edit === false) ? "group--active5" : "";
 
-  if (state.admin.edit) {
-    return ( 
-      <>
-        <div className="group_label">Участник(вы - администратор группы).</div>
-        <div className="group_form_container">
-          <label>Ваше имя(видно участникам):</label>
-          <input
-            className="group_input"
-            placeholder="Василий"
-            value={adminNameInput}
-            onChange={e => setAdminName(e.target.value)}
-          ></input>
-        
-          {state.admin.error === true && (<div className="error_text">Ваше имя не может быть пустым!</div>)}
-        
-          <label>Ваш еmail(не видно ни кому):</label>
-          <input
-            className="group_input"
-            placeholder="santa@gmail.com"
-            value={adminEmailInput}
-            onChange={e => setAdminEmail(e.target.value)}
-          ></input>
-          {state.admin.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
-        </div>
-        
-
-        <button
-          className="group_button"
-          onClick={() => dispatch({type : "GROUP-ADMIN", payload : {
-            admin : {
-              name : adminNameInput,
-              email : adminEmailInput,
-            }
-          }})}
-        >ОК</button>
-      </>
-    );
-  };
+  return (
+    <>
+      <Snow/>
+      <div className={`group ${groupActiveName} ${groupActiveDate} ${groupActiveAdmin} ${groupActiveGift} ${groupActiveDone}`}>
+        <Pages />
+        {step >= 1 && <GroupName />}
+        {step >= 2 && <GroupDate />}
+        {step >= 3 && <GroupAdminName />}
+        {step >= 4 && <YourGift />}
+        {step >= 5 && <GroupDone />}
+      </div>
+    </>
+  );
 };
 
 export default GroupAdmin;

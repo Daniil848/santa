@@ -1,25 +1,55 @@
 {
-  "data": [
+  "group": [
     {
       "group": {
         "name": "f"
       },
       "date": {
-        "budget": "1000",
-        "registration": "2022-11-02",
-        "choosing": "2022-11-05",
-        "exchange": "2022-11-05"
+        "budget": "2000",
+        "registration": "2022-12-09",
+        "choosing": "2022-12-03",
+        "exchange": "2022-12-04"
       },
       "admin": {
         "name": "f",
         "email": "f"
       },
       "gift": {
-        "age": "16246356734878969",
-        "gender": "Не важно",
-        "wishes": "fstdjhnjdfghndfhbsdfn"
+        "age": "2",
+        "gender": "Мужской",
+        "wishes": "f"
       },
       "id": 1
+    }
+  ],
+  "user": [
+    {
+      "user": {
+        "name": "f",
+        "email": "f"
+      },
+      "id": 1
+    },
+    {
+      "user": {
+        "name": "213123",
+        "email": "12312"
+      },
+      "id": 2
+    },
+    {
+      "user": {
+        "name": "f",
+        "email": "f"
+      },
+      "id": 3
+    },
+    {
+      "user": {
+        "name": "f",
+        "email": "f"
+      },
+      "id": 4
     }
   ]
 }

@@ -23,25 +23,26 @@ const YourGift = () => {
           {state.gift.error === true && (<div className="error_text">Укажите возраст!</div>)}
         
           <div className="group_form_radios">
+          <label>Пол:</label>
             <label className="light">
               <input
                 type="radio"
                 name="gender"
-                value="Для мальчика"
+                value="Мужской"
                 id="boy"
                 onChange={e => setGender(e.target.value)}
               ></input>
-            Для мальчика</label>
+            Мужской</label>
 
             <label className="light">
               <input
                 type="radio"
                 name="gender"
-                value="Для девочки"
+                value="Женский"
                 id="girl"
                 onChange={e => setGender(e.target.value)}
               ></input> 
-            Для девочки</label>
+            Женский</label>
             
             <label className="light">
               <input

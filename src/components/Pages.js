@@ -34,9 +34,6 @@ const Pages = () => {
         className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
         onClick={() => dispatch({type : "SWITCH-PAGE-GIFT"})}
       >4</div>
-      {/* {state.group.edit === false && state.date.edit === false && state.admin.edit === false && state.gift.edit === false && <div
-        className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
-      >5</div>} */}
     </div>
   )
 }

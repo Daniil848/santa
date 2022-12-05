@@ -28,8 +28,16 @@ const initialState = {
     error : false,
     edit : false,
   },
+  user : {
+    name : "",
+    email : "",
+    error : false,
+    edit : true,
+    id : null,
+  },
   step : 1,
   saveGroup : false,
+  saveUser : false,
   globalEdit : false,
 };
 
@@ -98,7 +106,7 @@ const reducer = (state, action) => {
         }
       }
     }
-    case "GROUP-ADMIN" : {
+    case "GROUP-ADMIN-NAME" : {
       console.log("GROUP-ADMIN", action.payload)
       const Name = action.payload.admin.name;
       const Email = action.payload.admin.email;
@@ -288,7 +296,7 @@ const reducer = (state, action) => {
       const globalEdit = action.payload.globalEdit
       
       if (state.group.id !== null) {
-        console.log("reduseglobaledit",globalEdit)
+        console.log("reduserlobaledit",globalEdit)
         return {
           ...state,
           globalEdit,
@@ -298,6 +306,44 @@ const reducer = (state, action) => {
           ...state,
         }
       }
+    }
+    case "USER-NAME" : {
+      console.log("USER-NAME", action.payload)
+      const Name = action.payload.user.name;
+      const Email = action.payload.user.email;
+
+      if (Name === "" || Email === "") {
+        return {
+          ...state,
+          user : {
+            ...state.user,
+            error : true,
+          }
+        }
+      } else {
+        return {
+          ...state,
+          user : {
+            ...state.user,
+            name : Name,
+            email : Email,
+            error : false,
+            edit : false,
+          },
+          step : 2,
+          saveUser : true,
+        }
+      }
+    }
+    case "SET-USER-ID" : {
+      const idUser = action.payload.id;
+      return {
+        ...state,
+        user : {
+          ...state.user,
+          id : idUser,
+        } 
+      } 
     }
     default : {
       return state;

@@ -2,10 +2,16 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color:#85C1E9;
+    background-color:var(--main-background);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+:root {
+    --main-background: #85C1E9;
+    --main-button-background: #3498DB;
+    --main-group-background : #f4f7f8;
 }
 
 
@@ -19,9 +25,10 @@ body {
     width: 340px;
     padding: 10px 0;
     margin: 10px auto;
-    background: #f4f7f8;
+    background: var(--main-group-background);
     border-radius: 8px;
     z-index: 1000;
+    position: relative;
 }
 .group--active1 {
     animation: pop-in1 0.7s;
@@ -117,8 +124,7 @@ body {
     border: none;
     font-size: 16px;
     height: auto;
-    margin: 0;
-    outline: 0;
+    outline: none;
     padding: 15px;
     width: 310px;
     height: 50px;
@@ -138,7 +144,7 @@ select.group_input{
 .group_button {  
     padding: 10px 20px;
     color: #FFF;
-    background-color: #3498DB;
+    background-color: var(--main-button-background);
     font-size: 18px;
     text-align: center;
     font-style: normal;
@@ -146,7 +152,6 @@ select.group_input{
     width: 140px;
     border: 1px solid #2874A6;
     border-width: 0 0 3px;
-    box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
     margin-bottom: 10px;
 }
 .group_label {
@@ -167,15 +172,18 @@ input[type="checkbox"] {
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin:0 0 0 10px ;
 }
 .light {
     font-weight: 400;
     font-size: 15px;
-    margin-bottom: 6px;
+    margin:3px 0 3px 10px ;
 }
 
-
+.user_link {
+    background-color:  #e8eeef;
+    padding: 5px;
+    font-weight: 600;
+}
 
 
 /* ------------PAGES ----------*/
@@ -200,7 +208,7 @@ input[type="checkbox"] {
     transition-duration: 0.3s;
 }
 .page_number--current {
-    background-color: #3498DB ;
+    background-color: var(--main-button-background);
 }
 .page_number--active {
     box-shadow: 0px 0px 0px 4px #85C1E9;

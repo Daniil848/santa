@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import { GroupContext } from "../contexts/reduser";
-
 
 const GroupDone = () => {
   const [state, dispatch] = useContext(GroupContext);
   const saveGroup = state.saveGroup === true;
-  const globalEdit = (state.globalEdit === true)
-  console.log("globalEdit",globalEdit)
+  const globalEdit = state.globalEdit === true
+  console.log("globalEdit", globalEdit)
   let group = {
     group : {
       name : state.group.name,
@@ -31,7 +31,7 @@ const GroupDone = () => {
   useEffect(() => {
     const createGroup = async(group) => {
       try {
-        const res = await fetch("http://localhost:3002/data", {
+        const res = await fetch("http://localhost:3002/group", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -51,7 +51,6 @@ const GroupDone = () => {
         console.error('Произошла ошибка!', err);
       }
     }
-       
     if (saveGroup) {
       createGroup(group);
     }
@@ -60,16 +59,13 @@ const GroupDone = () => {
   useEffect(() => {
     const updateGroup = async(group) => {
       try {
-        const res = await fetch("http://localhost:3002/data/" + state.group.id, {
+        const res = await fetch("http://localhost:3002/group/" + state.group.id, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
           },
           body: JSON.stringify(group),
         })
-
-        const response = await res.json()
-        
 
         if (res.status < 300) {
           console.log(group)
@@ -90,6 +86,12 @@ const GroupDone = () => {
     return (
       <>
         <label className="group_label">Ваша группа "{state.group.name}" готова!!!</label> 
+        <label className="group_label">Ссылка на вашу группу:</label> 
+        <Link
+          className="user_link" 
+          to="/user">
+        link</Link>
+        <label className="group_label">(Отправьте ее друзьям что-бы обмениваться подарками)</label>
       </>
     );
   };
