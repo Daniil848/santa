@@ -1,8 +1,9 @@
-import { GroupContext } from "../contexts/reduser";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const UserDone = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.userReducer);
   const saveUser = state.saveUser === true;
   let user = {
     user : {

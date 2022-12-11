@@ -23,12 +23,13 @@ body {
     height: 100%;
     flex-direction: column;
     width: 340px;
-    padding: 10px 0;
+    padding: 10px;
     margin: 10px auto;
     background: var(--main-group-background);
     border-radius: 8px;
     z-index: 1000;
     position: relative;
+    box-sizing: border-box;
 }
 .group--active1 {
     animation: pop-in1 0.7s;

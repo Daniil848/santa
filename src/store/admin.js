@@ -1,6 +1,4 @@
-import { useReducer, createContext } from "react";
-
-const initialState = {
+const adminState = {
   group : {
     name : "",
     error : false,
@@ -27,21 +25,13 @@ const initialState = {
     wishes : "",
     error : false,
     edit : false,
-  },
-  user : {
-    name : "",
-    email : "",
-    error : false,
-    edit : true,
-    id : null,
-  },
+  }, 
   step : 1,
   saveGroup : false,
-  saveUser : false,
   globalEdit : false,
-};
+}
 
-const reducer = (state, action) => {
+export const adminReducer = (state = adminState, action) => {
   switch(action.type) {
     case "GROUP-NAME" : {
       console.log("GROUP-NAME", action.payload)
@@ -307,53 +297,8 @@ const reducer = (state, action) => {
         }
       }
     }
-    case "USER-NAME" : {
-      console.log("USER-NAME", action.payload)
-      const Name = action.payload.user.name;
-      const Email = action.payload.user.email;
-
-      if (Name === "" || Email === "") {
-        return {
-          ...state,
-          user : {
-            ...state.user,
-            error : true,
-          }
-        }
-      } else {
-        return {
-          ...state,
-          user : {
-            ...state.user,
-            name : Name,
-            email : Email,
-            error : false,
-            edit : false,
-          },
-          step : 2,
-          saveUser : true,
-        }
-      }
-    }
-    case "SET-USER-ID" : {
-      const idUser = action.payload.id;
-      return {
-        ...state,
-        user : {
-          ...state.user,
-          id : idUser,
-        } 
-      } 
-    }
     default : {
       return state;
     }
   }
-};
-
-export const GroupContext = createContext();
-
-export const GroupProvider = ({children}) => {
-  const value = useReducer(reducer, initialState);
-  return <GroupContext.Provider value={value}>{children}</GroupContext.Provider>
-};
+}

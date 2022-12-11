@@ -1,8 +1,9 @@
-import { GroupContext } from "../contexts/reduser";
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const GroupDate = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.adminReducer);
   const [budgetInput, setBudget] = useState(state.date.budget);
   const [registrationInput, setRegistration] = useState(state.date.registration);
   const [choosingInput, setChoosing] = useState(state.date.choosing);

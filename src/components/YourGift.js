@@ -1,8 +1,9 @@
-import { useState, useContext } from "react";
-import { GroupContext } from "../contexts/reduser";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const YourGift = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.adminReducer);
   const [ageInput, setAge] = useState(state.gift.age);
   const [wishesArea, setWishes] = useState(state.gift.wishes);
   const [gender, setGender] = useState(state.gift.gender);

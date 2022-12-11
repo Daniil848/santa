@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { GroupContext } from "../contexts/reduser";
+import { useDispatch, useSelector } from "react-redux";
 
 const Pages = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.adminReducer);
   const currentPageNameClass = state.step >= 1 ? "page_number--current" : "";
   const currentPageDateClass = state.step >= 2 ? "page_number--current" : "";
   const currentPageAdminClass = state.step >= 3 ? "page_number--current" : "";

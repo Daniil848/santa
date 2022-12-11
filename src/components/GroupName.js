@@ -1,19 +1,11 @@
-import { useContext, useState } from "react";
-import { GroupContext } from "../contexts/reduser";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const GroupName = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.adminReducer);
   const [groupNameInput, setGroupName] = useState(state.group.name);
 
-  // const handleKeyPress = (event) => {
-  //   if(event.charCode === 13){
-  //     saveGroup();
-  //   } 
-  // }
-
-  // const saveGroup = () => {
-    
-  // }
   if (state.group.edit) {
     return (  
       <>
@@ -25,7 +17,6 @@ const GroupName = () => {
           placeholder="Обмен подарками 2023"
           value={groupNameInput}
           onChange={e => setGroupName(e.target.value)}
-          // onKeyPress={handleKeyPress}
         ></input>
         {state.group.error === true &&(<div className="error_text">Название группы не может быть пустым!</div>)}
         <button

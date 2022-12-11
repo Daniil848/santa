@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
-import { Link } from 'react-router-dom'
-import { GroupContext } from "../contexts/reduser";
+import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 const GroupDone = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.adminReducer);
   const saveGroup = state.saveGroup === true;
   const globalEdit = state.globalEdit === true
   console.log("globalEdit", globalEdit)
@@ -86,6 +87,8 @@ const GroupDone = () => {
     return (
       <>
         <label className="group_label">Ваша группа "{state.group.name}" готова!!!</label> 
+        <label className="group_label">Регистрация участников до:<br></br> {state.date.registration}</label>
+        <label className="group_label">Бюджет вашей группы состовялет: {state.date.budget}₽</label>
         <label className="group_label">Ссылка на вашу группу:</label> 
         <Link
           className="user_link" 

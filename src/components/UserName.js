@@ -1,8 +1,9 @@
-import { GroupContext } from "../contexts/reduser";
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const GroupUserName = () => {
-  const [state, dispatch] = useContext(GroupContext);
+const UserName = () => {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.userReducer);
   const [userNameInput, setUserName] = useState(state.user.name);
   const [userEmailInput, setUserEmail] = useState(state.user.email);
   
@@ -45,4 +46,4 @@ const GroupUserName = () => {
   };  
 };
 
-export default GroupUserName;
+export default UserName;

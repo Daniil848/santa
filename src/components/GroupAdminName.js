@@ -1,8 +1,9 @@
-import { GroupContext } from "../contexts/reduser";
-import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 const GroupAdminName = () => {
-  const [state, dispatch] = useContext(GroupContext);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.adminReducer);
   const [adminNameInput, setAdminName] = useState(state.admin.name);
   const [adminEmailInput, setAdminEmail] = useState(state.admin.email);
 

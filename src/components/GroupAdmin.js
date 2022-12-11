@@ -1,5 +1,4 @@
-import { GroupContext } from "../contexts/reduser";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import GroupName from "./GroupName";
 import GroupDate from "./GroupDate";
 import GroupAdminName from "./GroupAdminName";
@@ -9,7 +8,7 @@ import Snow from "./effects/Snow";
 import Pages from "./Pages";
 
 const GroupAdmin = () => {
-  const [state] = useContext(GroupContext);
+  const state = useSelector(state => state.adminReducer);
   const step = state.step;
   const groupActiveName = (state.group.edit) ? "group--active1" : "";
   const groupActiveDate = (state.date.edit) ? "group--active2" : "";
