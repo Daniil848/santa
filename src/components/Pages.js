@@ -20,19 +20,19 @@ const Pages = () => {
     <div className="page">
       <div
         className={`page_number ${currentPageNameClass} ${activePageNameClass} ${errorPageNameClass}`}
-        onClick={() => dispatch({type : "SWITCH-PAGE-GROUP"})}
+        onClick={() => dispatch({type : "SWITCH_PAGE_GROUP"})}
       >1</div>
       <div
         className={`page_number ${currentPageDateClass} ${activePageDateClass} ${errorPageDateClass}`}
-        onClick={() => dispatch({type : "SWITCH-PAGE-DATE"})}
+        onClick={() => dispatch({type : "SWITCH_PAGE_DATE"})}
       >2</div>
       <div
         className={`page_number ${currentPageAdminClass} ${activePageAdminClass} ${errorPageAdminClass}`}
-        onClick={() => dispatch({type : "SWITCH-PAGE-ADMIN"})}
+        onClick={() => dispatch({type : "SWITCH_PAGE_ADMIN"})}
       >3</div>
       <div
         className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
-        onClick={() => dispatch({type : "SWITCH-PAGE-GIFT"})}
+        onClick={() => dispatch({type : "SWITCH_PAGE_GIFT"})}
       >4</div>
     </div>
   )

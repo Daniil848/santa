@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import GroupAdmin from './components/GroupAdmin';
-import GroupUser from './components/User';
+import User from './components/User';
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route index element={<GroupAdmin />}/>
-        <Route path="/user" element={<GroupUser />}/>
+        <Route path="/group/:groupID" element={<User />}/>
       </Routes>
     </>
   );

@@ -5,7 +5,7 @@ import Snow from "./effects/Snow";
 
 const User = () => {
   const state = useSelector(state => state.userReducer);
-  const step = state.step;
+  const step = state.userStep;
   const activeUserName = (state.user.edit) ? "group--active1" : "";
   const activeUserDone = (state.user.edit === false) ? "group--active2" : "";
 

@@ -1,21 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const UserDone = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
+  const { groupID } = useParams();
   const saveUser = state.saveUser === true;
   let user = {
     user : {
       name : state.user.name,
-      email : state.user.email, 
+      email : state.user.email,
+      groupID : groupID,
     }
   };
 
   useEffect(() => {
     const createUser = async(user) => {
       try {
-        const res = await fetch("http://localhost:3002/user", {
+        const response = await fetch("http://localhost:3002/user", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -23,12 +26,12 @@ const UserDone = () => {
           body: JSON.stringify(user),
         })
 
-        const response = await res.json()
-        dispatch({type : "SET-USER-ID", payload : { id : response.id, }})
+        const data = await response.json()
+        dispatch({type : "SET_USER_ID", payload : { id : data.id, }})
         
-        if (res.status < 300) {
+        if (response.status < 300) {
           return true; 
-        } else if (res.status >= 300) {
+        } else if (response.status >= 300) {
           return false;
         }
       } catch (err) {
@@ -38,7 +41,7 @@ const UserDone = () => {
     if (saveUser) {
       createUser(user);
     }
-    console.log("create", user);
+    console.log("create-user", user);
   },[saveUser]);
 
   if (state.user.edit === false) {

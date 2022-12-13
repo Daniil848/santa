@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { adminGift, globalEdit } from "../store/actions/actions";
 
 const YourGift = () => {
   const dispatch = useDispatch();
@@ -69,15 +70,14 @@ const YourGift = () => {
         <button
           className="group_button"
           onClick={() => {
-            dispatch({type : "YOUR-GIFT-FOR", payload : {
-                gift : {
-                  age : ageInput,
-                  gender : gender,
-                  wishes : wishesArea,
-                }
+            dispatch(adminGift({
+              gift : {
+                age : ageInput,
+                gender : gender,
+                wishes : wishesArea,
               }
-            })
-            dispatch({type : "SET-GLOBAL-EDIT", payload : {globalEdit : true}})
+            }))
+            dispatch(globalEdit({globalEdit : true}))
           }}
         >ОК</button>
       </>

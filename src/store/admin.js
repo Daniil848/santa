@@ -33,7 +33,7 @@ const adminState = {
 
 export const adminReducer = (state = adminState, action) => {
   switch(action.type) {
-    case "GROUP-NAME" : {
+    case "GROUP_NAME" : {
       console.log("GROUP-NAME", action.payload)
       const Name = action.payload.group.name
       if (Name === "") {
@@ -61,7 +61,7 @@ export const adminReducer = (state = adminState, action) => {
         };
       };
     }
-    case "GROUP-DATE" : {
+    case "GROUP_DATE" : {
       console.log("GROUP-DATE", action.payload)
       const Budget = action.payload.date.budget;
       const Registration = action.payload.date.registration;
@@ -96,7 +96,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case "GROUP-ADMIN-NAME" : {
+    case "GROUP_ADMIN_NAME" : {
       console.log("GROUP-ADMIN", action.payload)
       const Name = action.payload.admin.name;
       const Email = action.payload.admin.email;
@@ -127,7 +127,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case "YOUR-GIFT-FOR" : {
+    case "YOUR_GIFT_FOR" : {
       console.log("YOUR-GIFT-FOR", action.payload);
       const Age = action.payload.gift.age;
       const Wishes = action.payload.gift.wishes;
@@ -157,7 +157,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case "SWITCH-PAGE-GROUP" : {
+    case "SWITCH_PAGE_GROUP" : {
       const Step = state.step;
 
       if (Step >= 1) {
@@ -186,7 +186,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case "SWITCH-PAGE-DATE" : {
+    case "SWITCH_PAGE_DATE" : {
       const Step = state.step;
       if (Step >= 2) {
         return {
@@ -214,7 +214,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case "SWITCH-PAGE-ADMIN" : {
+    case "SWITCH_PAGE_ADMIN" : {
       const Step = state.step;
 
       if (Step >= 3) {
@@ -244,7 +244,7 @@ export const adminReducer = (state = adminState, action) => {
       }
       
     }
-    case "SWITCH-PAGE-GIFT" : {
+    case "SWITCH_PAGE_GIFT" : {
       const Step = state.step;
       if (Step >= 4) {
         return {
@@ -272,7 +272,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       } 
     }
-    case "SET-GROUP-ID" : {
+    case "SET_GROUP_ID" : {
       const idGroup = action.payload.id;
       return {
         ...state,
@@ -282,7 +282,7 @@ export const adminReducer = (state = adminState, action) => {
         } 
       } 
     }
-    case "SET-GLOBAL-EDIT" : {
+    case "SET_GLOBAL_EDIT" : {
       const globalEdit = action.payload.globalEdit
       
       if (state.group.id !== null) {

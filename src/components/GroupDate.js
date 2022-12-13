@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { groupDate } from "../store/actions/actions";
 
 const GroupDate = () => {
   const dispatch = useDispatch();
@@ -63,14 +64,14 @@ const GroupDate = () => {
         
         <button
           className="group_button"
-          onClick={() => dispatch({type : "GROUP-DATE", payload : {
+          onClick={() => dispatch(groupDate({
             date : {
               budget : budgetInput,
               registration : registrationInput,
               choosing : choosingInput,
-             exchange : exchangeInput,
+              exchange : exchangeInput,
             }
-        }})}
+          }))}
         >ОК</button>
       </>
     );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addGroupName } from "../store/actions/actions";
 
 const GroupName = () => {
   const dispatch = useDispatch();
@@ -21,11 +22,7 @@ const GroupName = () => {
         {state.group.error === true &&(<div className="error_text">Название группы не может быть пустым!</div>)}
         <button
           className="group_button"
-          onClick={() => dispatch({type : "GROUP-NAME", payload : {
-            group : {
-              name: groupNameInput,
-            }
-          }})}
+          onClick={() => dispatch(addGroupName({group : {name: groupNameInput,}}))}
         >OK</button>
       </>
     );

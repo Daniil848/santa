@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addUserName } from "../store/actions/actions";
 
 const UserName = () => {
   const dispatch = useDispatch();
@@ -34,12 +35,12 @@ const UserName = () => {
         
         <button
           className="group_button"
-          onClick={() => dispatch({type : "USER-NAME", payload : {
+          onClick={() => dispatch(addUserName({
             user : {
               name : userNameInput,
               email : userEmailInput,
             }
-          }})}
+          }))}
         >ОК</button>
       </>
     );
