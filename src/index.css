@@ -222,7 +222,16 @@ input[type="checkbox"] {
 .page_number:hover {
     box-shadow: 0px 0px 0px 4px #85C1E9;
 }
-
+.page_done {
+    background-color: #02D175;
+}
+.page_done--active {
+    box-shadow: 0px 0px 0px 4px #67ECB1;
+    transition: 0.3s;
+}
+.page_done:hover {
+    box-shadow: 0px 0px 0px 4px #67ECB1;
+}
 
 /* ------------VALIDATION----------*/
 

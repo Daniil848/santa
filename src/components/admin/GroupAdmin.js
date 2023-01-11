@@ -4,8 +4,9 @@ import GroupDate from "./GroupDate";
 import GroupAdminName from "./GroupAdminName";
 import YourGift from "./YourGift";
 import GroupDone from "./GroupDone";
-import Snow from "./effects/Snow";
-import Pages from "./Pages";
+import Snow from "../effects/Snow";
+import Pages from "../Pages";
+
 
 const GroupAdmin = () => {
   const state = useSelector(state => state.adminReducer);

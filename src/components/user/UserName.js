@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUserName } from "../store/actions/actions";
+import { saveUser } from "../../store/actions/actions";
+import { useParams } from "react-router-dom";
 
 const UserName = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
   const [userNameInput, setUserName] = useState(state.user.name);
   const [userEmailInput, setUserEmail] = useState(state.user.email);
+  const { groupID } = useParams();
+  let userDB = {
+    user : {
+      name : state.user.name,
+      email : state.user.email,
+      groupID : groupID,
+    }
+  };
   
   if (state.user.edit) {
     return (
@@ -35,12 +44,15 @@ const UserName = () => {
         
         <button
           className="group_button"
-          onClick={() => dispatch(addUserName({
-            user : {
-              name : userNameInput,
-              email : userEmailInput,
-            }
-          }))}
+          onClick={() => {
+            dispatch(saveUser({
+              userDB,
+              user : {
+                name : userNameInput,
+                email : userEmailInput,
+              }
+            }))
+          }}
         >ОК</button>
       </>
     );

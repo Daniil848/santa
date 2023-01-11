@@ -7,7 +7,6 @@ const userState = {
     id : null,
   },
   userStep : 1,
-  saveUser : false,
 };
 
 export const userReducer = (state = userState, action) => {
@@ -36,7 +35,6 @@ export const userReducer = (state = userState, action) => {
             edit : false,
           },
           userStep : 2,
-          saveUser : true,
         }
       }
     }

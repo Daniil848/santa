@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import GroupAdmin from './components/GroupAdmin';
-import User from './components/User';
+import GroupAdmin from './components/admin/GroupAdmin';
+import User from './components/user/User';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -9,6 +11,7 @@ const App = () => {
         <Route index element={<GroupAdmin />}/>
         <Route path="/group/:groupID" element={<User />}/>
       </Routes>
+      <ToastContainer/>
     </>
   );
 };

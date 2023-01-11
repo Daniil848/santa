@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { groupDate } from "../store/actions/actions";
+import { groupDateError, saveGroupDate, createGroupDate } from "../../store/actions/actions";
 
 const GroupDate = () => {
   const dispatch = useDispatch();
@@ -9,31 +9,68 @@ const GroupDate = () => {
   const [registrationInput, setRegistration] = useState(state.date.registration);
   const [choosingInput, setChoosing] = useState(state.date.choosing);
   const [exchangeInput, setExchange] = useState(state.date.exchange);
+  const update = (state.group.id !== null);
+  let groupDB = {
+    group : {
+      name : state.group.name,
+    },
+    date : {
+      budget : budgetInput,
+      registration : registrationInput,
+      choosing : choosingInput,
+      exchange : choosingInput,
+    },
+    admin : {
+      name : state.admin.name,
+      email : state.admin.email,
+    },
+    gift : {
+      age : state.gift.age,
+      gender : state.gift.gender,
+      wishes : state.gift.wishes,
+    }
+  };
+  const addDate = () => {
+    if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
+      dispatch(groupDateError(true));
+      return;
+    };
+    if (update) {
+      dispatch(saveGroupDate({
+        groupDB,
+        groupID : state.group.id,
+      }));
+    } else {
+      dispatch(createGroupDate({
+        date : {
+          budget : budgetInput,
+          registration : registrationInput,
+          choosing : choosingInput,
+          exchange : exchangeInput,
+        },
+      }));
+    }
+  };
 
   if (state.date.edit) {
     return (
       <>
         <div className="group_label">Регистрация участников до:</div>
         <div className="group_form_container">
-          <label>Бюджет:</label>
-          <select
+          <label htmlFor="budget">Бюджет:</label>
+          <input
+            id="budget"
+            type="text"
             className="group_input"
             value={budgetInput}
             onChange={e => setBudget(e.target.value)}
-          >
-            <option>Выберите бюджет</option>
-            <option value={1000}>1000₽</option>
-            <option value={2000}>2000₽</option>
-            <option value={3000}>3000₽</option>
-            <option value={4000}>4000₽</option>
-            <option value={5000}>5000₽</option>
-            <option value={6000}>6000₽</option>
-          </select>
+            placeholder=""
+          ></input>
           {state.date.error === true && (<div className="error_text">Бюджет не может быть пустым!</div>)}
         
-        
-          <label>Регистрация участников до:</label>
+          <label htmlFor="date1">Регистрация участников до:</label>
           <input
+            id="date1"
             type="date"
             className="group_input"
             value={registrationInput}
@@ -41,9 +78,9 @@ const GroupDate = () => {
           ></input>
           {state.date.error === true && (<div className="error_text">Дата не может быть не назначена!</div>)}
         
-        
-          <label>Выбор получателей подарков до:</label>
+          <label htmlFor="date2">Выбор получателей подарков до:</label>
           <input
+            id="date2"
             type="date"
             className="group_input"
             value={choosingInput}
@@ -51,9 +88,9 @@ const GroupDate = () => {
           ></input>
           {state.date.error === true && (<div className="error_text">Дата не может быть не назначена!</div>)}
         
-        
-          <label>Обмен подарками:</label>
+          <label htmlFor="date3">Обмен подарками:</label>
           <input
+            id="date3"
             type="date"
             className="group_input"
             value={exchangeInput}
@@ -64,14 +101,7 @@ const GroupDate = () => {
         
         <button
           className="group_button"
-          onClick={() => dispatch(groupDate({
-            date : {
-              budget : budgetInput,
-              registration : registrationInput,
-              choosing : choosingInput,
-              exchange : exchangeInput,
-            }
-          }))}
+          onClick={addDate}
         >ОК</button>
       </>
     );

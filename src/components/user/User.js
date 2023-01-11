@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import UserName from "./UserName";
 import UserDone from "./UserDone";
-import Snow from "./effects/Snow";
+import Snow from "../effects/Snow";
 
 const User = () => {
   const state = useSelector(state => state.userReducer);
