@@ -9,7 +9,6 @@ const GroupDate = () => {
   const [registrationInput, setRegistration] = useState(state.date.registration);
   const [choosingInput, setChoosing] = useState(state.date.choosing);
   const [exchangeInput, setExchange] = useState(state.date.exchange);
-  const update = (state.group.id !== null);
   let groupDB = {
     group : {
       name : state.group.name,
@@ -31,11 +30,12 @@ const GroupDate = () => {
     }
   };
   const addDate = () => {
+    console.log(state);
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
       dispatch(groupDateError(true));
       return;
     };
-    if (update) {
+    if (state.group.id !== null) {
       dispatch(saveGroupDate({
         groupDB,
         groupID : state.group.id,

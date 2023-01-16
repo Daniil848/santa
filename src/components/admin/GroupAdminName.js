@@ -7,7 +7,6 @@ const GroupAdminName = () => {
   const state = useSelector(state => state.adminReducer);
   const [adminNameInput, setAdminName] = useState(state.admin.name);
   const [adminEmailInput, setAdminEmail] = useState(state.admin.email);
-  const update = (state.group.id !== null)
   let groupDB = {
     group : {
       name : state.group.name,
@@ -20,7 +19,7 @@ const GroupAdminName = () => {
     },
     admin : {
       name : adminNameInput,
-      email : adminNameInput,
+      email : adminEmailInput,
     },
     gift : {
       age : state.gift.age,
@@ -33,7 +32,7 @@ const GroupAdminName = () => {
       dispatch(groupAdminNameError(true));
       return;
     }
-    if (update) {
+    if (state.group.id !== null) {
       dispatch(saveAdminName({
         groupDB,
         groupID : state.group.id,

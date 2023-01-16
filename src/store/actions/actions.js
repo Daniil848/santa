@@ -16,7 +16,6 @@ import { toast } from 'react-toastify';
 //===============================ADMIN===============================
 
 export const saveGroupName = (path) => {
-  console.log(path);
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
@@ -29,12 +28,9 @@ export const saveGroupName = (path) => {
         })
 
         if (response.status < 300) {
-          dispatch({
-            type : GROUP_NAME,
-            payload : {
-              group : path.groupDB,
-            },
-          });
+          dispatch(createGroupName({
+            group : path.groupDB.group,
+          }));
           toast.success("Название группы изменено!", {
             position: "bottom-center",
             autoClose: 5000,
@@ -70,9 +66,9 @@ export const saveGroupName = (path) => {
           progress: undefined,
           theme: "light",
         });
-      }
-    }
-  }
+      };
+    };
+  };
 };
 
 export const createGroupName = (path) => ({
@@ -83,7 +79,6 @@ export const createGroupName = (path) => ({
 })
 
 export const saveGroupDate = (path) => {
-  console.log(path);
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
@@ -96,12 +91,9 @@ export const saveGroupDate = (path) => {
         })
 
         if (response.status < 300) {
-          dispatch({
-            type : GROUP_DATE,
-            payload : {
-              date : path.groupDB,
-            },
-          });
+          dispatch(createGroupDate({
+              date : path.groupDB.date,
+          }));
           toast.success("Дата изменена!", {
             position: "bottom-center",
             autoClose: 5000,
@@ -149,7 +141,6 @@ export const createGroupDate = (path) => ({
 })
 
 export const saveAdminName = (path) => {
-  console.log(path);
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
@@ -162,12 +153,9 @@ export const saveAdminName = (path) => {
         })
 
         if (response.status < 300) {
-          dispatch({
-            type : GROUP_ADMIN_NAME,
-            payload : {
-              admin : path.groupDB,
-            },
-          });
+          dispatch(createAdminName({
+            admin : path.groupDB.admin,
+          }));
           toast.success("Имя изменено!", {
             position: "bottom-center",
             autoClose: 5000,
@@ -216,7 +204,6 @@ export const createAdminName = (path) => ({
 })
 
 export const saveGroup = (path) => {
-  console.log(path);
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
@@ -229,12 +216,9 @@ export const saveGroup = (path) => {
         })
 
         if (response.status < 300) {
-          dispatch({
-            type : YOUR_GIFT_FOR,
-            payload : {
-              gift : path.groupDB,
-            }
-          });
+          dispatch(createYourGift({
+            gift : path.groupDB.gift,
+          }));
           toast.success("Готово!!!", {
             position: "bottom-center",
             autoClose: 5000,
@@ -292,12 +276,9 @@ export const saveGroup = (path) => {
               id : data.id,
             }
           }));
-          dispatch({
-            type : YOUR_GIFT_FOR,
-            payload : {
-              gift : path.gift,
-            }
-          });
+          dispatch(createYourGift({
+            gift : path.gift,
+          }));
           toast.success("Группа создана!!!", {
             position: "bottom-center",
             autoClose: 5000,
@@ -327,6 +308,13 @@ export const saveGroup = (path) => {
     };
   }
 };
+
+export const createYourGift = (path) => ({
+  type : YOUR_GIFT_FOR,
+  payload : {
+    gift : path.gift,
+  },
+});
 
 export const groupID = (path) => ({
   type : SET_GROUP_ID,

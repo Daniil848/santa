@@ -6,7 +6,6 @@ const GroupName = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const [groupNameInput, setGroupName] = useState(state.group.name);
-  const update = (state.group.id !== null)
   let groupDB = {
     group : {
       name : groupNameInput,
@@ -32,7 +31,7 @@ const GroupName = () => {
       dispatch(groupNameError(true));
       return;
     }
-    if (update) {
+    if (state.group.id !== null) {
       dispatch(saveGroupName({
         groupDB,
         groupID : state.group.id,

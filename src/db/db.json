@@ -2,115 +2,28 @@
   "group": [
     {
       "group": {
-        "name": "1111111111111111111111111111"
+        "name": "1111k"
       },
       "date": {
-        "budget": "2",
+        "budget": "20000111111",
         "registration": "2023-01-01",
         "choosing": "2023-01-01",
         "exchange": "2023-01-01"
       },
       "admin": {
-        "name": "g",
-        "email": "g"
+        "name": "44444",
+        "email": "33333"
       },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": "g"
-      },
+      "gift": {},
       "id": 1
     },
     {
-      "group": {},
-      "date": {
-        "budget": "f",
-        "registration": "2023-01-01",
-        "choosing": "2023-01-01",
-        "exchange": "2023-01-01"
-      },
-      "admin": {
-        "name": "g",
-        "email": "g"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": "g"
-      },
-      "id": 2
-    },
-    {
-      "group": {},
-      "date": {
-        "budget": "g",
-        "registration": "2023-01-01",
-        "choosing": "2023-01-01",
-        "exchange": "2023-01-01"
-      },
-      "admin": {
-        "name": "g",
-        "email": "g"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": "g"
-      },
-      "id": 3
-    },
-    {
       "group": {
-        "name": "а"
-      },
-      "date": {},
-      "admin": {},
-      "gift": {
-        "age": "3",
-        "gender": "boy",
-        "wishes": "а"
-      },
-      "id": 4
-    },
-    {
-      "group": {},
-      "date": {},
-      "admin": {},
-      "gift": {
-        "age": "4",
-        "gender": "boy",
-        "wishes": ""
-      },
-      "id": 5
-    },
-    {
-      "group": {
-        "name": "лол"
+        "name": "g111"
       },
       "date": {
-        "budget": "2",
-        "registration": "2023-01-01",
-        "choosing": "2023-01-01",
-        "exchange": "2023-01-01"
-      },
-      "admin": {
-        "name": "2",
-        "email": "2"
-      },
-      "gift": {
-        "age": "1",
-        "gender": "boy",
-        "wishes": "1"
-      },
-      "id": 6
-    },
-    {
-      "group": {
-        "name": "а"
-      },
-      "date": {
-        "budget": "2",
-        "registration": "2023-01-01",
+        "budget": "4444",
+        "registration": "2023-01-29",
         "choosing": "2023-01-01",
         "exchange": "2023-01-01"
       },
@@ -123,7 +36,7 @@
         "gender": "boy",
         "wishes": "2"
       },
-      "id": 7
+      "id": 2
     }
   ],
   "user": [
@@ -132,14 +45,28 @@
         "user": {
           "name": "",
           "email": "",
-          "groupID": "5"
+          "groupID": "2"
         }
       },
       "user": {
-        "name": "к",
-        "email": "к"
+        "name": "",
+        "email": "f"
       },
       "id": 1
+    },
+    {
+      "userDB": {
+        "user": {
+          "name": "",
+          "email": "",
+          "groupID": "2"
+        }
+      },
+      "user": {
+        "name": "f",
+        "email": "f"
+      },
+      "id": 2
     }
   ]
 }
