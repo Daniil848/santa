@@ -2,14 +2,18 @@ import {
   GROUP_NAME,
   GROUP_DATE,
   GROUP_ADMIN_NAME,
-  YOUR_GIFT_FOR,
+  ADMIN_GIFT,
   SET_GROUP_ID,
-  USER_NAME,
-  SET_USER_ID,
   GROUP_NAME_ERROR,
   GROUP_DATE_ERROR,
   GROUP_ADMIN_NAME_ERROR,
   YOUR_GIFT_ERROR,
+  
+  USER_NAME,
+  USER_NAME_ERROR,
+  SET_USER_ID,
+  USER_GIFT,
+  USER_GIFT_ERROR,
 } from './actionTypes';
 import { toast } from 'react-toastify';
 
@@ -76,7 +80,7 @@ export const createGroupName = (path) => ({
   payload : {
     group : path.group,
   },
-})
+});
 
 export const saveGroupDate = (path) => {
   if (path.groupID !== null) {
@@ -133,12 +137,13 @@ export const saveGroupDate = (path) => {
     };
   };
 };
+
 export const createGroupDate = (path) => ({
   type : GROUP_DATE,
   payload : {
     date : path.date,
   },
-})
+});
 
 export const saveAdminName = (path) => {
   if (path.groupID !== null) {
@@ -201,7 +206,7 @@ export const createAdminName = (path) => ({
   payload : {
     admin : path.admin,
   },
-})
+});
 
 export const saveGroup = (path) => {
   if (path.groupID !== null) {
@@ -310,7 +315,7 @@ export const saveGroup = (path) => {
 };
 
 export const createYourGift = (path) => ({
-  type : YOUR_GIFT_FOR,
+  type : ADMIN_GIFT,
   payload : {
     gift : path.gift,
   },
@@ -353,11 +358,18 @@ export const yourGiftError = (path) => ({
 
 //===============================USER===============================
 
-export const addUserName = (path) => ({
+export const createUserName = (path) => ({
   type : USER_NAME,
   payload : {
     user : path.user,
   },
+});
+
+export const createUserGift = (path) => ({
+  type : USER_GIFT,
+  payload : {
+    gift : path.gift,
+  }
 });
 
 export const userID = (path) => ({
@@ -367,33 +379,47 @@ export const userID = (path) => ({
   },
 });
 
-export const saveUser = (user) => {
-  console.log(user);
-  return async(dispatch) => {
-    try {
-      const response = await fetch("http://localhost:3002/user", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(user),
-      })
+// export const saveUser = (user) => {
+//   console.log(user);
+//   return async(dispatch) => {
+//     try {
+//       const response = await fetch("http://localhost:3002/user", {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json;charset=utf-8'
+//         },
+//         body: JSON.stringify(user),
+//       })
 
-      const data = await response.json()
-      dispatch({type : "SET_USER_ID", payload : { id : data.id, }})
+//       const data = await response.json()
+//       dispatch({type : "SET_USER_ID", payload : { id : data.id, }})
       
-      if (response.status < 300) {
-        dispatch({
-          type : USER_NAME,
-          payload : {
-            user : user.user,
-          },
-        });
-      } else if (response.status >= 300) {
-        return false;
-      }
-    } catch (err) {
-      console.error('Произошла ошибка!', err);
-    }
-  }
-}
+//       if (response.status < 300) {
+//         dispatch({
+//           type : USER_NAME,
+//           payload : {
+//             user : user.user,
+//           },
+//         });
+//       } else if (response.status >= 300) {
+//         return false;
+//       }
+//     } catch (err) {
+//       console.error('Произошла ошибка!', err);
+//     }
+//   }
+// }
+
+export const userNameError = (path) => ({
+  type : USER_NAME_ERROR,
+  payload : {
+    user : path.user,
+  },
+});
+
+export const userGiftError = (path) => ({
+  type : USER_GIFT_ERROR,
+  payload : {
+    gift : path.gift,
+  },
+});

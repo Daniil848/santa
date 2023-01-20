@@ -1,6 +1,14 @@
+import { 
+  SWITCH_PAGE_GROUP,
+  SWITCH_PAGE_DATE,
+  SWITCH_PAGE_ADMIN,
+  SWITCH_PAGE_GIFT,
+  SWITCH_PAGE_DONE,
+} from "../../store/actions/actionTypes";
+
 import { useDispatch, useSelector } from "react-redux";
 
-const Pages = () => {
+const GroupPages = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const currentPageNameClass = state.step >= 1 ? "page_number--current" : "";
@@ -22,26 +30,26 @@ const Pages = () => {
     <div className="page">
       <div
         className={`page_number ${currentPageNameClass} ${activePageNameClass} ${errorPageNameClass}`}
-        onClick={() => dispatch({type : "SWITCH_PAGE_GROUP"})}
+        onClick={() => dispatch({type : SWITCH_PAGE_GROUP})}
       >1</div>
       <div
         className={`page_number ${currentPageDateClass} ${activePageDateClass} ${errorPageDateClass}`}
-        onClick={() => dispatch({type : "SWITCH_PAGE_DATE"})}
+        onClick={() => dispatch({type : SWITCH_PAGE_DATE})}
       >2</div>
       <div
         className={`page_number ${currentPageAdminClass} ${activePageAdminClass} ${errorPageAdminClass}`}
-        onClick={() => dispatch({type : "SWITCH_PAGE_ADMIN"})}
+        onClick={() => dispatch({type : SWITCH_PAGE_ADMIN})}
       >3</div>
       <div
         className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
-        onClick={() => dispatch({type : "SWITCH_PAGE_GIFT"})}
+        onClick={() => dispatch({type : SWITCH_PAGE_GIFT})}
       >4</div>
       {state.step >= 5 &&<div
         className={`page_number ${currentPageDoneClass} ${activePageDoneClass}`}
-        onClick={() => dispatch({type : "SWITCH_PAGE_DONE"})}
+        onClick={() => dispatch({type : SWITCH_PAGE_DONE})}
       >5</div>}
     </div>
   )
 }
 
-export default Pages;
+export default GroupPages;

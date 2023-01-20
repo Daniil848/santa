@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { groupAdminNameError, saveAdminName, createAdminName } from "../../store/actions/actions";
 
-const GroupAdminName = () => {
+const UserName = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const [adminNameInput, setAdminName] = useState(state.admin.name);
@@ -81,4 +81,4 @@ const GroupAdminName = () => {
   };
 };
 
-export default GroupAdminName;
+export default UserName;

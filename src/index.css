@@ -31,19 +31,19 @@ body {
     position: relative;
     box-sizing: border-box;
 }
-.group--active1 {
+.group--animation1 {
     animation: pop-in1 0.7s;
 }
-.group--active2 {
+.group--animation2 {
     animation: pop-in2 0.7s;
 }
-.group--active3 {
+.group--animation3 {
     animation: pop-in3 0.7s;
 }
-.group--active4 {
+.group--animation4 {
     animation: pop-in4 0.7s;
 }
-.group--active5 {
+.group--animation5 {
     animation: pop-in5 0.7s;
 }
 @keyframes pop-in1 {

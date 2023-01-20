@@ -1,47 +1,24 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveGroup, yourGiftError } from "../../store/actions/actions";
+import { createUserGift, userGiftError } from "../../store/actions/actions";
 
-const YourGift = () => {
+const UserGift = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.userReducer);
   const [ageInput, setAge] = useState(state.gift.age);
   const [wishesArea, setWishes] = useState(state.gift.wishes);
   const [gender, setGender] = useState(state.gift.gender);
-  let groupDB = {
-    
-    group : {
-      name : state.group.name,
-    },
-    date : {
-      budget : state.date.budget,
-      registration : state.date.registration,
-      choosing : state.date.choosing,
-      exchange : state.date.exchange,
-    },
-    admin : {
-      name : state.admin.name,
-      email : state.admin.email,
-    },
-    gift : {
-      age : ageInput,
-      gender : gender,
-      wishes : wishesArea,
-    }
-  };
-  const addGift = () => {
+  const addUserGift = () => {
     if (ageInput === "" || gender === "") {
-      dispatch(yourGiftError(true));
+      dispatch(userGiftError(true));
       return;
     }
-    dispatch(saveGroup({
-      groupDB,
+    dispatch(createUserGift({
       gift : {
         age : ageInput,
         gender : gender,
         wishes : wishesArea,
       },
-      groupID : state.group.id,
     }))
   }
 
@@ -59,7 +36,7 @@ const YourGift = () => {
           ></input>
         
           {state.gift.error === true && (<div className="error_text">Укажите возраст!</div>)}
-        
+          
           <div className="group_form_radios">
             <label>Пол:</label>
             <label className="light">
@@ -95,24 +72,24 @@ const YourGift = () => {
               ></input>
             Не важно</label>
           </div>
+
           {state.gift.error === true && (<div className="error_text">Выберите кому подарить подарок!</div>)}
 
-          
-            <label>Пожелания к подарку(не обязательно):</label>
-            <textarea
-              className="group_input"
-              value={wishesArea}
-              onChange={e => setWishes(e.target.value)}
-            ></textarea>
+          <label>Пожелания к подарку(не обязательно):</label>
+          <textarea
+            className="group_input"
+            value={wishesArea}
+            onChange={e => setWishes(e.target.value)}
+          ></textarea>
         </div>
 
         <button
           className="group_button"
-          onClick={addGift}
+          onClick={addUserGift}
         >ОК</button>
       </>
     );
-  };
-};
+  }
+}
 
-export default YourGift;
+export default UserGift;
