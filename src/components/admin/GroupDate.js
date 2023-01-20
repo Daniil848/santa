@@ -19,37 +19,22 @@ const GroupDate = () => {
       choosing : choosingInput,
       exchange : choosingInput,
     },
-    admin : {
-      name : state.admin.name,
-      email : state.admin.email,
-    },
-    gift : {
-      age : state.gift.age,
-      gender : state.gift.gender,
-      wishes : state.gift.wishes,
-    }
   };
   const addDate = () => {
-    console.log(state);
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
       dispatch(groupDateError(true));
       return;
     };
-    if (state.group.id !== null) {
-      dispatch(saveGroupDate({
-        groupDB,
-        groupID : state.group.id,
-      }));
-    } else {
-      dispatch(createGroupDate({
-        date : {
-          budget : budgetInput,
-          registration : registrationInput,
-          choosing : choosingInput,
-          exchange : exchangeInput,
-        },
-      }));
-    }
+    dispatch(saveGroupDate({
+      groupDB,
+      date : {
+        budget : budgetInput,
+        registration : registrationInput,
+        choosing : choosingInput,
+        exchange : exchangeInput,
+      },
+      groupID : state.group.id,
+    }));
   };
 
   if (state.date.edit) {

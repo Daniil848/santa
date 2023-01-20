@@ -16,15 +16,6 @@ const GroupName = () => {
       choosing : state.date.choosing,
       exchange : state.date.exchange,
     },
-    admin : {
-      name : state.admin.name,
-      email : state.admin.email,
-    },
-    gift : {
-      age : state.gift.age,
-      gender : state.gift.gender,
-      wishes : state.gift.wishes,
-    }
   };
   const addName = () => {
     if (groupNameInput === "") {

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const GroupDone = () => {
   const state = useSelector(state => state.adminReducer);
 
-  if (state.group.edit === false && state.date.edit === false && state.admin.edit === false && state.gift.edit === false) {
+  if (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) {
     return (
       <>
         <label className="group_label">Ваша группа "{state.group.name}" готова!!!</label> 

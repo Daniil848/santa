@@ -1,23 +1,44 @@
 import {
   GROUP_NAME,
   GROUP_DATE,
-  GROUP_ADMIN_NAME,
-  ADMIN_GIFT,
+  GROUP_USER_NAME,
+  USER_GIFT,
   SET_GROUP_ID,
+  SET_USER_ID,
   GROUP_NAME_ERROR,
   GROUP_DATE_ERROR,
-  GROUP_ADMIN_NAME_ERROR,
+  GROUP_USER_NAME_ERROR,
   YOUR_GIFT_ERROR,
-  
-  USER_NAME,
-  USER_NAME_ERROR,
-  SET_USER_ID,
-  USER_GIFT,
-  USER_GIFT_ERROR,
 } from './actionTypes';
 import { toast } from 'react-toastify';
 
-//===============================ADMIN===============================
+export const createGroupName = (path) => ({
+  type : GROUP_NAME,
+  payload : {
+    group : path.group,
+  },
+});
+
+export const createGroupDate = (path) => ({
+  type : GROUP_DATE,
+  payload : {
+    date : path.date,
+  },
+});
+
+export const createUserName = (path) => ({
+  type : GROUP_USER_NAME,
+  payload : {
+    user : path.user,
+  },
+});
+
+export const createYourGift = (path) => ({
+  type : USER_GIFT,
+  payload : {
+    gift : path.gift,
+  },
+});
 
 export const saveGroupName = (path) => {
   if (path.groupID !== null) {
@@ -75,13 +96,6 @@ export const saveGroupName = (path) => {
   };
 };
 
-export const createGroupName = (path) => ({
-  type : GROUP_NAME,
-  payload : {
-    group : path.group,
-  },
-});
-
 export const saveGroupDate = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
@@ -96,7 +110,7 @@ export const saveGroupDate = (path) => {
 
         if (response.status < 300) {
           dispatch(createGroupDate({
-              date : path.groupDB.date,
+            date : path.groupDB.date,
           }));
           toast.success("Дата изменена!", {
             position: "bottom-center",
@@ -135,21 +149,64 @@ export const saveGroupDate = (path) => {
         });
       };
     };
-  };
+  } else if (path.groupID === null) {
+    return async(dispatch) => {
+      try {
+        const response = await fetch("http://localhost:3002/group", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(path.groupDB),
+        });
+
+        const data = await response.json();
+        console.log("data",data);
+
+        if (response.status < 300) {
+          dispatch(groupID({
+            group : {
+              id : data.id,
+            }
+          }));
+          dispatch(createGroupDate({
+            date : path.date,
+          }));
+          toast.success("Группа создана!!!", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else if (response.status >= 300) {
+          toast.error("Ошибка(", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          return false;
+        };
+      } catch (err) {
+        console.error('Произошла ошибка!', err);
+      }
+    }
+  }
 };
 
-export const createGroupDate = (path) => ({
-  type : GROUP_DATE,
-  payload : {
-    date : path.date,
-  },
-});
-
-export const saveAdminName = (path) => {
+export const saveUserName = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group/" + path.groupID, {
+        const response = await fetch("http://localhost:3002/user/" + path.userID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -158,8 +215,8 @@ export const saveAdminName = (path) => {
         })
 
         if (response.status < 300) {
-          dispatch(createAdminName({
-            admin : path.groupDB.admin,
+          dispatch(createUserName({
+            user : path.userDB.user,
           }));
           toast.success("Имя изменено!", {
             position: "bottom-center",
@@ -201,23 +258,16 @@ export const saveAdminName = (path) => {
   };
 };
 
-export const createAdminName = (path) => ({
-  type : GROUP_ADMIN_NAME,
-  payload : {
-    admin : path.admin,
-  },
-});
-
-export const saveGroup = (path) => {
-  if (path.groupID !== null) {
+export const saveUser = (path) => {
+  if (path.userID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group/" + path.groupID, {
+        const response = await fetch("http://localhost:3002/group/" + path.userID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
           },
-          body: JSON.stringify(path.groupDB),
+          body: JSON.stringify(path.userDB),
         })
 
         if (response.status < 300) {
@@ -261,30 +311,30 @@ export const saveGroup = (path) => {
         });
       }
     }
-  } else if (path.groupID === null) {
+  } else if (path.userID === null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group", {
+        const response = await fetch("http://localhost:3002/user", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
           },
-          body: JSON.stringify(path.groupDB),
+          body: JSON.stringify(path.userDB),
         });
   
         const data = await response.json();
         console.log("data",data);
 
         if (response.status < 300) {
-          dispatch(groupID({ 
-            group : {
+          dispatch(userID({ 
+            user : {
               id : data.id,
             }
           }));
           dispatch(createYourGift({
             gift : path.gift,
           }));
-          toast.success("Группа создана!!!", {
+          toast.success("Пользователь создан!!!", {
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -314,17 +364,17 @@ export const saveGroup = (path) => {
   }
 };
 
-export const createYourGift = (path) => ({
-  type : ADMIN_GIFT,
-  payload : {
-    gift : path.gift,
-  },
-});
-
 export const groupID = (path) => ({
   type : SET_GROUP_ID,
   payload : {
     group : path.group,
+  },
+});
+
+export const userID = (path) => ({
+  type : SET_USER_ID,
+  payload : {
+    user : path.user,
   },
 });
 
@@ -342,10 +392,10 @@ export const groupDateError = (path) => ({
   },
 });
 
-export const groupAdminNameError = (path) => ({
-  type : GROUP_ADMIN_NAME_ERROR,
+export const groupUserNameError = (path) => ({
+  type : GROUP_USER_NAME_ERROR,
   payload : {
-    admin : path.admin,
+    user : path.user,
   },
 });
 
@@ -357,69 +407,3 @@ export const yourGiftError = (path) => ({
 });
 
 //===============================USER===============================
-
-export const createUserName = (path) => ({
-  type : USER_NAME,
-  payload : {
-    user : path.user,
-  },
-});
-
-export const createUserGift = (path) => ({
-  type : USER_GIFT,
-  payload : {
-    gift : path.gift,
-  }
-});
-
-export const userID = (path) => ({
-  type : SET_USER_ID,
-  payload : {
-    user : path.user,
-  },
-});
-
-// export const saveUser = (user) => {
-//   console.log(user);
-//   return async(dispatch) => {
-//     try {
-//       const response = await fetch("http://localhost:3002/user", {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json;charset=utf-8'
-//         },
-//         body: JSON.stringify(user),
-//       })
-
-//       const data = await response.json()
-//       dispatch({type : "SET_USER_ID", payload : { id : data.id, }})
-      
-//       if (response.status < 300) {
-//         dispatch({
-//           type : USER_NAME,
-//           payload : {
-//             user : user.user,
-//           },
-//         });
-//       } else if (response.status >= 300) {
-//         return false;
-//       }
-//     } catch (err) {
-//       console.error('Произошла ошибка!', err);
-//     }
-//   }
-// }
-
-export const userNameError = (path) => ({
-  type : USER_NAME_ERROR,
-  payload : {
-    user : path.user,
-  },
-});
-
-export const userGiftError = (path) => ({
-  type : USER_GIFT_ERROR,
-  payload : {
-    gift : path.gift,
-  },
-});

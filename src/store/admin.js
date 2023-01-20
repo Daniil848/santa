@@ -1,17 +1,18 @@
 import {
   GROUP_NAME,
   GROUP_DATE,
-  GROUP_ADMIN_NAME,
-  ADMIN_GIFT,
+  GROUP_USER_NAME,
+  USER_GIFT,
   SWITCH_PAGE_GROUP,
   SWITCH_PAGE_DATE,
-  SWITCH_PAGE_ADMIN,
+  SWITCH_PAGE_USER,
   SWITCH_PAGE_GIFT,
   SWITCH_PAGE_DONE,
   SET_GROUP_ID,
+  SET_USER_ID,
   GROUP_NAME_ERROR,
   GROUP_DATE_ERROR,
-  GROUP_ADMIN_NAME_ERROR,
+  GROUP_USER_NAME_ERROR,
   YOUR_GIFT_ERROR,
 } from './actions/actionTypes';
 
@@ -30,11 +31,12 @@ const adminState = {
     error : false,
     edit : false,
   },
-  admin : {
+  user : {
     name : "",
     email : "",
     error : false,
     edit : false,
+    id : null,
   },
   gift : {
     age : "",
@@ -44,6 +46,7 @@ const adminState = {
     edit : false,
   }, 
   step : 1,
+  userStep : 1,
 }
 
 export const adminReducer = (state = adminState, action) => {
@@ -108,8 +111,8 @@ export const adminReducer = (state = adminState, action) => {
             exchange : dateExchange,
             edit : false,
           },
-          admin : {
-            ...state.admin,
+          user : {
+            ...state.user,
             edit : true,
           },
           step : 3,
@@ -117,29 +120,29 @@ export const adminReducer = (state = adminState, action) => {
       }
       break;
     }
-    case GROUP_ADMIN_NAME : {
-      console.log("GROUP-ADMIN", action.payload)
-      const adminName = action.payload.admin.name;
-      const adminEmail = action.payload.admin.email;
+    case GROUP_USER_NAME : {
+      console.log("GROUP-USER", action.payload)
+      const userName = action.payload.user.name;
+      const userEmail = action.payload.user.email;
       const stateStep = state.step;
 
       if (stateStep >= 4) {
         return {
           ...state,
-          admin : {
-            ...state.admin,
-            name : adminName,
-            email : adminEmail,
+          user : {
+            ...state.user,
+            name : userName,
+            email : userEmail,
           },
           step : stateStep,
         }
       } else {
         return {
           ...state,
-          admin : {
-            ...state.admin,
-            name : adminName,
-            email : adminEmail,
+          user : {
+            ...state.user,
+            name : userName,
+            email : userEmail,
             edit : false,
           },
           gift: {
@@ -150,7 +153,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case ADMIN_GIFT : {
+    case USER_GIFT : {
       console.log("YOUR-GIFT-FOR", action.payload);
       const giftAge = action.payload.gift.age;
       const giftWishes = action.payload.gift.wishes;
@@ -214,11 +217,11 @@ export const adminReducer = (state = adminState, action) => {
         }
       };
     } 
-    case GROUP_ADMIN_NAME_ERROR : {
+    case GROUP_USER_NAME_ERROR : {
       return {
         ...state,
-        admin : {
-          ...state.admin,
+        user : {
+          ...state.user,
           error : true,
         }
       };
@@ -246,8 +249,8 @@ export const adminReducer = (state = adminState, action) => {
             ...state.date,
             edit : false,
           },
-          admin: {
-            ...state.admin,
+          user: {
+            ...state.user,
             edit : false,
           },
           gift : {
@@ -274,8 +277,8 @@ export const adminReducer = (state = adminState, action) => {
             ...state.date,
             edit : true,
           },
-          admin: {
-            ...state.admin,
+          user: {
+            ...state.user,
             edit : false,
           },
           gift : {
@@ -289,7 +292,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case SWITCH_PAGE_ADMIN : {
+    case SWITCH_PAGE_USER : {
       const stateStep = state.step;
 
       if (stateStep >= 3) {
@@ -303,8 +306,8 @@ export const adminReducer = (state = adminState, action) => {
             ...state.date,
             edit : false,
           },
-          admin: {
-            ...state.admin,
+          user: {
+            ...state.user,
             edit : true,
           },
           gift : {
@@ -332,8 +335,8 @@ export const adminReducer = (state = adminState, action) => {
             ...state.date,
             edit : false,
           },
-          admin: {
-            ...state.admin,
+          user: {
+            ...state.user,
             edit : false,
           },
           gift : {
@@ -360,8 +363,8 @@ export const adminReducer = (state = adminState, action) => {
             ...state.date,
             edit : false,
           },
-          admin: {
-            ...state.admin,
+          user: {
+            ...state.user,
             edit : false,
           },
           gift : {
@@ -383,6 +386,17 @@ export const adminReducer = (state = adminState, action) => {
         group : {
           ...state.group,
           id : groupID,
+        },
+      }
+    }
+    case SET_USER_ID : {
+      console.log("SET_GROUP_ID", action.payload)
+      const userID = action.payload.user.id;
+      return {
+        ...state,
+        user : {
+          ...state.user,
+          id : userID,
         },
       }
     }

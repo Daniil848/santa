@@ -1,25 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { groupAdminNameError, saveAdminName, createAdminName } from "../../store/actions/actions";
+import { groupUserNameError, saveUserName, createUserName } from "../../store/actions/actions";
 
 const UserName = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
-  const [adminNameInput, setAdminName] = useState(state.admin.name);
-  const [adminEmailInput, setAdminEmail] = useState(state.admin.email);
-  let groupDB = {
-    group : {
-      name : state.group.name,
-    },
-    date : {
-      budget : state.date.budget,
-      registration : state.date.registration,
-      choosing : state.date.choosing,
-      exchange : state.date.exchange,
-    },
-    admin : {
-      name : adminNameInput,
-      email : adminEmailInput,
+  const [userNameInput, setUserName] = useState(state.user.name);
+  const [userEmailInput, setUserEmail] = useState(state.user.email);
+  let userDB = {
+    user : {
+      name : userNameInput,
+      email : userEmailInput,
     },
     gift : {
       age : state.gift.age,
@@ -27,27 +18,27 @@ const UserName = () => {
       wishes : state.gift.wishes,
     }
   };
-  const addAdminName = () => {
-    if (adminNameInput === "" || adminEmailInput === "") {
-      dispatch(groupAdminNameError(true));
+  const addUserName = () => {
+    if (userNameInput === "" || userEmailInput === "") {
+      dispatch(groupUserNameError(true));
       return;
     }
-    if (state.group.id !== null) {
-      dispatch(saveAdminName({
-        groupDB,
-        groupID : state.group.id,
+    if (state.user.id !== null) {
+      dispatch(saveUserName({
+        userDB,
+        userID : state.user.id,
       }));
     } else {
-      dispatch(createAdminName({
-        admin : {
-          name : adminNameInput,
-          email : adminEmailInput,
+      dispatch(createUserName({
+        user : {
+          name : userNameInput,
+          email : userEmailInput,
         },
       }));
     }
   }
 
-  if (state.admin.edit) {
+  if (state.user.edit) {
     return (
       <>
         <div className="group_label">Участник(вы - администратор группы).</div>
@@ -56,25 +47,25 @@ const UserName = () => {
           <input
             className="group_input"
             placeholder="Василий"
-            value={adminNameInput}
-            onChange={e => setAdminName(e.target.value)}
+            value={userNameInput}
+            onChange={e => setUserName(e.target.value)}
           ></input>
         
-          {state.admin.error === true && (<div className="error_text">Ваше имя не может быть пустым!</div>)}
+          {state.user.error === true && (<div className="error_text">Ваше имя не может быть пустым!</div>)}
         
           <label>Ваш еmail(не видно ни кому):</label>
           <input
             className="group_input"
             placeholder="santa@gmail.com"
-            value={adminEmailInput}
-            onChange={e => setAdminEmail(e.target.value)}
+            value={userEmailInput}
+            onChange={e => setUserEmail(e.target.value)}
           ></input>
-          {state.admin.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
+          {state.user.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
         </div>
         
         <button
           className="group_button"
-          onClick={addAdminName}
+          onClick={addUserName}
         >ОК</button>
       </>
     );

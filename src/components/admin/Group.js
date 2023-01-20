@@ -5,7 +5,7 @@ import UserName from "./UserName";
 import YourGift from "./YourGift";
 import GroupDone from "./GroupDone";
 import Snow from "../effects/Snow";
-import PagesAdmin from "./GroupPages";
+import GroupPages from "./GroupPages";
 
 
 const Group = () => {
@@ -13,15 +13,15 @@ const Group = () => {
   const step = state.step;
   const groupActiveName = (state.group.edit) ? "group--animation1" : "";
   const groupActiveDate = (state.date.edit) ? "group--animation2" : "";
-  const groupActiveAdmin = (state.admin.edit) ? "group--animation3" : "";
+  const groupActiveUser = (state.user.edit) ? "group--animation3" : "";
   const groupActiveGift = (state.gift.edit) ? "group--animation4" : "";
-  const groupActiveDone = (state.group.edit === false && state.date.edit === false && state.admin.edit === false && state.gift.edit === false) ? "group--animation5" : "";
+  const groupActiveDone = (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) ? "group--animation5" : "";
 
   return (
     <>
       <Snow/>
-      <div className={`group ${groupActiveName} ${groupActiveDate} ${groupActiveAdmin} ${groupActiveGift} ${groupActiveDone}`}>
-        <PagesAdmin />
+      <div className={`group ${groupActiveName} ${groupActiveDate} ${groupActiveUser} ${groupActiveGift} ${groupActiveDone}`}>
+        <GroupPages/>
         {step >= 1 && <GroupName />}
         {step >= 2 && <GroupDate />}
         {step >= 3 && <UserName />}

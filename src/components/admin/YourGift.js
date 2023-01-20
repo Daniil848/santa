@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveGroup, yourGiftError } from "../../store/actions/actions";
+import { saveUser, yourGiftError } from "../../store/actions/actions";
 
 const YourGift = () => {
   const dispatch = useDispatch();
@@ -8,20 +8,10 @@ const YourGift = () => {
   const [ageInput, setAge] = useState(state.gift.age);
   const [wishesArea, setWishes] = useState(state.gift.wishes);
   const [gender, setGender] = useState(state.gift.gender);
-  let groupDB = {
-    
-    group : {
-      name : state.group.name,
-    },
-    date : {
-      budget : state.date.budget,
-      registration : state.date.registration,
-      choosing : state.date.choosing,
-      exchange : state.date.exchange,
-    },
-    admin : {
-      name : state.admin.name,
-      email : state.admin.email,
+  let userDB = {
+    user : {
+      name : state.user.name,
+      email : state.user.email,
     },
     gift : {
       age : ageInput,
@@ -34,14 +24,14 @@ const YourGift = () => {
       dispatch(yourGiftError(true));
       return;
     }
-    dispatch(saveGroup({
-      groupDB,
+    dispatch(saveUser({
+      userDB,
       gift : {
         age : ageInput,
         gender : gender,
         wishes : wishesArea,
       },
-      groupID : state.group.id,
+      userID : state.user.id,
     }))
   }
 
