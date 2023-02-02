@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { groupDateError, saveGroupDate, createGroupDate } from "../../store/actions/actions";
+import { groupDateError, saveGroupDate} from "../../store/actions/actions";
 
 const GroupDate = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const GroupDate = () => {
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
       dispatch(groupDateError(true));
       return;
-    };
+    }
     dispatch(saveGroupDate({
       groupDB,
       date : {

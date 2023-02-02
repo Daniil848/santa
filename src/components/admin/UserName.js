@@ -38,10 +38,10 @@ const UserName = () => {
     }
   }
 
-  if (state.user.edit) {
+  if (state.user.edit || state.userStep === 1) {
     return (
       <>
-        <div className="group_label">Участник(вы - администратор группы).</div>
+        <div className="group_label">Участник:</div>
         <div className="group_form_container">
           <label>Ваше имя(видно участникам):</label>
           <input

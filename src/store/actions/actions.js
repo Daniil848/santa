@@ -211,7 +211,7 @@ export const saveUserName = (path) => {
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
           },
-          body: JSON.stringify(path.groupDB),
+          body: JSON.stringify(path.userDB),
         })
 
         if (response.status < 300) {
@@ -260,9 +260,10 @@ export const saveUserName = (path) => {
 
 export const saveUser = (path) => {
   if (path.userID !== null) {
+    console.log(path)
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group/" + path.userID, {
+        const response = await fetch("http://localhost:3002/user/" + path.userID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -272,9 +273,9 @@ export const saveUser = (path) => {
 
         if (response.status < 300) {
           dispatch(createYourGift({
-            gift : path.groupDB.gift,
+            gift : path.userDB.gift,
           }));
-          toast.success("Готово!!!", {
+          toast.success("Ваш подарок изменен!!!", {
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -405,5 +406,3 @@ export const yourGiftError = (path) => ({
     gift : path.gift,
   },
 });
-
-//===============================USER===============================

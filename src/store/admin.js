@@ -45,6 +45,7 @@ const adminState = {
     error : false,
     edit : false,
   }, 
+  admin : true,
   step : 1,
   userStep : 1,
 }
@@ -61,6 +62,7 @@ export const adminReducer = (state = adminState, action) => {
           group : {
             ...state.group,
             name : groupName,
+            error : false,
           },
           step : stateStep,
         }
@@ -70,6 +72,7 @@ export const adminReducer = (state = adminState, action) => {
           group : {
             ...state.group,
             name : groupName,
+            error : false,
             edit : false,
           },
           date : {
@@ -97,6 +100,7 @@ export const adminReducer = (state = adminState, action) => {
             registration : dateRegistration,
             choosing : dateChoosing,
             exchange : dateExchange,
+            error : false,
           },
           step : stateStep,
         }
@@ -109,6 +113,7 @@ export const adminReducer = (state = adminState, action) => {
             registration : dateRegistration,
             choosing : dateChoosing,
             exchange : dateExchange,
+            error : false,
             edit : false,
           },
           user : {
@@ -116,9 +121,9 @@ export const adminReducer = (state = adminState, action) => {
             edit : true,
           },
           step : 3,
+          userStep : 1,
         }
       }
-      break;
     }
     case GROUP_USER_NAME : {
       console.log("GROUP-USER", action.payload)
@@ -133,8 +138,10 @@ export const adminReducer = (state = adminState, action) => {
             ...state.user,
             name : userName,
             email : userEmail,
+            error : false,
           },
           step : stateStep,
+          userStep : state.userStep,
         }
       } else {
         return {
@@ -143,6 +150,7 @@ export const adminReducer = (state = adminState, action) => {
             ...state.user,
             name : userName,
             email : userEmail,
+            error : false,
             edit : false,
           },
           gift: {
@@ -150,6 +158,7 @@ export const adminReducer = (state = adminState, action) => {
             edit : true,
           },
           step : 4,
+          userStep : 2,
         }
       }
     }
@@ -180,6 +189,7 @@ export const adminReducer = (state = adminState, action) => {
               error : false,
             },
             step : stateStep,
+            userStep : state.userStep,
           }
         }
       } else {
@@ -194,7 +204,7 @@ export const adminReducer = (state = adminState, action) => {
             edit : false,
           },
           step : 5,
-          saveGroup : true,
+          userStep : 3,
         }
       }
       break;

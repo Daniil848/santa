@@ -1,11 +1,16 @@
 import {  useSelector } from "react-redux";
 
 const UserDone = () => {
-  return (
-    <div className="group_label">
-      Готово!!!
-    </div>
-  );
+  const state = useSelector(state => state.adminReducer);
+
+  if (state.user.edit === false && state.gift.edit === false) {
+    return (
+      <div className="group_label">
+        Готово!!!
+      </div>
+    );
+  }
+
 };
 
 export default UserDone;

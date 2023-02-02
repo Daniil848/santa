@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveUser, yourGiftError } from "../../store/actions/actions";
 
-const YourGift = () => {
+const YourGift = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const [ageInput, setAge] = useState(state.gift.age);
@@ -17,8 +17,10 @@ const YourGift = () => {
       age : ageInput,
       gender : gender,
       wishes : wishesArea,
-    }
+    },
+    admin : props.admin,
   };
+
   const addGift = () => {
     if (ageInput === "" || gender === "") {
       dispatch(yourGiftError(true));
@@ -32,8 +34,8 @@ const YourGift = () => {
         wishes : wishesArea,
       },
       userID : state.user.id,
-    }))
-  }
+    }));
+  };
 
   if (state.gift.edit) {
     return (

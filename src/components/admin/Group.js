@@ -25,7 +25,7 @@ const Group = () => {
         {step >= 1 && <GroupName />}
         {step >= 2 && <GroupDate />}
         {step >= 3 && <UserName />}
-        {step >= 4 && <YourGift />}
+        {step >= 4 && <YourGift admin={true}/>}
         {step >= 5 && <GroupDone />}
       </div>
     </>
