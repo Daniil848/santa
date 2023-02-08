@@ -18,7 +18,6 @@ const PagesUser = () => {
   const errorPageUserClass = state.user.error === true ? "page_number--error" : "";
   const errorPageGiftClass = state.gift.error === true ? "page_number--error" : "";
 
-
   return (
     <div className="page">
       <div

@@ -1,4 +1,17 @@
 {
-  "group": [],
+  "group": [
+    {
+      "group": {
+        "name": "f"
+      },
+      "date": {
+        "budget": "2",
+        "registration": "2023-02-05",
+        "choosing": "2023-02-05",
+        "exchange": "2023-02-05"
+      },
+      "id": 1
+    }
+  ],
   "user": []
 }

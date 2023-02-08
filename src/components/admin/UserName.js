@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { groupUserNameError, saveUserName, createUserName } from "../../store/actions/actions";
 
-const UserName = () => {
+const UserName = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const [userNameInput, setUserName] = useState(state.user.name);
   const [userEmailInput, setUserEmail] = useState(state.user.email);
+  const { groupID } = useParams();
   let userDB = {
     user : {
       name : userNameInput,
@@ -16,7 +18,9 @@ const UserName = () => {
       age : state.gift.age,
       gender : state.gift.gender,
       wishes : state.gift.wishes,
-    }
+    },
+    groupID : Number(groupID ? groupID : state.group.id),
+    admin : props.admin,
   };
   const addUserName = () => {
     if (userNameInput === "" || userEmailInput === "") {
@@ -37,8 +41,7 @@ const UserName = () => {
       }));
     }
   }
-
-  if (state.user.edit || state.userStep === 1) {
+  if (state.user.edit ||state.user.editProfile || state.userStep === 1) {
     return (
       <>
         <div className="group_label">Участник:</div>

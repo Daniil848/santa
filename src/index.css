@@ -2,7 +2,9 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color:var(--main-background);
+    background: url(./img/layered-waves-haikei.svg);
+    background-size: cover;
+    background-position: bottom;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,6 +166,16 @@ select.group_input{
     margin-bottom: 15px;
     cursor: pointer;
 }
+.group_info {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    margin: 8px 0;
+    cursor: pointer;
+}
 
 input[type="radio"],
 input[type="checkbox"] {
@@ -180,10 +192,16 @@ input[type="checkbox"] {
     margin:3px 0 3px 10px ;
 }
 
-.user_link {
-    background-color:  #e8eeef;
-    padding: 5px;
+.main_info {
+    width: fit-content;
+    background-color: #d1d4d4;
     font-weight: 600;
+    border-radius: 8px;
+    text-align: center;
+    padding: 3px 5px;
+    line-height: 25px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 
@@ -223,7 +241,7 @@ input[type="checkbox"] {
     box-shadow: 0px 0px 0px 4px #85C1E9;
 }
 .page_done {
-    background-color: #02D175;
+    background-color: #01c26b;
 }
 .page_done--active {
     box-shadow: 0px 0px 0px 4px #67ECB1;
@@ -235,14 +253,28 @@ input[type="checkbox"] {
 
 /* ------------VALIDATION----------*/
 
-
 .error_text {
     color: red;
     margin-bottom: 5px;
     text-align: center;
 }
 
+/* ------------EDIT-PAGE----------*/
 
-
-
-
+.edit_button {
+    border-radius: 50%;
+    background-color: var(--main-button-background);
+    border: none;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+.edit_info {
+    width: 100%;
+    color: black;
+    margin: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    padding:0 10px;
+    box-sizing: border-box;
+}

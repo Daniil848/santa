@@ -20,6 +20,7 @@ const GroupDate = () => {
       exchange : choosingInput,
     },
   };
+
   const addDate = () => {
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
       dispatch(groupDateError(true));
@@ -36,8 +37,7 @@ const GroupDate = () => {
       groupID : state.group.id,
     }));
   };
-
-  if (state.date.edit) {
+  if (state.date.edit || state.date.editProfile) {
     return (
       <>
         <div className="group_label">Регистрация участников до:</div>

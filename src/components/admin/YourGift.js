@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUser, yourGiftError } from "../../store/actions/actions";
+import { saveUser, userGiftError } from "../../store/actions/actions";
 
 const YourGift = (props) => {
   const dispatch = useDispatch();
@@ -8,6 +9,7 @@ const YourGift = (props) => {
   const [ageInput, setAge] = useState(state.gift.age);
   const [wishesArea, setWishes] = useState(state.gift.wishes);
   const [gender, setGender] = useState(state.gift.gender);
+  const { groupID } = useParams();
   let userDB = {
     user : {
       name : state.user.name,
@@ -18,12 +20,13 @@ const YourGift = (props) => {
       gender : gender,
       wishes : wishesArea,
     },
+    groupID : Number(groupID ? groupID : state.group.id),
     admin : props.admin,
   };
 
   const addGift = () => {
     if (ageInput === "" || gender === "") {
-      dispatch(yourGiftError(true));
+      dispatch(userGiftError(true));
       return;
     }
     dispatch(saveUser({
@@ -37,7 +40,7 @@ const YourGift = (props) => {
     }));
   };
 
-  if (state.gift.edit) {
+  if (state.gift.edit || state.gift.editProfile) {
     return (
       <>
         <div className="group_label">Мой подарок.</div>

@@ -1,7 +1,7 @@
 import {
   GROUP_NAME,
   GROUP_DATE,
-  GROUP_USER_NAME,
+  USER_NAME,
   USER_GIFT,
   SWITCH_PAGE_GROUP,
   SWITCH_PAGE_DATE,
@@ -12,8 +12,12 @@ import {
   SET_USER_ID,
   GROUP_NAME_ERROR,
   GROUP_DATE_ERROR,
-  GROUP_USER_NAME_ERROR,
-  YOUR_GIFT_ERROR,
+  USER_NAME_ERROR,
+  USER_GIFT_ERROR,
+  EDIT_PROFILE_GROUP_NAME,
+  EDIT_PROFILE_GROUP_DATE,
+  EDIT_PROFILE_USER_NAME,
+  EDIT_PROFILE_USER_GIFT,
 } from './actions/actionTypes';
 
 const adminState = {
@@ -21,6 +25,7 @@ const adminState = {
     name : "",
     error : false,
     edit : true,
+    editProfile : false,
     id : null,
   },
   date : {
@@ -30,6 +35,7 @@ const adminState = {
     exchange : "",
     error : false,
     edit : false,
+    editProfile : false,
   },
   user : {
     name : "",
@@ -37,6 +43,7 @@ const adminState = {
     error : false,
     edit : false,
     id : null,
+    editProfile : false,
   },
   gift : {
     age : "",
@@ -44,6 +51,7 @@ const adminState = {
     wishes : "",
     error : false,
     edit : false,
+    editProfile : false,
   }, 
   admin : true,
   step : 1,
@@ -63,6 +71,7 @@ export const adminReducer = (state = adminState, action) => {
             ...state.group,
             name : groupName,
             error : false,
+            editProfile : false,
           },
           step : stateStep,
         }
@@ -74,6 +83,7 @@ export const adminReducer = (state = adminState, action) => {
             name : groupName,
             error : false,
             edit : false,
+            editProfile : false,
           },
           date : {
             ...state.date,
@@ -101,6 +111,7 @@ export const adminReducer = (state = adminState, action) => {
             choosing : dateChoosing,
             exchange : dateExchange,
             error : false,
+            editProfile : false,
           },
           step : stateStep,
         }
@@ -115,6 +126,7 @@ export const adminReducer = (state = adminState, action) => {
             exchange : dateExchange,
             error : false,
             edit : false,
+            editProfile : false,
           },
           user : {
             ...state.user,
@@ -125,7 +137,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
-    case GROUP_USER_NAME : {
+    case USER_NAME : {
       console.log("GROUP-USER", action.payload)
       const userName = action.payload.user.name;
       const userEmail = action.payload.user.email;
@@ -139,6 +151,7 @@ export const adminReducer = (state = adminState, action) => {
             name : userName,
             email : userEmail,
             error : false,
+            editProfile : false,
           },
           step : stateStep,
           userStep : state.userStep,
@@ -152,6 +165,7 @@ export const adminReducer = (state = adminState, action) => {
             email : userEmail,
             error : false,
             edit : false,
+            editProfile : false,
           },
           gift: {
             ...state.gift,
@@ -163,7 +177,7 @@ export const adminReducer = (state = adminState, action) => {
       }
     }
     case USER_GIFT : {
-      console.log("YOUR-GIFT-FOR", action.payload);
+      console.log("USER-GIFT", action.payload);
       const giftAge = action.payload.gift.age;
       const giftWishes = action.payload.gift.wishes;
       const giftGender = action.payload.gift.gender;
@@ -187,6 +201,7 @@ export const adminReducer = (state = adminState, action) => {
               gender : giftGender,
               wishes : giftWishes,
               error : false,
+              editProfile : false,
             },
             step : stateStep,
             userStep : state.userStep,
@@ -202,6 +217,7 @@ export const adminReducer = (state = adminState, action) => {
             wishes : giftWishes,
             error : false,
             edit : false,
+            editProfile : false,
           },
           step : 5,
           userStep : 3,
@@ -209,6 +225,7 @@ export const adminReducer = (state = adminState, action) => {
       }
       break;
     }
+    //===================================ERRORS===================================
     case GROUP_NAME_ERROR : {
       return {
         ...state,
@@ -227,7 +244,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       };
     } 
-    case GROUP_USER_NAME_ERROR : {
+    case USER_NAME_ERROR : {
       return {
         ...state,
         user : {
@@ -236,7 +253,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       };
     }
-    case YOUR_GIFT_ERROR : {
+    case USER_GIFT_ERROR : {
       return {
         ...state,
         gift : {
@@ -245,6 +262,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       };
     }
+    //===================================SWICH PAGES===================================
     case SWITCH_PAGE_GROUP : {
       const stateStep = state.step;
 
@@ -388,6 +406,7 @@ export const adminReducer = (state = adminState, action) => {
         }
       }
     }
+    //===================================SET ID===================================
     case SET_GROUP_ID : {
       console.log("SET_GROUP_ID", action.payload)
       const groupID = action.payload.group.id;
@@ -408,6 +427,43 @@ export const adminReducer = (state = adminState, action) => {
           ...state.user,
           id : userID,
         },
+      }
+    }
+    //===================================EDIT PROFILE===================================
+    case EDIT_PROFILE_GROUP_NAME : {
+      return {
+        ...state,
+        group : {
+          ...state.group,
+          editProfile : true,
+        }
+      }
+    }
+    case EDIT_PROFILE_GROUP_DATE : {
+      return {
+        ...state,
+        date : {
+          ...state.date,
+          editProfile : true,
+        }
+      }
+    }
+    case EDIT_PROFILE_USER_NAME : {
+      return {
+        ...state,
+        user : {
+          ...state.user,
+          editProfile : true,
+        }
+      }
+    }
+    case EDIT_PROFILE_USER_GIFT : {
+      return {
+        ...state,
+        gift : {
+          ...state.gift,
+          editProfile : true,
+        }
       }
     }
     default : {

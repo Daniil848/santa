@@ -1,16 +1,22 @@
 import {
   GROUP_NAME,
   GROUP_DATE,
-  GROUP_USER_NAME,
+  USER_NAME,
   USER_GIFT,
   SET_GROUP_ID,
   SET_USER_ID,
   GROUP_NAME_ERROR,
   GROUP_DATE_ERROR,
-  GROUP_USER_NAME_ERROR,
-  YOUR_GIFT_ERROR,
+  USER_NAME_ERROR,
+  USER_GIFT_ERROR,
+  EDIT_PROFILE_GROUP_NAME,
+  EDIT_PROFILE_GROUP_DATE,
+  EDIT_PROFILE_USER_NAME,
+  EDIT_PROFILE_USER_GIFT,
 } from './actionTypes';
 import { toast } from 'react-toastify';
+
+//===================================CREATE GROUP & USER===================================
 
 export const createGroupName = (path) => ({
   type : GROUP_NAME,
@@ -27,18 +33,20 @@ export const createGroupDate = (path) => ({
 });
 
 export const createUserName = (path) => ({
-  type : GROUP_USER_NAME,
+  type : USER_NAME,
   payload : {
     user : path.user,
   },
 });
 
-export const createYourGift = (path) => ({
+export const createUserGift = (path) => ({
   type : USER_GIFT,
   payload : {
     gift : path.gift,
   },
 });
+
+//===================================FETCH GROUP & USER===================================
 
 export const saveGroupName = (path) => {
   if (path.groupID !== null) {
@@ -260,7 +268,6 @@ export const saveUserName = (path) => {
 
 export const saveUser = (path) => {
   if (path.userID !== null) {
-    console.log(path)
     return async(dispatch) => {
       try {
         const response = await fetch("http://localhost:3002/user/" + path.userID, {
@@ -272,7 +279,7 @@ export const saveUser = (path) => {
         })
 
         if (response.status < 300) {
-          dispatch(createYourGift({
+          dispatch(createUserGift({
             gift : path.userDB.gift,
           }));
           toast.success("Ваш подарок изменен!!!", {
@@ -324,15 +331,14 @@ export const saveUser = (path) => {
         });
   
         const data = await response.json();
-        console.log("data",data);
-
+        
         if (response.status < 300) {
           dispatch(userID({ 
             user : {
               id : data.id,
             }
           }));
-          dispatch(createYourGift({
+          dispatch(createUserGift({
             gift : path.gift,
           }));
           toast.success("Пользователь создан!!!", {
@@ -365,6 +371,8 @@ export const saveUser = (path) => {
   }
 };
 
+//===================================SET ID===================================
+
 export const groupID = (path) => ({
   type : SET_GROUP_ID,
   payload : {
@@ -378,6 +386,8 @@ export const userID = (path) => ({
     user : path.user,
   },
 });
+
+//===================================ERRORS===================================
 
 export const groupNameError = (path) => ({
   type : GROUP_NAME_ERROR,
@@ -394,15 +404,33 @@ export const groupDateError = (path) => ({
 });
 
 export const groupUserNameError = (path) => ({
-  type : GROUP_USER_NAME_ERROR,
+  type : USER_NAME_ERROR,
   payload : {
     user : path.user,
   },
 });
 
-export const yourGiftError = (path) => ({
-  type : YOUR_GIFT_ERROR,
+export const userGiftError = (path) => ({
+  type : USER_GIFT_ERROR,
   payload : {
     gift : path.gift,
   },
 });
+
+//===================================EDIT PROFILE===================================
+
+export const editProfileGroupName = () => ({
+  type : EDIT_PROFILE_GROUP_NAME,
+})
+
+export const editProfileGroupDate = () => ({
+  type : EDIT_PROFILE_GROUP_DATE,
+})
+
+export const editProfileUserName = () => ({
+  type : EDIT_PROFILE_USER_NAME,
+})
+
+export const editProfileUserGift = () => ({
+  type : EDIT_PROFILE_USER_GIFT,
+})

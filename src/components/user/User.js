@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import PagesUser from "./PagesUser";
 import UserDone from "./UserDone";
-import Snow from "../effects/Snow";
 import UserName from "../admin/UserName";
 import YourGift from "../admin/YourGift";
 
@@ -14,15 +13,13 @@ const User = () => {
 
   return (
     <>
-      <Snow />
       <div className={`group ${groupActiveUser} ${groupActiveGift} ${groupActiveDone}`}>
         <PagesUser />
-        {step >= 1 && <UserName />}
+        {step >= 1 && <UserName admin={false}/>}
         {step >= 2 && <YourGift admin={false}/>}
         {step >= 3 && <UserDone />}
       </div>
     </>
-    
   );
 };
 

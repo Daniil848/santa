@@ -4,9 +4,7 @@ import GroupDate from "./GroupDate";
 import UserName from "./UserName";
 import YourGift from "./YourGift";
 import GroupDone from "./GroupDone";
-import Snow from "../effects/Snow";
 import GroupPages from "./GroupPages";
-
 
 const Group = () => {
   const state = useSelector(state => state.adminReducer);
@@ -19,12 +17,11 @@ const Group = () => {
 
   return (
     <>
-      <Snow/>
       <div className={`group ${groupActiveName} ${groupActiveDate} ${groupActiveUser} ${groupActiveGift} ${groupActiveDone}`}>
         <GroupPages/>
         {step >= 1 && <GroupName />}
         {step >= 2 && <GroupDate />}
-        {step >= 3 && <UserName />}
+        {step >= 3 && <UserName admin={true}/>}
         {step >= 4 && <YourGift admin={true}/>}
         {step >= 5 && <GroupDone />}
       </div>

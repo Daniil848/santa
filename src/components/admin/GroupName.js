@@ -37,12 +37,12 @@ const GroupName = () => {
     
   };
 
-  if (state.group.edit) {
+  if (state.group.edit || state.group.editProfile) {
     return (  
       <>
         <label htmlFor="groupNameInput" className="group_label">Введите название группы:</label>
         <input
-          id="groupNameInput "
+          id="groupNameInput"
           type="text"
           className="group_input"
           placeholder="Обмен подарками 2023"
