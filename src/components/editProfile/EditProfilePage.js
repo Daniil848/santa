@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { 
   editProfileGroupName,
@@ -9,7 +9,6 @@ import {
 } from "../../store/actions/actions";
 
 const EditProfilePage = () => {
-  const state = useSelector(state => state.adminReducer);
   const dispatch = useDispatch();
   const [group , setGroup] = useState();
   const [user , setUser] = useState();
@@ -22,7 +21,6 @@ const EditProfilePage = () => {
       setGroup(data);
       console.log(data);
     };
-  
     fetchData();
   },[groupID]);
   useEffect(() => {
@@ -32,38 +30,40 @@ const EditProfilePage = () => {
       setUser(data);
       console.log(data);
     };
-  
     fetchData();
   },[userID]);
+
+  console.log(group);
+  console.log(user);
 
   if (group && user) {
     return (
       <>
         <p className="group_label">Группа:</p>
         <div className="edit_info">
-          <span className="main_info">{group.group.name}</span>
-          <button
+          <span className="main_info">Название: {group.group.name}</span>
+          {user.admin && <button
             onClick={() => dispatch(editProfileGroupName())}
             className="edit_button"
-          ></button>
+          ></button>}
         </div>
         <div className="edit_info">
-          <span className="main_info">{group.date.budget}₽</span>
-          <button
+          <span className="main_info">Бюджет: {group.date.budget}₽</span>
+          {user.admin && <button
             onClick={() => dispatch(editProfileGroupDate())}
             className="edit_button"
-          ></button>
+          ></button>}
         </div>
         <div className="edit_info">
-          <span className="main_info">{group.date.registration}</span>
-          <button
+          <span className="main_info">Дата: {group.date.registration}</span>
+          {user.admin && <button
             onClick={() => dispatch(editProfileGroupDate())}
             className="edit_button"
-          ></button>
+          ></button>}
         </div>
         <p className="group_label">Ваши данные:</p>
         <div className="edit_info">
-          <span className="main_info">{user.user.name}₽</span>
+          <span className="main_info">{user.user.name}</span>
           <button
             onClick={() => dispatch(editProfileUserName())}
             className="edit_button"
