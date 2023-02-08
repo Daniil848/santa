@@ -1,11 +1,11 @@
-import {
-  SWITCH_PAGE_USER,
-  SWITCH_PAGE_GIFT,
-  SWITCH_PAGE_DONE,
-} from "../../store/actions/actionTypes";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  switchPageUserName,
+  switchPageUserGift,
+  switchPageDone 
+} from "../../store/actions/actions";
 
-const PagesUser = () => {
+const UserPages = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const step = state.userStep;
@@ -22,18 +22,18 @@ const PagesUser = () => {
     <div className="page">
       <div
         className={`page_number ${currentPageUserClass} ${activePageUserClass} ${errorPageUserClass}`}
-        onClick={() => dispatch({type : SWITCH_PAGE_USER})}
+        onClick={() => dispatch(switchPageUserName())}
       >1</div>
       <div
         className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
-        onClick={() => dispatch({type : SWITCH_PAGE_GIFT})}
+        onClick={() => dispatch(switchPageUserGift())}
       >2</div>
       {step >= 3 && <div
         className={`page_number ${currentPageDoneClass} ${activePageDoneClass}`}
-        onClick={() => dispatch({type : SWITCH_PAGE_DONE})}
+        onClick={() => dispatch(switchPageDone())}
       >3</div>}
-    </div> 
+    </div>
   );
 };
 
-export default PagesUser;
+export default UserPages;

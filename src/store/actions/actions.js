@@ -13,6 +13,11 @@ import {
   EDIT_PROFILE_GROUP_DATE,
   EDIT_PROFILE_USER_NAME,
   EDIT_PROFILE_USER_GIFT,
+  SWITCH_PAGE_GROUP,
+  SWITCH_PAGE_DATE,
+  SWITCH_PAGE_USER,
+  SWITCH_PAGE_GIFT,
+  SWITCH_PAGE_DONE,
 } from './actionTypes';
 import { toast } from 'react-toastify';
 
@@ -421,16 +426,38 @@ export const userGiftError = (path) => ({
 
 export const editProfileGroupName = () => ({
   type : EDIT_PROFILE_GROUP_NAME,
-})
+});
 
 export const editProfileGroupDate = () => ({
   type : EDIT_PROFILE_GROUP_DATE,
-})
+});
 
 export const editProfileUserName = () => ({
   type : EDIT_PROFILE_USER_NAME,
-})
+});
 
 export const editProfileUserGift = () => ({
   type : EDIT_PROFILE_USER_GIFT,
-})
+});
+
+//===================================SWITCH PAGES===================================
+
+export const switchPageGroupName = () => ({
+  type : SWITCH_PAGE_GROUP,
+});
+
+export const switchPageDate = () => ({
+  type : SWITCH_PAGE_DATE,
+});
+
+export const switchPageUserName = () => ({
+  type : SWITCH_PAGE_USER,
+});
+
+export const switchPageUserGift = () => ({
+  type : SWITCH_PAGE_GIFT,
+});
+
+export const switchPageDone = () => ({
+  type : SWITCH_PAGE_DONE,
+});
