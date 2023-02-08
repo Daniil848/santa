@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import GroupName from "./GroupName";
 import GroupDate from "./GroupDate";
-import UserName from "./UserName";
-import YourGift from "./YourGift";
+import UserName from "../user/UserName";
+import YourGift from "../user/YourGift";
 import GroupDone from "./GroupDone";
 import GroupPages from "./GroupPages";
 

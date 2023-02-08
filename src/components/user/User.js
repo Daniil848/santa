@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import UserPages from "./UserPages";
 import UserDone from "./UserDone";
-import UserName from "../admin/UserName";
-import YourGift from "../admin/YourGift";
+import UserName from "./UserName";
+import YourGift from "./YourGift";
 
 const User = () => {
   const state = useSelector(state => state.adminReducer);

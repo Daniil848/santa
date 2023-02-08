@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import GroupName from "../admin/GroupName";
 import GroupDate from "../admin/GroupDate";
-import UserName from "../admin/UserName";
-import YourGift from "../admin/YourGift";
+import UserName from "../user/UserName";
+import YourGift from "../user/YourGift";
 import EditProfilePage from "./EditProfilePage";
 
 const EditProfile = () => {
