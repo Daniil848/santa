@@ -7,6 +7,8 @@ import {
   editProfileUserName,
   editProfileUserGift,
 } from "../../store/actions/actions";
+import { Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 
 const EditProfilePage = () => {
   const dispatch = useDispatch();
@@ -39,43 +41,86 @@ const EditProfilePage = () => {
   if (group && user) {
     return (
       <>
-        <p className="group_label">Группа:</p>
-        <div className="edit_info">
-          <span className="main_info">Название: {group.group.name}</span>
+        <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+        >Группа:</Typography>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+          <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Название: {group.group.name}</Typography>
+
           {user.admin && <button
             onClick={() => dispatch(editProfileGroupName())}
             className="edit_button"
           ></button>}
-        </div>
-        <div className="edit_info">
-          <span className="main_info">Бюджет: {group.date.budget}₽</span>
+        </Stack>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+          <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Бюджет: {group.date.budget}₽</Typography>
+
           {user.admin && <button
             onClick={() => dispatch(editProfileGroupDate())}
             className="edit_button"
           ></button>}
-        </div>
-        <div className="edit_info">
-          <span className="main_info">Дата: {group.date.registration}</span>
+        </Stack>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+          <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Дата: {group.date.registration}</Typography>
+
           {user.admin && <button
             onClick={() => dispatch(editProfileGroupDate())}
             className="edit_button"
           ></button>}
-        </div>
-        <p className="group_label">Ваши данные:</p>
-        <div className="edit_info">
-          <span className="main_info">{user.user.name}</span>
+        </Stack>
+
+        <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+        >Ваши данные:</Typography>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+          <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Имя: {user.user.name}</Typography>
+
           <button
             onClick={() => dispatch(editProfileUserName())}
             className="edit_button"
           ></button>
-        </div>
-        <div className="edit_info">
-          <span className="main_info">{user.gift.age}</span>
+        </Stack>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+          <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Почта: {user.user.email}</Typography>
+
+          <button
+            onClick={() => dispatch(editProfileUserName())}
+            className="edit_button"
+          ></button>
+        </Stack>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+          <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Возраст: {user.gift.age}</Typography>
           <button
             onClick={() => dispatch(editProfileUserGift())}
             className="edit_button"
           ></button>
-        </div> 
+        </Stack> 
       </>
     )
   } else {

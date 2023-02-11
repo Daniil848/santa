@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { groupUserNameError, saveUserName, createUserName } from "../../store/actions/actions";
+import { Typography } from "@mui/material";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const UserName = (props) => {
   const dispatch = useDispatch();
@@ -44,32 +47,44 @@ const UserName = (props) => {
   if (state.user.edit ||state.user.editProfile || state.userStep === 1) {
     return (
       <>
-        <div className="group_label">Участник:</div>
-        <div className="group_form_container">
-          <label>Ваше имя(видно участникам):</label>
-          <input
-            className="group_input"
-            placeholder="Василий"
-            value={userNameInput}
-            onChange={e => setUserName(e.target.value)}
-          ></input>
+        <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+        >Участник:</Typography>
+
+        <TextField
+          label="Ваше имя(видно участникам)"
+          id="groupNameInput"
+          type="text"
+          value={userNameInput}
+          onChange={e => setUserName(e.target.value)}
+          error={state.user.error === true}
+          variant="outlined"
+          size="small"
+          sx={{ width : 1, my : 1.5, }}
+        ></TextField>
         
-          {state.user.error === true && (<div className="error_text">Ваше имя не может быть пустым!</div>)}
+        {state.user.error === true && (<div className="error_text">Ваше имя не может быть пустым!</div>)}
+
+        <TextField
+          label="Ваш еmail(не видно ни кому)"
+          id="groupNameInput"
+          type="text"
+          value={userEmailInput}
+          onChange={e => setUserEmail(e.target.value)}
+          error={state.user.error === true}
+          variant="outlined"
+          size="small"
+          sx={{ width : 1, my : 1.5, }}
+        ></TextField>
+
+        {state.user.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
         
-          <label>Ваш еmail(не видно ни кому):</label>
-          <input
-            className="group_input"
-            placeholder="santa@gmail.com"
-            value={userEmailInput}
-            onChange={e => setUserEmail(e.target.value)}
-          ></input>
-          {state.user.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
-        </div>
-        
-        <button
-          className="group_button"
+        <Button
           onClick={addUserName}
-        >ОК</button>
+          variant="contained"
+          sx={{ boxShadow: 0, width : 1, height: 40,  mt : 1.5, }}
+        >OK</Button>
       </>
     );
   };

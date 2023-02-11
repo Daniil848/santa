@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { groupNameError, saveGroupName, createGroupName } from "../../store/actions/actions";
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const GroupName = () => {
   const dispatch = useDispatch();
@@ -40,20 +43,30 @@ const GroupName = () => {
   if (state.group.edit || state.group.editProfile) {
     return (  
       <>
-        <label htmlFor="groupNameInput" className="group_label">Введите название группы:</label>
-        <input
+        <Typography
+          variant="caption"
+          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+        >Введите название группы:</Typography>
+
+        <TextField
+          label="Обмен подарками 2023"
           id="groupNameInput"
           type="text"
-          className="group_input"
-          placeholder="Обмен подарками 2023"
           value={groupNameInput}
           onChange={e => setGroupName(e.target.value)}
-        ></input>
+          error={state.group.error === true}
+          variant="outlined"
+          size="small"
+          sx={{ width : 1, my : 1.5, }}
+        ></TextField>
+
         {state.group.error === true &&(<div className="error_text">Название группы не может быть пустым!</div>)}
-        <button
-          className="group_button"
+
+        <Button
           onClick={addName}
-        >OK</button>
+          variant="contained"
+          sx={{ boxShadow: 3, width : 1, height: 40,  mt : 1.5, }}
+        >OK</Button>
       </>
     );
   };

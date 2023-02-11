@@ -25,7 +25,7 @@ body {
     height: 100%;
     flex-direction: column;
     width: 340px;
-    padding: 10px;
+    padding: 12px ;
     margin: 10px auto;
     background: var(--main-group-background);
     border-radius: 8px;
@@ -122,87 +122,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-.group_input { 
-    background: rgba(255,255,255,0.1);
-    border: none;
-    font-size: 16px;
-    height: auto;
-    outline: none;
-    padding: 15px;
-    width: 310px;
-    height: 50px;
-    background-color: #e8eeef;
-    color: #8a97a0;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 15px;
-    margin-top: 8px;
-    box-sizing: border-box;
-}
-textarea.group_input{
-    height: 70px;
-}
-select.group_input{
-    width: 310px;
-}
-.group_button {  
-    padding: 10px 20px;
-    color: #FFF;
-    background-color: var(--main-button-background);
-    font-size: 18px;
-    text-align: center;
-    font-style: normal;
-    border-radius: 5px;
-    width: 140px;
-    border: 1px solid #2874A6;
-    border-width: 0 0 3px;
-    margin-bottom: 10px;
-}
-.group_label {
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    color: black;
-    margin-bottom: 15px;
-    cursor: pointer;
-}
-.group_info {
-    width: 100%;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    color: black;
-    margin: 8px 0;
-    cursor: pointer;
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-  margin: 0 4px 8px 0;
-}
-.group_form_radios {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.light {
-    font-weight: 400;
-    font-size: 15px;
-    margin:3px 0 3px 10px ;
-}
-
-.main_info {
-    width: fit-content;
-    background-color: #d1d4d4;
-    font-weight: 600;
-    border-radius: 8px;
-    text-align: center;
-    padding: 3px 5px;
-    line-height: 25px;
-    display: inline-block;
-    vertical-align: middle;
-}
 
 
 /* ------------PAGES ----------*/
@@ -255,7 +174,6 @@ input[type="checkbox"] {
 
 .error_text {
     color: red;
-    margin-bottom: 5px;
     text-align: center;
 }
 
