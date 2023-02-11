@@ -27,6 +27,20 @@
       "groupID": 1,
       "admin": true,
       "id": 1
+    },
+    {
+      "user": {
+        "name": "f",
+        "email": "f"
+      },
+      "gift": {
+        "age": "2",
+        "gender": "boy",
+        "wishes": ""
+      },
+      "groupID": 1,
+      "admin": false,
+      "id": 2
     }
   ]
 }
