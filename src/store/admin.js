@@ -18,6 +18,7 @@ import {
   EDIT_PROFILE_GROUP_DATE,
   EDIT_PROFILE_USER_NAME,
   EDIT_PROFILE_USER_GIFT,
+  GROUP_INFO_SWITCH,
 } from './actions/actionTypes';
 
 const adminState = {
@@ -56,6 +57,7 @@ const adminState = {
   admin : true,
   step : 1,
   userStep : 1,
+  groupInfo : false,
 }
 
 export const adminReducer = (state = adminState, action) => {
@@ -465,6 +467,22 @@ export const adminReducer = (state = adminState, action) => {
           editProfile : true,
         }
       }
+    }
+    //===================================GROUP INFO===================================
+    case GROUP_INFO_SWITCH : {
+      const groupinfo = state.groupInfo
+      if (groupinfo === false) {
+        return {
+          ...state,
+          groupInfo : true,
+        }
+      } else if (groupinfo === true) {
+        return {
+          ...state,
+          groupInfo : false,
+        }
+      }
+      break;
     }
     default : {
       return state;

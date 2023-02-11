@@ -3,6 +3,7 @@ import UserPages from "./UserPages";
 import UserDone from "./UserDone";
 import UserName from "./UserName";
 import YourGift from "./YourGift";
+import GroupInfo from "../navigation/GroupInfo";
 
 const User = () => {
   const state = useSelector(state => state.adminReducer);
@@ -13,12 +14,14 @@ const User = () => {
 
   return (
     <>
+      <GroupInfo/>
       <div className={`form ${formAnimationUserName} ${formAnimationGift} ${formAnimationDone}`}>
         <UserPages />
         {step >= 1 && <UserName admin={false}/>}
         {step >= 2 && <YourGift admin={false}/>}
         {step >= 3 && <UserDone />}
       </div>
+      
     </>
   );
 };

@@ -7,9 +7,6 @@ const GroupDone = () => {
   if (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) {
     return (
       <>
-        {/* <p className="group_info">Ваша группа "{state.group.name}" готова!!!</p>
-        <p className="group_info">Регистрация участников до:<br></br> {state.date.registration}</p>
-        <p className="group_info">Бюджет на подарок составялет: {state.date.budget}₽</p> */}
         <Typography
           variant="caption"
           sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}

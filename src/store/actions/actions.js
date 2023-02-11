@@ -18,6 +18,7 @@ import {
   SWITCH_PAGE_USER,
   SWITCH_PAGE_GIFT,
   SWITCH_PAGE_DONE,
+  GROUP_INFO_SWITCH,
 } from './actionTypes';
 import { toast } from 'react-toastify';
 
@@ -460,4 +461,10 @@ export const switchPageUserGift = () => ({
 
 export const switchPageDone = () => ({
   type : SWITCH_PAGE_DONE,
+});
+
+//===================================GROUP INFO===================================
+
+export const groupInfoSwitch = () => ({
+  type : GROUP_INFO_SWITCH,
 });

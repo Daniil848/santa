@@ -1,9 +1,14 @@
-const GroupInfo = () => {
-    return (
-        <div className="form">
+import GroupInfoButton from "./GroupInfoButton";
+import GroupInfoComponent from "./GroupInfoComponent";
 
-        </div>
-    );
+
+const GroupInfo = () => {
+  return (
+    <>
+      <GroupInfoButton/>
+      <GroupInfoComponent/>
+    </>
+  );
 };
 
 export default GroupInfo;
