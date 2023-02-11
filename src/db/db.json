@@ -5,36 +5,12 @@
         "name": "f"
       },
       "date": {
-        "budget": "2333",
+        "budget": "2",
         "registration": "11/02/2023",
         "choosing": "11/02/2023",
         "exchange": "11/02/2023"
       },
       "id": 1
-    },
-    {
-      "group": {
-        "name": "f"
-      },
-      "date": {
-        "budget": "2",
-        "registration": "11/02/2023",
-        "choosing": "11/02/2023",
-        "exchange": "11/02/2023"
-      },
-      "id": 2
-    },
-    {
-      "group": {
-        "name": "f"
-      },
-      "date": {
-        "budget": "2",
-        "registration": "11/02/2023",
-        "choosing": "11/02/2023",
-        "exchange": "11/02/2023"
-      },
-      "id": 3
     }
   ],
   "user": [
@@ -48,37 +24,9 @@
         "gender": "boy",
         "wishes": ""
       },
-      "groupID": 2,
+      "groupID": 1,
       "admin": true,
       "id": 1
-    },
-    {
-      "user": {
-        "name": "2",
-        "email": "2"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": ""
-      },
-      "groupID": 3,
-      "admin": true,
-      "id": 2
-    },
-    {
-      "user": {
-        "name": "f",
-        "email": "f"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": ""
-      },
-      "groupID": 3,
-      "admin": false,
-      "id": 3
     }
   ]
 }

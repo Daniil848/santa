@@ -3,13 +3,20 @@ import { Typography } from "@mui/material";
 
 const GroupDone = () => {
   const state = useSelector(state => state.adminReducer);
+  const styles = {
+    typography : {
+      fontWeight : 500,
+      fontSize: 18,
+      my : 1.5
+    }
+  }
 
   if (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) {
     return (
       <>
         <Typography
           variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          sx = {styles.typography}
         >Ссылка на вашу группу:</Typography>
 
         <a
@@ -19,13 +26,13 @@ const GroupDone = () => {
         <Typography
           variant="caption"
           textAlign="center"
-          sx = {{ fontWeight : 500, fontSize: 15, my : 1.5}}
+          sx = {styles.typography}
         >(Отправьте ее друзьям что-бы обмениваться подарками)</Typography>
         
         <Typography
           variant="caption"
           textAlign="center"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          sx = {styles.typography}
         >Ссылка на редактирование вашего профиля:</Typography>
         <a
           href={`/group/${state.group.id}/user/${state.user.id}`}>

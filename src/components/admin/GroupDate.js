@@ -45,13 +45,27 @@ const GroupDate = () => {
       groupID : state.group.id,
     }));
   };
+  const styles = {
+    textField : {
+      width : 1,
+      my : 1.5,
+    },
+    typography : {
+      fontWeight : 500,
+      fontSize: 18,
+      my : 1.5,
+    },
+    stack : {
+      width : 1,
+    },
+  };
 
   if (state.date.edit || state.date.editProfile) {
     return (
       <>
         <Typography
           variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          sx = {styles.typography}
         >Выберите бюджет и дату:</Typography>
 
         <TextField
@@ -63,15 +77,14 @@ const GroupDate = () => {
           error={state.date.error === true}
           variant="outlined"
           size="small"
-          sx={{ width : 1, my : 1.5, }}
+          sx={styles.textField}
           InputProps={{
             startAdornment: <InputAdornment position="start">₽</InputAdornment>,
           }}
         ></TextField>
-        {state.date.error === true && (<div className="error_text">Бюджет не может быть пустым!</div>)}
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Stack sx={{ width : 1 }}>
+          <Stack sx={styles.stack}>
             <DatePicker
               label="Регистрация участников до"
               inputFormat="DD/MM/YYYY"
@@ -84,11 +97,9 @@ const GroupDate = () => {
                 error={state.date.error === true}
                 variant="outlined"
                 size="small"
-                sx={{ width : 1, my : 1.5, }}
+                sx={styles.textField}
               />}
             />
-
-            {state.date.error === true && (<div className="error_text">Дата не может быть не назначена!</div>)}
 
             <DatePicker
               label="Выбор получателей подарков до"
@@ -103,11 +114,9 @@ const GroupDate = () => {
                 error={state.date.error === true}
                 variant="outlined"
                 size="small"
-                sx={{ width : 1, my : 1.5, }}
+                sx={styles.textField}
               />}
             />
-
-            {state.date.error === true && (<div className="error_text">Дата не может быть не назначена!</div>)}
 
             <DatePicker
               label="Обмен подарками"
@@ -121,11 +130,9 @@ const GroupDate = () => {
                 error={state.date.error === true}
                 variant="outlined"
                 size="small"
-                sx={{ width : 1, my : 1.5, }}
+                sx={styles.textField}
               />}
             />
-
-            {state.date.error === true && (<div className="error_text">Дата не может быть не назначена!</div>)}
           </Stack>
         </LocalizationProvider>
 

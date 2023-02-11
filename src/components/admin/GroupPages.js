@@ -22,7 +22,7 @@ const GroupPages = () => {
     stack : {
       width : 1,
       mb : 1.5,
-    }
+    },
   };
 
   return (
@@ -34,24 +34,28 @@ const GroupPages = () => {
     >
       <Button
         variant="contained"
-        onClick={() => dispatch(switchPageGroupName())}
         sx={styles.pages}
+        color={state.group.error === true ? "error" : "primary"}
+        onClick={() => dispatch(switchPageGroupName())}
       >1</Button>
       <Button
         variant="contained"
         sx={styles.pages}
+        color={state.date.error === true ? "error" : "primary"}
         disabled={state.step < 2}
         onClick={() => dispatch(switchPageDate())}
       >2</Button>
       <Button
         variant="contained"
         sx={styles.pages}
+        color={state.user.error === true ? "error" : "primary"}
         disabled={state.step < 3}
         onClick={() => dispatch(switchPageUserName())}
       >3</Button>
       <Button
         variant="contained"
         sx={styles.pages}
+        color={state.gift.error === true ? "error" : "primary"}
         disabled={state.step < 4}
         onClick={() => dispatch(switchPageUserGift())}
       >4</Button>

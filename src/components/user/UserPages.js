@@ -33,11 +33,13 @@ const UserPages = () => {
       <Button
         variant="contained"
         sx={styles.pages}
+        color={state.user.error === true ? "error" : "primary"}
         onClick={() => dispatch(switchPageUserName())}
       >1</Button>
       <Button
         variant="contained"
         sx={styles.pages}
+        color={state.gift.error === true ? "error" : "primary"}
         disabled={state.userStep < 2}
         onClick={() => dispatch(switchPageUserGift())}
       >2</Button>

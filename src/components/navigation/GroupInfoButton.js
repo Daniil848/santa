@@ -10,14 +10,16 @@ const GroupInfoButton = () => {
   const styles = { 
     icon : {
       height: 40,
-      my : 0, p: 0,
+      my : 0,
+      p: 0,
       fontSize : 40,
       color : "#f4f7f8"
     },
     button : {
       boxShadow: 3,
       height: "auto",
-      mb : 1, p: 0,
+      mb : 0,
+      p: 0,
       fontSize : 12,
       color : "#f4f7f8",
       display : "flex",

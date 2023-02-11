@@ -47,13 +47,28 @@ const YourGift = (props) => {
       userID : state.user.id,
     }));
   };
+  const styles = {
+    typography : {
+      fontWeight : 500,
+      fontSize: 18,
+      my : 1.5
+    },
+    textField : {
+      width : 1,
+      my : 1.5,
+    },
+    stack : {
+      width : 1,
+      mt : 1.5,
+    },
+  };
 
   if (state.gift.edit || state.gift.editProfile) {
     return (
       <>
         <Typography
           variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          sx = {styles.typography}
         >Мой подарок:</Typography>
 
         <TextField
@@ -65,15 +80,14 @@ const YourGift = (props) => {
           error={state.gift.error === true}
           variant="outlined"
           size="small"
-          sx={{ width : 1, my : 1.5 }}
+          sx={styles.textField}
         ></TextField>
       
-        {state.gift.error === true && (<div className="error_text">Укажите возраст!</div>)}
         <Stack
           direction="column"
           alignItems="flex-start"
           spacing={2}
-          sx={{ width : 1, mt : 1.5, }}
+          sx={styles.stack}
         >
           <FormControl error={state.gift.error === true}>
             <FormLabel id="demo-radio-buttons-group-label">Ваш пол</FormLabel>
@@ -117,14 +131,13 @@ const YourGift = (props) => {
             </RadioGroup>
           </FormControl>
         </Stack>
-        {state.gift.error === true && (<div className="error_text">Выберите пол!</div>)}
 
         <TextField
           placeholder="Пожелания к подарку(не обязательно)"
           value={wishesArea}
           onChange={e => setWishes(e.target.value)}
           variant="outlined"
-          sx={{ width : 1, my : 1.5, borderRadius : 5,}}
+          sx={styles.textField}
           multiline
           minRows={3}
         />

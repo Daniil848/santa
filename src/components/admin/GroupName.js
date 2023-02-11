@@ -60,8 +60,6 @@ const GroupName = () => {
           sx={{ width : 1, my : 1.5, }}
         ></TextField>
 
-        {state.group.error === true &&(<div className="error_text">Название группы не может быть пустым!</div>)}
-
         <GlobalButton click={addName}/>
       </>
     );

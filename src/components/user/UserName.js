@@ -44,12 +44,24 @@ const UserName = (props) => {
       }));
     }
   }
+  const styles = {
+    typography : {
+      fontWeight : 500,
+      fontSize: 18,
+      my : 1.5
+    },
+    textField : {
+      width : 1,
+      my : 1.5,
+    },
+  };
+  
   if (state.user.edit || state.user.editProfile || state.userStep === 1) {
     return (
       <>
         <Typography
           variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          sx = {styles.typography}
         >Участник:</Typography>
 
         <TextField
@@ -61,10 +73,8 @@ const UserName = (props) => {
           error={state.user.error === true}
           variant="outlined"
           size="small"
-          sx={{ width : 1, my : 1.5, }}
+          sx={styles.textField}
         ></TextField>
-        
-        {state.user.error === true && (<div className="error_text">Ваше имя не может быть пустым!</div>)}
 
         <TextField
           label="Ваш еmail(не видно ни кому)"
@@ -75,10 +85,8 @@ const UserName = (props) => {
           error={state.user.error === true}
           variant="outlined"
           size="small"
-          sx={{ width : 1, my : 1.5, }}
+          sx={styles.textField}
         ></TextField>
-
-        {state.user.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
 
         <GlobalButton click={addUserName}/>
       </>
