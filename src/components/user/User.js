@@ -7,13 +7,13 @@ import YourGift from "./YourGift";
 const User = () => {
   const state = useSelector(state => state.adminReducer);
   const step = state.userStep;
-  const groupActiveUser = (state.user.edit) ? "group--animation3" : "";
-  const groupActiveGift = (state.gift.edit) ? "group--animation4" : "";
-  const groupActiveDone = (state.user.edit === false && state.gift.edit === false) ? "group--animation5" : "";
+  const formAnimationUserName = (state.user.edit) ? "form--animation1" : "";
+  const formAnimationGift = (state.gift.edit) ? "form--animation2" : "";
+  const formAnimationDone = (state.user.edit === false && state.gift.edit === false) ? "form--animation3" : "";
 
   return (
     <>
-      <div className={`group ${groupActiveUser} ${groupActiveGift} ${groupActiveDone}`}>
+      <div className={`form ${formAnimationUserName} ${formAnimationGift} ${formAnimationDone}`}>
         <UserPages />
         {step >= 1 && <UserName admin={false}/>}
         {step >= 2 && <YourGift admin={false}/>}

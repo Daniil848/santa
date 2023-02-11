@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { groupUserNameError, saveUserName, createUserName } from "../../store/actions/actions";
+import GlobalButton from "../navigation/GlobalButton";
 import { Typography } from "@mui/material";
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 const UserName = (props) => {
@@ -44,7 +44,7 @@ const UserName = (props) => {
       }));
     }
   }
-  if (state.user.edit ||state.user.editProfile || state.userStep === 1) {
+  if (state.user.edit || state.user.editProfile || state.userStep === 1) {
     return (
       <>
         <Typography
@@ -79,12 +79,8 @@ const UserName = (props) => {
         ></TextField>
 
         {state.user.error === true && (<div className="error_text">Email не может быть пустым!</div>)}
-        
-        <Button
-          onClick={addUserName}
-          variant="contained"
-          sx={{ boxShadow: 0, width : 1, height: 40,  mt : 1.5, }}
-        >OK</Button>
+
+        <GlobalButton click={addUserName}/>
       </>
     );
   };

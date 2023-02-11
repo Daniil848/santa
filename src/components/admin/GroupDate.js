@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { groupDateError, saveGroupDate} from "../../store/actions/actions";
+import GlobalButton from "../navigation/GlobalButton";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Typography } from "@mui/material";
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
@@ -128,12 +128,8 @@ const GroupDate = () => {
             {state.date.error === true && (<div className="error_text">Дата не может быть не назначена!</div>)}
           </Stack>
         </LocalizationProvider>
-        
-        <Button
-          onClick={addDate}
-          variant="contained"
-          sx={{ boxShadow: 3, width : 1, height: 40, mt : 1.5 }}
-        >OK</Button>
+
+        <GlobalButton click={addDate}/>
       </>
     );
   };

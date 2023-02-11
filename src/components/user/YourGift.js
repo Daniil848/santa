@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveUser, userGiftError } from "../../store/actions/actions";
+import GlobalButton from "../navigation/GlobalButton";
 import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -129,11 +129,7 @@ const YourGift = (props) => {
           minRows={3}
         />
 
-        <Button
-          onClick={addGift}
-          variant="contained"
-          sx={{ boxShadow: 3, width : 1, height: 40, mt : 1.5, }}
-        >OK</Button>
+        <GlobalButton click={addGift}/>
       </>
     );
   };

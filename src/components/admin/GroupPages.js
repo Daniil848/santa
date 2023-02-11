@@ -6,48 +6,62 @@ import {
   switchPageUserGift,
   switchPageDone,
 } from "../../store/actions/actions";
+import { Button, Stack, } from "@mui/material";
 
 const GroupPages = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
-  const currentPageNameClass = state.step >= 1 ? "page_number--current" : "";
-  const currentPageDateClass = state.step >= 2 ? "page_number--current" : "";
-  const currentPageUserClass = state.step >= 3 ? "page_number--current" : "";
-  const currentPageGiftClass = state.step >= 4 ? "page_number--current" : "";
-  const currentPageDoneClass = state.step >= 5 ? "page_done" : "";
-  const activePageNameClass = state.group.edit ? "page_number--active" : "";
-  const activePageDateClass = state.date.edit ? "page_number--active" : "";
-  const activePageUserClass = state.user.edit ? "page_number--active" : "";
-  const activePageGiftClass = state.gift.edit ? "page_number--active" : "";
-  const activePageDoneClass = (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) ? "page_done--active" : ""
-  const errorPageNameClass = state.group.error === true ? "page_number--error" : "";
-  const errorPageDateClass = state.date.error === true ? "page_number--error" : "";
-  const errorPageUserClass = state.user.error === true ? "page_number--error" : "";
-  const errorPageGiftClass = state.gift.error === true ? "page_number--error" : "";
+  const styles = {
+    pages : {
+      minWidth: 0,
+      width : 35,
+      height : 35,
+      borderRadius : "50%",
+      boxSizing: "border-box",
+    },
+    stack : {
+      width : 1,
+      mb : 1.5,
+    }
+  };
 
   return (
-    <div className="page">
-      <div
-        className={`page_number ${currentPageNameClass} ${activePageNameClass} ${errorPageNameClass}`}
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-around"
+      sx={styles.stack}
+    >
+      <Button
+        variant="contained"
         onClick={() => dispatch(switchPageGroupName())}
-      >1</div>
-      <div
-        className={`page_number ${currentPageDateClass} ${activePageDateClass} ${errorPageDateClass}`}
+        sx={styles.pages}
+      >1</Button>
+      <Button
+        variant="contained"
+        sx={styles.pages}
+        disabled={state.step < 2}
         onClick={() => dispatch(switchPageDate())}
-      >2</div>
-      <div
-        className={`page_number ${currentPageUserClass} ${activePageUserClass} ${errorPageUserClass}`}
+      >2</Button>
+      <Button
+        variant="contained"
+        sx={styles.pages}
+        disabled={state.step < 3}
         onClick={() => dispatch(switchPageUserName())}
-      >3</div>
-      <div
-        className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
+      >3</Button>
+      <Button
+        variant="contained"
+        sx={styles.pages}
+        disabled={state.step < 4}
         onClick={() => dispatch(switchPageUserGift())}
-      >4</div>
-      {state.step >= 5 &&<div
-        className={`page_number ${currentPageDoneClass} ${activePageDoneClass}`}
+      >4</Button>
+      {state.step >= 5 && <Button
+        variant="contained"
+        color="success"
+        sx={styles.pages}
         onClick={() => dispatch(switchPageDone())}
-      >5</div>}
-    </div>
+      >5</Button>}
+    </Stack>
   )
 }
 

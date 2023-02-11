@@ -4,35 +4,50 @@ import {
   switchPageUserGift,
   switchPageDone 
 } from "../../store/actions/actions";
+import { Button, Stack, } from "@mui/material";
 
 const UserPages = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
-  const step = state.userStep;
-  const currentPageUserClass = step >= 1 ? "page_number--current" : "";
-  const currentPageGiftClass = step >= 2 ? "page_number--current" : "";
-  const currentPageDoneClass = step >= 3 ? "page_done" : "";
-  const activePageUserClass = state.user.edit ? "page_number--active" : "";
-  const activePageGiftClass = state.gift.edit ? "page_number--active" : "";
-  const activePageDoneClass = (state.user.edit === false && state.gift.edit === false) ? "page_done--active" : ""
-  const errorPageUserClass = state.user.error === true ? "page_number--error" : "";
-  const errorPageGiftClass = state.gift.error === true ? "page_number--error" : "";
+  const styles = {
+    pages : {
+      minWidth: 0,
+      width : 35,
+      height : 35,
+      borderRadius : "50%",
+      boxSizing: "border-box",
+    },
+    stack : {
+      width : 3/4,
+      mb : 1.5,
+    },
+  };
 
   return (
-    <div className="page">
-      <div
-        className={`page_number ${currentPageUserClass} ${activePageUserClass} ${errorPageUserClass}`}
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-around"
+      sx={styles.stack}
+    >
+      <Button
+        variant="contained"
+        sx={styles.pages}
         onClick={() => dispatch(switchPageUserName())}
-      >1</div>
-      <div
-        className={`page_number ${currentPageGiftClass} ${activePageGiftClass} ${errorPageGiftClass}`}
+      >1</Button>
+      <Button
+        variant="contained"
+        sx={styles.pages}
+        disabled={state.userStep < 2}
         onClick={() => dispatch(switchPageUserGift())}
-      >2</div>
-      {step >= 3 && <div
-        className={`page_number ${currentPageDoneClass} ${activePageDoneClass}`}
+      >2</Button>
+      {state.userStep >= 3 && <Button
+        variant="contained"
+        color="success"
+        sx={styles.pages}
         onClick={() => dispatch(switchPageDone())}
-      >3</div>}
-    </div>
+      >3</Button>}
+    </Stack>
   );
 };
 

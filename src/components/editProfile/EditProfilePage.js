@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector  } from "react-redux";
 import { useParams } from "react-router-dom";
 import { 
   editProfileGroupName,
@@ -9,13 +9,16 @@ import {
 } from "../../store/actions/actions";
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/material";
+import {Button} from "@mui/material";
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 const EditProfilePage = () => {
+  const state = useSelector(state => state.adminReducer);
   const dispatch = useDispatch();
   const [group , setGroup] = useState();
   const [user , setUser] = useState();
   const { groupID } = useParams();
-  const { userID } = useParams();
+  const { userID } = useParams(); 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`http://localhost:3002/group/${groupID}`);
@@ -39,90 +42,131 @@ const EditProfilePage = () => {
   console.log(user);
 
   if (group && user) {
-    return (
-      <>
-        <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-        >Группа:</Typography>
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+    if (state.group.editProfile === false &&
+      state.date.editProfile === false && 
+      state.user.editProfile === false && 
+      state.gift.editProfile === false) {
+      return (
+        <>
           <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-          >Название: {group.group.name}</Typography>
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Группа:</Typography>
 
-          {user.admin && <button
-            onClick={() => dispatch(editProfileGroupName())}
-            className="edit_button"
-          ></button>}
-        </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{width : 1,}}
+          >
+            <Typography
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            >Название: {group.group.name}</Typography>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
+            {user.admin && <Button
+              variant="contained"
+              onClick={() => dispatch(editProfileGroupName())}
+              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+            ><EditRoundedIcon fontSize="small"/></Button>}
+          </Stack>
+
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{width : 1,}}
+          >
+            <Typography
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            >Бюджет: {group.date.budget}₽</Typography>
+
+            {user.admin && <Button
+              variant="contained"
+              onClick={() => dispatch(editProfileGroupDate())}
+              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+            ><EditRoundedIcon fontSize="small"/></Button>}
+          </Stack>
+
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{width : 1,}}
+          >
+            <Typography
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            >Дата: {group.date.registration}</Typography>
+
+            {user.admin && <Button
+              variant="contained"
+              onClick={() => dispatch(editProfileGroupDate())}
+              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+            ><EditRoundedIcon fontSize="small"/></Button>}
+          </Stack>
+
           <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-          >Бюджет: {group.date.budget}₽</Typography>
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+          >Ваши данные:</Typography>
 
-          {user.admin && <button
-            onClick={() => dispatch(editProfileGroupDate())}
-            className="edit_button"
-          ></button>}
-        </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{width : 1,}}
+          >
+            <Typography
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            >Имя: {user.user.name}</Typography>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
-          <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-          >Дата: {group.date.registration}</Typography>
+            <Button
+              variant="contained"
+              onClick={() => dispatch(editProfileUserName())}
+              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+            ><EditRoundedIcon fontSize="small"/></Button>
+          </Stack>
 
-          {user.admin && <button
-            onClick={() => dispatch(editProfileGroupDate())}
-            className="edit_button"
-          ></button>}
-        </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{width : 1,}}
+          >
+            <Typography
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            >Почта: {user.user.email}</Typography>
 
-        <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-        >Ваши данные:</Typography>
+            <Button
+              variant="contained"
+              onClick={() => dispatch(editProfileUserName())}
+              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+            ><EditRoundedIcon fontSize="small"/></Button>
+          </Stack>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
-          <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-          >Имя: {user.user.name}</Typography>
-
-          <button
-            onClick={() => dispatch(editProfileUserName())}
-            className="edit_button"
-          ></button>
-        </Stack>
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
-          <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-          >Почта: {user.user.email}</Typography>
-
-          <button
-            onClick={() => dispatch(editProfileUserName())}
-            className="edit_button"
-          ></button>
-        </Stack>
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width : 1,}}>
-          <Typography
-          variant="caption"
-          sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
-          >Возраст: {user.gift.age}</Typography>
-          <button
-            onClick={() => dispatch(editProfileUserGift())}
-            className="edit_button"
-          ></button>
-        </Stack> 
-      </>
-    )
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{width : 1,}}
+          >
+            <Typography
+            variant="caption"
+            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            >Возраст: {user.gift.age}</Typography>
+            <Button
+              variant="contained"
+              onClick={() => dispatch(editProfileUserGift())}
+              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+            ><EditRoundedIcon fontSize="small"/></Button>
+          </Stack> 
+        </>
+      );
+    }; 
   } else {
     return null;
   };

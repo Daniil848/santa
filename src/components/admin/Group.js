@@ -9,15 +9,27 @@ import GroupPages from "./GroupPages";
 const Group = () => {
   const state = useSelector(state => state.adminReducer);
   const step = state.step;
-  const groupActiveName = (state.group.edit) ? "group--animation1" : "";
-  const groupActiveDate = (state.date.edit) ? "group--animation2" : "";
-  const groupActiveUser = (state.user.edit) ? "group--animation3" : "";
-  const groupActiveGift = (state.gift.edit) ? "group--animation4" : "";
-  const groupActiveDone = (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) ? "group--animation5" : "";
+  const formAnimationGroupName = (state.group.edit) ? "form--animation1" : "";
+  const formAnimationGroupDate = (state.date.edit) ? "form--animation2" : "";
+  const formAnimationUserName = (state.user.edit) ? "form--animation3" : "";
+  const formAnimationGift = (state.gift.edit) ? "form--animation4" : "";
+  const formAnimationDone = (
+    state.group.edit === false &&
+    state.date.edit === false &&
+    state.user.edit === false && 
+    state.gift.edit === false
+  ) ? "form--animation5" : "";
 
   return (
     <>
-      <div className={`group ${groupActiveName} ${groupActiveDate} ${groupActiveUser} ${groupActiveGift} ${groupActiveDone}`}>
+      <div className={
+        `form
+        ${formAnimationGroupName}
+        ${formAnimationGroupDate}
+        ${formAnimationUserName}
+        ${formAnimationGift}
+        ${formAnimationDone}`
+      }>
         <GroupPages/>
         {step >= 1 && <GroupName />}
         {step >= 2 && <GroupDate />}

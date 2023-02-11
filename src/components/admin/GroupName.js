@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { groupNameError, saveGroupName, createGroupName } from "../../store/actions/actions";
+import GlobalButton from "../navigation/GlobalButton";
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 const GroupName = () => {
@@ -41,7 +41,7 @@ const GroupName = () => {
   };
 
   if (state.group.edit || state.group.editProfile) {
-    return (  
+    return (
       <>
         <Typography
           variant="caption"
@@ -62,11 +62,7 @@ const GroupName = () => {
 
         {state.group.error === true &&(<div className="error_text">Название группы не может быть пустым!</div>)}
 
-        <Button
-          onClick={addName}
-          variant="contained"
-          sx={{ boxShadow: 3, width : 1, height: 40,  mt : 1.5, }}
-        >OK</Button>
+        <GlobalButton click={addName}/>
       </>
     );
   };
