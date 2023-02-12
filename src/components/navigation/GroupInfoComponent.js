@@ -14,15 +14,15 @@ const GroupInfoComponent = () => {
     my : 1,
   }
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`http://localhost:3002/group/${groupID}`);
-      const data = await response.json();
-      setGroup(data);
-      console.log(data);
-    };
-    fetchData();
+    if (groupID) {
+      const fetchData = async () => {
+        const response = await fetch(`http://localhost:3002/group/${groupID}`);
+        const data = await response.json();
+        setGroup(data);
+      };
+      fetchData(); 
+    }
   },[groupID]);
-  console.log(groupID)
 
   if (state.groupInfo) {
     return (
@@ -37,7 +37,7 @@ const GroupInfoComponent = () => {
           <Typography
             variant="caption"
             sx = {styles}
-          >Название: { groupID ? group.group.name : state.group.name }</Typography>
+          >Название: { groupID ? group.name : state.group.name }</Typography>
 
           <Typography
             variant="caption"
@@ -68,7 +68,7 @@ const GroupInfoComponent = () => {
 
           <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 16, my : 1}}
+            sx = {styles}
           >Пожеланияя к подарку: {state.gift.wiches}</Typography>
         </Stack>
       </div>

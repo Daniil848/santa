@@ -19,9 +19,7 @@ const GroupDate = () => {
   const [choosingInput, setChoosing] = useState(dayjs());
   const [exchangeInput, setExchange] = useState(dayjs());
   let groupDB = {
-    group : {
-      name : state.group.name,
-    },
+    name : state.group.name,
     date : {
       budget : budgetInput,
       registration : dayjs(registrationInput).format("DD/MM/YYYY"),

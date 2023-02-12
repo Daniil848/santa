@@ -1,46 +1,4 @@
 {
-  "group": [
-    {
-      "group": {
-        "name": "f"
-      },
-      "date": {
-        "budget": "2",
-        "registration": "11/02/2023",
-        "choosing": "11/02/2023",
-        "exchange": "11/02/2023"
-      },
-      "id": 1
-    }
-  ],
-  "user": [
-    {
-      "user": {
-        "name": "2",
-        "email": "2"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": ""
-      },
-      "groupID": 1,
-      "admin": true,
-      "id": 1
-    },
-    {
-      "user": {
-        "name": "f",
-        "email": "f"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy",
-        "wishes": ""
-      },
-      "groupID": 1,
-      "admin": false,
-      "id": 2
-    }
-  ]
+  "group": [],
+  "user": []
 }

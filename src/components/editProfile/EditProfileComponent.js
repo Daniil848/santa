@@ -12,7 +12,7 @@ import { Stack } from "@mui/material";
 import {Button} from "@mui/material";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
-const EditProfilePage = () => {
+const EditProfileComponent = () => {
   const state = useSelector(state => state.adminReducer);
   const dispatch = useDispatch();
   const [group , setGroup] = useState();
@@ -37,6 +37,14 @@ const EditProfilePage = () => {
     };
     fetchData();
   },[userID]);
+  const styles = {
+    typography : {
+      fontWeight : 500, fontSize: 18, my : 1.5
+    },
+    button : {
+      minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"
+    }
+  }
 
   console.log(group);
   console.log(user);
@@ -50,7 +58,7 @@ const EditProfilePage = () => {
         <>
           <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
           >Группа:</Typography>
 
           <Stack
@@ -61,13 +69,13 @@ const EditProfilePage = () => {
           >
             <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
             >Название: {group.group.name}</Typography>
 
             {user.admin && <Button
               variant="contained"
               onClick={() => dispatch(editProfileGroupName())}
-              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+              sx={styles.button}
             ><EditRoundedIcon fontSize="small"/></Button>}
           </Stack>
 
@@ -79,13 +87,13 @@ const EditProfilePage = () => {
           >
             <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
             >Бюджет: {group.date.budget}₽</Typography>
 
             {user.admin && <Button
               variant="contained"
               onClick={() => dispatch(editProfileGroupDate())}
-              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+              sx={styles.button}
             ><EditRoundedIcon fontSize="small"/></Button>}
           </Stack>
 
@@ -97,19 +105,19 @@ const EditProfilePage = () => {
           >
             <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
             >Дата: {group.date.registration}</Typography>
 
             {user.admin && <Button
               variant="contained"
               onClick={() => dispatch(editProfileGroupDate())}
-              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+              sx={styles.button}
             ><EditRoundedIcon fontSize="small"/></Button>}
           </Stack>
 
           <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
           >Ваши данные:</Typography>
 
           <Stack
@@ -120,13 +128,13 @@ const EditProfilePage = () => {
           >
             <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
             >Имя: {user.user.name}</Typography>
 
             <Button
               variant="contained"
               onClick={() => dispatch(editProfileUserName())}
-              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+              sx={styles.button}
             ><EditRoundedIcon fontSize="small"/></Button>
           </Stack>
 
@@ -138,13 +146,13 @@ const EditProfilePage = () => {
           >
             <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
             >Почта: {user.user.email}</Typography>
 
             <Button
               variant="contained"
               onClick={() => dispatch(editProfileUserName())}
-              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+              sx={styles.button}
             ><EditRoundedIcon fontSize="small"/></Button>
           </Stack>
 
@@ -156,12 +164,12 @@ const EditProfilePage = () => {
           >
             <Typography
             variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
+            sx = {styles.typography}
             >Возраст: {user.gift.age}</Typography>
             <Button
               variant="contained"
               onClick={() => dispatch(editProfileUserGift())}
-              sx={{ minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"}}
+              sx={styles.button}
             ><EditRoundedIcon fontSize="small"/></Button>
           </Stack> 
         </>
@@ -172,4 +180,4 @@ const EditProfilePage = () => {
   };
 };
 
-export default EditProfilePage;
+export default EditProfileComponent;

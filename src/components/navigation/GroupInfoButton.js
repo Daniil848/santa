@@ -9,10 +9,11 @@ const GroupInfoButton = () => {
   const dispatch = useDispatch();
   const styles = { 
     icon : {
-      height: 40,
+      minHeight : 0,
+      height: "auto",
       my : 0,
       p: 0,
-      fontSize : 40,
+      fontSize : 35,
       color : "#f4f7f8"
     },
     button : {
@@ -23,7 +24,7 @@ const GroupInfoButton = () => {
       fontSize : 12,
       color : "#f4f7f8",
       display : "flex",
-      flexDirection : "column"
+      flexDirection : "column",
     },
     stack : {
       width : "auto",

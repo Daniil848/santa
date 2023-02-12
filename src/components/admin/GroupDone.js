@@ -33,7 +33,7 @@ const GroupDone = () => {
           variant="caption"
           textAlign="center"
           sx = {styles.typography}
-        >Ссылка на редактирование вашего профиля:</Typography>
+        >Ссылка на ваш профиль:</Typography>
         <a
           href={`/group/${state.group.id}/user/${state.user.id}`}>
         http://localhost:3000/group/{state.group.id}/user/{state.user.id}</a>

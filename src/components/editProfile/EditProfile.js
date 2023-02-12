@@ -3,7 +3,7 @@ import GroupName from "../admin/GroupName";
 import GroupDate from "../admin/GroupDate";
 import UserName from "../user/UserName";
 import YourGift from "../user/YourGift";
-import EditProfilePage from "./EditProfilePage";
+import EditProfileComponent from "./EditProfileComponent";
 
 const EditProfile = () => {
   const state = useSelector(state => state.adminReducer);
@@ -27,7 +27,7 @@ const EditProfile = () => {
       ${formAnimationUserName}
       ${formAnimationGift}`}
     >
-      <EditProfilePage/>
+      <EditProfileComponent/>
       {state.group.editProfile && <GroupName/>}
       {state.date.editProfile && <GroupDate/>}
       {state.user.editProfile && <UserName/>}

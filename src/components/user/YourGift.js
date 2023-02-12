@@ -20,7 +20,7 @@ const YourGift = (props) => {
   const [gender, setGender] = useState(state.gift.gender);
   const { groupID } = useParams();
   let userDB = {
-    user : {
+    data : {
       name : state.user.name,
       email : state.user.email,
     },

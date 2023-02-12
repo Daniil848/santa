@@ -13,7 +13,7 @@ const UserName = (props) => {
   const [userEmailInput, setUserEmail] = useState(state.user.email);
   const { groupID } = useParams();
   let userDB = {
-    user : {
+    data : {
       name : userNameInput,
       email : userEmailInput,
     },

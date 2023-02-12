@@ -10,9 +10,7 @@ const GroupName = () => {
   const state = useSelector(state => state.adminReducer);
   const [groupNameInput, setGroupName] = useState(state.group.name);
   let groupDB = {
-    group : {
-      name : groupNameInput,
-    },
+    name : groupNameInput,
     date : {
       budget : state.date.budget,
       registration : state.date.registration,
