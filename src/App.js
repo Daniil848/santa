@@ -1,4 +1,4 @@
-import Group from './components/admin/Group';
+import Group from './components/group/Group';
 import User from './components/user/User';
 import EditProfile from './components/editProfile/EditProfile';
 import Snow from './components/effects/Snow';

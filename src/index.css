@@ -11,7 +11,7 @@ body {
 
 :root {
   --main-background: #85C1E9;
-  --main-group-background : #f4f7f8;
+  --main-group-background : #fff;
 }
 
 /* ---------------FORM------------------ */
@@ -22,7 +22,7 @@ body {
     height: 100%;
     flex-direction: column;
     width: 340px;
-    padding: 12px ;
+    padding: 15px ;
     margin: 10px auto;
     background: var(--main-group-background);
     border-radius: 8px;

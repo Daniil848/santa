@@ -60,7 +60,6 @@ const EditProfileComponent = () => {
             variant="caption"
             sx = {styles.typography}
           >Группа:</Typography>
-
           <Stack
             direction="row"
             alignItems="center"
@@ -71,7 +70,6 @@ const EditProfileComponent = () => {
             variant="caption"
             sx = {styles.typography}
             >Название: {group.group.name}</Typography>
-
             {user.admin && <Button
               variant="contained"
               onClick={() => dispatch(editProfileGroupName())}
@@ -89,7 +87,6 @@ const EditProfileComponent = () => {
             variant="caption"
             sx = {styles.typography}
             >Бюджет: {group.date.budget}₽</Typography>
-
             {user.admin && <Button
               variant="contained"
               onClick={() => dispatch(editProfileGroupDate())}
@@ -107,7 +104,6 @@ const EditProfileComponent = () => {
             variant="caption"
             sx = {styles.typography}
             >Дата: {group.date.registration}</Typography>
-
             {user.admin && <Button
               variant="contained"
               onClick={() => dispatch(editProfileGroupDate())}
@@ -130,7 +126,6 @@ const EditProfileComponent = () => {
             variant="caption"
             sx = {styles.typography}
             >Имя: {user.user.name}</Typography>
-
             <Button
               variant="contained"
               onClick={() => dispatch(editProfileUserName())}
@@ -148,7 +143,6 @@ const EditProfileComponent = () => {
             variant="caption"
             sx = {styles.typography}
             >Почта: {user.user.email}</Typography>
-
             <Button
               variant="contained"
               onClick={() => dispatch(editProfileUserName())}
