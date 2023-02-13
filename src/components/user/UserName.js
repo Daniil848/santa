@@ -18,9 +18,9 @@ const UserName = (props) => {
       email : userEmailInput,
     },
     gift : {
-      age : state.gift.age,
-      gender : state.gift.gender,
-      wishes : state.gift.wishes,
+      age : groupID ? props.age : state.gift.age,
+      gender : groupID ? props.gender : state.gift.gender,
+      wishes : groupID ? props.wiches : state.gift.wishes,
     },
     groupID : Number(groupID ? groupID : state.group.id),
     admin : props.admin,
@@ -30,10 +30,10 @@ const UserName = (props) => {
       dispatch(groupUserNameError(true));
       return;
     }
-    if (state.user.id !== null) {
+    if (state.user.id !== null || groupID) {
       dispatch(saveUserName({
         userDB,
-        userID : state.user.id,
+        userID : groupID ? groupID : state.group.id,
       }));
     } else {
       dispatch(createUserName({

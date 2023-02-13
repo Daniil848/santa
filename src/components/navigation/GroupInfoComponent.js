@@ -31,7 +31,7 @@ const GroupInfoComponent = () => {
   if (state.groupInfo) {
     return (
       <div className={`${formAnimationGroupInfo}`}>
-        <Accordion disableGutters>
+        <Accordion disableGutters sx={{ borderTopRadius : "8px"}}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography
             variant="caption"

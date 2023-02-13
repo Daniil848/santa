@@ -1,4 +1,77 @@
 {
-  "group": [],
-  "user": []
+  "group": [
+    {
+      "name": "2",
+      "date": {
+        "budget": "2222",
+        "registration": "13/02/2023",
+        "choosing": "13/02/2023",
+        "exchange": "13/02/2023"
+      },
+      "id": 1
+    },
+    {
+      "name": "f",
+      "date": {
+        "budget": "2",
+        "registration": "13/02/2023",
+        "choosing": "13/02/2023",
+        "exchange": "13/02/2023"
+      },
+      "id": 2
+    },
+    {
+      "name": "f",
+      "date": {
+        "budget": "3",
+        "registration": "13/02/2023",
+        "choosing": "13/02/2023",
+        "exchange": "13/02/2023"
+      },
+      "id": 3
+    }
+  ],
+  "user": [
+    {
+      "data": {
+        "name": "2",
+        "email": "2"
+      },
+      "gift": {
+        "age": "1231231231",
+        "gender": "boy",
+        "wishes": ""
+      },
+      "groupID": 1,
+      "id": 1
+    },
+    {
+      "data": {
+        "name": "2",
+        "email": "2"
+      },
+      "gift": {
+        "age": "2",
+        "gender": "boy",
+        "wishes": ""
+      },
+      "groupID": 2,
+      "admin": true,
+      "id": 2
+    },
+    {
+      "data": {
+        "name": "2",
+        "email": "2"
+      },
+      "gift": {
+        "age": "1",
+        "gender": "boy",
+        "wishes": ""
+      },
+      "groupID": 3,
+      "admin": true,
+      "id": 3
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { groupDateError, saveGroupDate} from "../../store/actions/actions";
 import GlobalButton from "../navigation/GlobalButton";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,15 +12,16 @@ import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const GroupDate = () => {
+const GroupDate = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const [budgetInput, setBudget] = useState(state.date.budget);
   const [registrationInput, setRegistration] = useState(dayjs());
   const [choosingInput, setChoosing] = useState(dayjs());
   const [exchangeInput, setExchange] = useState(dayjs());
+  const { groupID } = useParams();
   let groupDB = {
-    name : state.group.name,
+    name : groupID ? props.name : state.group.name,
     date : {
       budget : budgetInput,
       registration : dayjs(registrationInput).format("DD/MM/YYYY"),
@@ -31,7 +33,7 @@ const GroupDate = () => {
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
       dispatch(groupDateError(true));
       return;
-    }
+    };
     dispatch(saveGroupDate({
       groupDB,
       date : {
@@ -40,7 +42,7 @@ const GroupDate = () => {
         choosing : dayjs(choosingInput).format("DD/MM/YYYY"),
         exchange : dayjs(choosingInput).format("DD/MM/YYYY"),
       },
-      groupID : state.group.id,
+      groupID :  groupID ? groupID : state.group.id,
     }));
   };
   const styles = {

@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { groupNameError, saveGroupName, createGroupName } from "../../store/actions/actions";
 import GlobalButton from "../navigation/GlobalButton";
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
-const GroupName = () => {
+const GroupName = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
   const [groupNameInput, setGroupName] = useState(state.group.name);
+  const { groupID } = useParams();
   let groupDB = {
     name : groupNameInput,
     date : {
-      budget : state.date.budget,
-      registration : state.date.registration,
-      choosing : state.date.choosing,
-      exchange : state.date.exchange,
+      budget : groupID ? props.budget : state.date.budget,
+      registration : groupID ? props.registration : state.date.registration,
+      choosing : groupID ? props.choosing : state.date.choosing,
+      exchange : groupID ? props.exchange : state.date.exchange,
     },
   };
   const addName = () => {
@@ -23,19 +25,18 @@ const GroupName = () => {
       dispatch(groupNameError(true));
       return;
     }
-    if (state.group.id !== null) {
+    if (state.group.id !== null || groupID) {
       dispatch(saveGroupName({
         groupDB,
-        groupID : state.group.id,
+        groupID : groupID ? groupID : state.group.id,
       }));
     } else { 
       dispatch(createGroupName({
         group : {
           name: groupNameInput,
         },
-      }))
-    }
-    
+      }));
+    };
   };
 
   if (state.group.edit || state.group.editProfile) {

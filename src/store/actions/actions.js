@@ -68,7 +68,7 @@ export const saveGroupName = (path) => {
 
         if (response.status < 300) {
           dispatch(createGroupName({
-            group : path.groupDB.group,
+            group : path.groupDB.name,
           }));
           toast.success("Название группы изменено!", {
             position: "bottom-center",
@@ -230,7 +230,7 @@ export const saveUserName = (path) => {
 
         if (response.status < 300) {
           dispatch(createUserName({
-            user : path.userDB.user,
+            user : path.userDB.data,
           }));
           toast.success("Имя изменено!", {
             position: "bottom-center",

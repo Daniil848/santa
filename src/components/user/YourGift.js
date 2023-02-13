@@ -21,8 +21,8 @@ const YourGift = (props) => {
   const { groupID } = useParams();
   let userDB = {
     data : {
-      name : state.user.name,
-      email : state.user.email,
+      name : groupID ? props.userName : state.user.name,
+      email : groupID ? props.email : state.user.email,
     },
     gift : {
       age : ageInput,
@@ -44,7 +44,7 @@ const YourGift = (props) => {
         gender : gender,
         wishes : wishesArea,
       },
-      userID : state.user.id,
+      userID : groupID ? groupID : state.user.id,
     }));
   };
   const styles = {
