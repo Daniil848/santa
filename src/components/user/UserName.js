@@ -56,9 +56,6 @@ const UserName = (props) => {
       my : 1.5,
     },
   };
-  
-  console.log(userID)
-  console.log(groupID) 
 
   if (state.user.edit || state.user.editProfile || state.userStep === 1) {
     return (
