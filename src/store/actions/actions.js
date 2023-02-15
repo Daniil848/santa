@@ -20,6 +20,7 @@ import {
   SWITCH_PAGE_DONE,
   GROUP_INFO_SWITCH,
 } from './actionTypes';
+import { USER_URL, GROUP_URL } from '../../components/constants/URL';
 import { toast } from 'react-toastify';
 
 //===================================CREATE GROUP & USER===================================
@@ -58,7 +59,7 @@ export const saveGroupName = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group/" + path.groupID, {
+        const response = await fetch(GROUP_URL + path.groupID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -114,7 +115,7 @@ export const saveGroupDate = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group/" + path.groupID, {
+        const response = await fetch(GROUP_URL + path.groupID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -166,7 +167,7 @@ export const saveGroupDate = (path) => {
   } else if (path.groupID === null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/group", {
+        const response = await fetch(GROUP_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -220,7 +221,7 @@ export const saveUserName = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/user/" + path.userID, {
+        const response = await fetch(USER_URL + path.userID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -276,7 +277,7 @@ export const saveUser = (path) => {
   if (path.userID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/user/" + path.userID, {
+        const response = await fetch(USER_URL + path.userID, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -328,7 +329,7 @@ export const saveUser = (path) => {
   } else if (path.userID === null) {
     return async(dispatch) => {
       try {
-        const response = await fetch("http://localhost:3002/user", {
+        const response = await fetch(USER_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'

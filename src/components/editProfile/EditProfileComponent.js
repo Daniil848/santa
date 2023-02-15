@@ -41,8 +41,8 @@ const EditProfileComponent = (props) => {
           <Typography
           variant="caption"
           sx = {styles.typography}
-          >Название: {props.groupName}</Typography>
-          {props.admin === true && <Button
+          >Название: {props.group.name}</Typography>
+          {props.user.admin === true && <Button
             variant="contained"
             onClick={() => dispatch(editProfileGroupName())}
             sx={styles.button}
@@ -58,8 +58,8 @@ const EditProfileComponent = (props) => {
           <Typography
           variant="caption"
           sx = {styles.typography}
-          >Бюджет: {props.budget}₽</Typography>
-          {props.admin === true && <Button
+          >Бюджет: {props.group.date.budget}₽</Typography>
+          {props.user.admin === true && <Button
             variant="contained"
             onClick={() => dispatch(editProfileGroupDate())}
             sx={styles.button}
@@ -75,8 +75,8 @@ const EditProfileComponent = (props) => {
           <Typography
           variant="caption"
           sx = {styles.typography}
-          >Дата: {props.registration}</Typography>
-          {props.admin === true && <Button
+          >Дата: {props.group.date.registration}</Typography>
+          {props.user.admin === true && <Button
             variant="contained"
             onClick={() => dispatch(editProfileGroupDate())}
             sx={styles.button}
@@ -97,7 +97,7 @@ const EditProfileComponent = (props) => {
           <Typography
           variant="caption"
           sx = {styles.typography}
-          >Имя: {props.userName}</Typography>
+          >Имя: {props.user.data.name}</Typography>
           <Button
             variant="contained"
             onClick={() => dispatch(editProfileUserName())}
@@ -114,7 +114,7 @@ const EditProfileComponent = (props) => {
           <Typography
           variant="caption"
           sx = {styles.typography}
-          >Почта: {props.email}</Typography>
+          >Почта: {props.user.data.email}</Typography>
           <Button
             variant="contained"
             onClick={() => dispatch(editProfileUserName())}
@@ -131,7 +131,7 @@ const EditProfileComponent = (props) => {
           <Typography
           variant="caption"
           sx = {styles.typography}
-          >Возраст: {props.age}</Typography>
+          >Возраст: {props.user.gift.age}</Typography>
           <Button
             variant="contained"
             onClick={() => dispatch(editProfileUserGift())}

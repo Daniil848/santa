@@ -6,6 +6,7 @@ import GroupDate from "../group/GroupDate";
 import UserName from "../user/UserName";
 import YourGift from "../user/YourGift";
 import EditProfileComponent from "./EditProfileComponent";
+import { USER_URL, GROUP_URL } from "../constants/URL";
 
 const EditProfile = () => {
   const state = useSelector(state => state.adminReducer);
@@ -25,7 +26,7 @@ const EditProfile = () => {
   ) ? "form--animation5" : "";
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:3002/group/${groupID}`);
+      const response = await fetch(GROUP_URL + groupID);
       const data = await response.json();
       setGroup(data);
     };
@@ -33,7 +34,7 @@ const EditProfile = () => {
   },[groupID]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:3002/user/${userID}`);
+      const response = await fetch(USER_URL + userID);
       const data = await response.json();
       setUser(data);
     };
@@ -49,37 +50,11 @@ const EditProfile = () => {
       ${formAnimationUserName}
       ${formAnimationGift}`}
     >
-      {group && user && <EditProfileComponent
-        groupName={group.name} 
-        budget={group.date.budget} 
-        registration={group.date.registration} 
-        choosing={group.date.choosing} 
-        exchange={group.date.exchange}
-        userName={user.data.name}
-        email={user.data.email}
-        age={user.gift.age}
-        gender={user.gift.gender}
-        wiches={user.gift.wiches}
-        admin={user.admin}
-      />}
-      {state.group.editProfile && <GroupName 
-        budget={group.date.budget} 
-        registration={group.date.registration} 
-        choosing={group.date.choosing} 
-        exchange={group.date.exchange}
-      />}
-      {state.date.editProfile && <GroupDate
-        name={group.name}
-      />}
-      {state.user.editProfile && <UserName
-        age={user.gift.age}
-        gender={user.gift.gender}
-        wiches={user.gift.wiches}
-      />}
-      {state.gift.editProfile && <YourGift
-        userName={user.data.name}
-        email={user.data.email}
-      />}
+      {group && user && <EditProfileComponent group={group} user={user}/>}
+      {state.group.editProfile && <GroupName group={group}/>}
+      {state.date.editProfile && <GroupDate group={group}/>}
+      {state.user.editProfile && <UserName user={user}/>}
+      {state.gift.editProfile && <YourGift user={user}/>}
     </div>
   );
 

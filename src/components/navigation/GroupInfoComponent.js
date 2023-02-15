@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Typography, Stack} from "@mui/material";
+import { GROUP_URL } from "../constants/URL";
+import { Typography, Stack } from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -20,7 +21,7 @@ const GroupInfoComponent = () => {
   useEffect(() => {
     if (groupID) {
       const fetchData = async () => {
-        const response = await fetch(`http://localhost:3002/group/${groupID}`);
+        const response = await fetch(GROUP_URL + groupID);
         const data = await response.json();
         setGroup(data);
       };
@@ -31,11 +32,11 @@ const GroupInfoComponent = () => {
   if (state.groupInfo) {
     return (
       <div className={`${formAnimationGroupInfo}`}>
-        <Accordion disableGutters sx={{ borderTopRadius : "8px"}}>
+        <Accordion disableGutters>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography
-            variant="caption"
-            sx = {{ fontWeight : 500, fontSize: 18,}}
+              variant="caption"
+              sx = {{ fontWeight : 500, fontSize: 18,}}
             >Группа</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -80,6 +81,7 @@ const GroupInfoComponent = () => {
             </Stack>
           </AccordionDetails>
         </Accordion>
+        
       </div>
     );
   };

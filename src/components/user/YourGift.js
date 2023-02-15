@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveUser, userGiftError } from "../../store/actions/actions";
-import GlobalButton from "../navigation/GlobalButton";
 import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
@@ -11,6 +10,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import GlobalButton from "../constants/GlobalButton";
 
 const YourGift = (props) => {
   const dispatch = useDispatch();
@@ -19,10 +19,11 @@ const YourGift = (props) => {
   const [wishesArea, setWishes] = useState(state.gift.wishes);
   const [gender, setGender] = useState(state.gift.gender);
   const { groupID } = useParams();
+  const { userID } = useParams();
   let userDB = {
     data : {
-      name : groupID ? props.userName : state.user.name,
-      email : groupID ? props.email : state.user.email,
+      name : userID ? props.user.data.name : state.user.name,
+      email : userID ? props.user.data.email : state.user.email,
     },
     gift : {
       age : ageInput,
@@ -30,7 +31,7 @@ const YourGift = (props) => {
       wishes : wishesArea,
     },
     groupID : Number(groupID ? groupID : state.group.id),
-    admin : props.admin,
+    admin : userID ? props.user.admin : props.admin,
   };
   const addGift = () => {
     if (ageInput === "" || gender === "") {
@@ -44,7 +45,7 @@ const YourGift = (props) => {
         gender : gender,
         wishes : wishesArea,
       },
-      userID : groupID ? groupID : state.user.id,
+      userID : userID ? userID : state.user.id,
     }));
   };
   const styles = {

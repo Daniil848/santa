@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { groupDateError, saveGroupDate} from "../../store/actions/actions";
-import GlobalButton from "../navigation/GlobalButton";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -11,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
 import InputAdornment from '@mui/material/InputAdornment';
+import GlobalButton from "../constants/GlobalButton";
 
 const GroupDate = (props) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const GroupDate = (props) => {
   const [exchangeInput, setExchange] = useState(dayjs());
   const { groupID } = useParams();
   let groupDB = {
-    name : groupID ? props.name : state.group.name,
+    name : groupID ? props.group.name : state.group.name,
     date : {
       budget : budgetInput,
       registration : dayjs(registrationInput).format("DD/MM/YYYY"),

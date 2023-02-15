@@ -8,7 +8,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 :root {
   --main-background: #85C1E9;
   --main-group-background : #fff;
@@ -16,19 +15,19 @@ body {
 
 /* ---------------FORM------------------ */
 .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    flex-direction: column;
-    width: 340px;
-    padding: 15px ;
-    margin: 10px auto;
-    background: var(--main-group-background);
-    border-radius: 8px;
-    z-index: 1000;
-    position: relative;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  width: 340px;
+  padding: 12px ;
+  margin: 10px auto;
+  background: var(--main-group-background);
+  border-radius: 4px;
+  z-index: 1000;
+  position: relative;
+  box-sizing: border-box;
 }
 .form--animation1 {
   animation: pop-in1 0.7s;
@@ -115,11 +114,3 @@ body {
     opacity: 1;
   }
 }
-
-/* ------------VALIDATION----------*/
-
-.error_text {
-  color: red;
-  text-align: center;
-}
-

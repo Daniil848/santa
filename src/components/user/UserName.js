@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { groupUserNameError, saveUserName, createUserName } from "../../store/actions/actions";
-import GlobalButton from "../navigation/GlobalButton";
 import { Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
+import GlobalButton from "../constants/GlobalButton";
 
 const UserName = (props) => {
   const dispatch = useDispatch();
@@ -12,28 +12,29 @@ const UserName = (props) => {
   const [userNameInput, setUserName] = useState(state.user.name);
   const [userEmailInput, setUserEmail] = useState(state.user.email);
   const { groupID } = useParams();
+  const { userID } = useParams();
   let userDB = {
     data : {
       name : userNameInput,
       email : userEmailInput,
     },
     gift : {
-      age : groupID ? props.age : state.gift.age,
-      gender : groupID ? props.gender : state.gift.gender,
-      wishes : groupID ? props.wiches : state.gift.wishes,
+      age : userID ? props.user.gift.age : state.gift.age,
+      gender : userID ? props.user.gift.gender : state.gift.gender,
+      wishes : userID ? props.user.gift.wiches : state.gift.wishes,
     },
     groupID : Number(groupID ? groupID : state.group.id),
-    admin : props.admin,
+    admin : userID ? props.user.admin : props.admin,
   };
   const addUserName = () => {
     if (userNameInput === "" || userEmailInput === "") {
       dispatch(groupUserNameError(true));
       return;
     }
-    if (state.user.id !== null || groupID) {
+    if (state.user.id !== null || userID) {
       dispatch(saveUserName({
         userDB,
-        userID : groupID ? groupID : state.group.id,
+        userID : userID ? userID : state.user.id,
       }));
     } else {
       dispatch(createUserName({
@@ -56,6 +57,9 @@ const UserName = (props) => {
     },
   };
   
+  console.log(userID)
+  console.log(groupID) 
+
   if (state.user.edit || state.user.editProfile || state.userStep === 1) {
     return (
       <>

@@ -12,7 +12,7 @@ const UserDone = () => {
       my : 1.5
     }
   }
-
+  console.log(state.user.id)
   if (state.user.edit === false && state.gift.edit === false) {
     return (
       <>
