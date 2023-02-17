@@ -28,7 +28,9 @@ const UserDone = () => {
 
         <a
         className="main_info"
-        href={`/group/${groupID}/user/${state.user.id}`}>
+        href={`/group/${groupID}/user/${state.user.id}`}
+        target="_blank"
+        rel="noreferrer">
         http://localhost:3000/group/{groupID}/user/{state.user.id}</a>
       </>
     );

@@ -3,7 +3,7 @@ import UserPages from "./UserPages";
 import UserDone from "./UserDone";
 import UserName from "./UserName";
 import YourGift from "./YourGift";
-import GroupInfo from "../navigation/GroupInfo";
+import GroupInfo from "../groupInfo/GroupInfo";
 
 const User = () => {
   const state = useSelector(state => state.adminReducer);

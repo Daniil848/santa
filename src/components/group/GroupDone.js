@@ -20,7 +20,9 @@ const GroupDone = () => {
         >Ссылка на вашу группу:</Typography>
 
         <a
-          href={`/group/${state.group.id}`}>
+          href={`/group/${state.group.id}`}
+          target="_blank"
+          rel="noreferrer">
         http://localhost:3000/group/{state.group.id}</a>
 
         <Typography
@@ -35,7 +37,9 @@ const GroupDone = () => {
           sx = {styles.typography}
         >Ссылка на ваш профиль:</Typography>
         <a
-          href={`/group/${state.group.id}/user/${state.user.id}`}>
+          href={`/group/${state.group.id}/user/${state.user.id}`}
+          target="_blank"
+          rel="noreferrer">
         http://localhost:3000/group/{state.group.id}/user/{state.user.id}</a>
       </>
     );

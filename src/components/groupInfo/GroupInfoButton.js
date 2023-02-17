@@ -19,12 +19,11 @@ const GroupInfoButton = () => {
     button : {
       boxShadow: 3,
       height: "auto",
-      mb : 0,
-      p: 0,
+      mb : state.groupInfo ? "10px" : 0,
+      py : "5px",
       fontSize : 12,
       color : "#f4f7f8",
       display : "flex",
-      flexDirection : "column",
     },
     stack : {
       width : "auto",
@@ -38,13 +37,6 @@ const GroupInfoButton = () => {
       return("Скрыть");
     };
   };
-  const switchArrow = () => {
-    if (state.groupInfo === false) {
-      return(<ExpandLessIcon sx={styles.icon}/>);
-    } else if (state.groupInfo === true) {
-      return(<ExpandMoreIcon sx={styles.icon}/>);
-    };
-  };
 
   return (
     <Stack
@@ -52,10 +44,11 @@ const GroupInfoButton = () => {
       sx={styles.stack}
     >
       <Button
-        variant="text"
+        variant="contained"
         sx={styles.button}
         onClick={() => dispatch(groupInfoSwitch())}
-      >{switchArrow()}{switchText()}</Button>
+        endIcon={state.groupInfo ? <ExpandMoreIcon sx={styles.icon}/> : <ExpandLessIcon sx={styles.icon}/>}
+      >{switchText()}</Button>
     </Stack>
   );
 };

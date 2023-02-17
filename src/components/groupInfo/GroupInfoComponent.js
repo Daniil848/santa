@@ -41,18 +41,18 @@ const GroupInfoComponent = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Stack sx={{width : 1}}>
-              <Typography
+              {(state.group.name || group) && <Typography
                 variant="caption"
                 sx = {styles}
-              >Название: { groupID ? group.name : state.group.name }</Typography>
-              <Typography
+              >Название: { groupID ? group.name : state.group.name }</Typography>}
+              {(state.date.budget || group) && <Typography
                 variant="caption"
                 sx = {styles}
-              >Бюджет: {groupID ? group.date.budget : state.date.budget}₽</Typography>
-              <Typography
+              >Бюджет: {groupID ? group.date.budget : state.date.budget}₽</Typography>}
+              {(state.date.exchange || group)  && <Typography
                 variant="caption"
                 sx = {styles}
-              >Обмен подарками: {groupID ? group.date.exchange : state.date.exchange}</Typography>
+              >Обмен подарками: {groupID ? group.date.exchange : state.date.exchange}</Typography>}
             </Stack>
           </AccordionDetails> 
         </Accordion>
@@ -66,18 +66,18 @@ const GroupInfoComponent = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Stack sx={{width : 1}}>
-              <Typography
+              {state.user.name && <Typography
                 variant="caption"
                 sx = {styles}
-              >Имя: {state.user.name}</Typography>
-              <Typography
+              >Имя: {state.user.name}</Typography>}
+              {state.user.email && <Typography
                 variant="caption"
                 sx = {styles}
-              >Почта: {state.user.email}</Typography>
-              <Typography
+              >Почта: {state.user.email}</Typography>}
+              {state.gift.wiches && <Typography
                 variant="caption"
                 sx = {styles}
-              >Пожеланияя к подарку: {state.gift.wiches}</Typography>
+              >Пожеланияя к подарку: {state.gift.wiches}</Typography>}
             </Stack>
           </AccordionDetails>
         </Accordion>

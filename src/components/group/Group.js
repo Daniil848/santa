@@ -5,7 +5,7 @@ import UserName from "../user/UserName";
 import YourGift from "../user/YourGift";
 import GroupDone from "./GroupDone";
 import GroupPages from "./GroupPages";
-import GroupInfo from "../navigation/GroupInfo";
+import GroupInfo from "../groupInfo/GroupInfo";
 
 const Group = () => {
   const state = useSelector(state => state.adminReducer);

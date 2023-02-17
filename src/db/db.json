@@ -1,12 +1,12 @@
 {
   "group": [
     {
-      "name": "1111111",
+      "name": "f",
       "date": {
         "budget": "2",
-        "registration": "15/02/2023",
-        "choosing": "15/02/2023",
-        "exchange": "15/02/2023"
+        "registration": "16/02/2023",
+        "choosing": "16/02/2023",
+        "exchange": "16/02/2023"
       },
       "id": 1
     },
@@ -14,41 +14,24 @@
       "name": "f",
       "date": {
         "budget": "2",
-        "registration": "15/02/2023",
-        "choosing": "15/02/2023",
-        "exchange": "15/02/2023"
+        "registration": "16/02/2023",
+        "choosing": "16/02/2023",
+        "exchange": "16/02/2023"
       },
       "id": 2
+    },
+    {
+      "name": "f",
+      "date": {
+        "budget": "2",
+        "registration": "16/02/2023",
+        "choosing": "16/02/2023",
+        "exchange": "16/02/2023"
+      },
+      "id": 3
     }
   ],
   "user": [
-    {
-      "data": {
-        "name": "1",
-        "email": "1"
-      },
-      "gift": {
-        "age": "1",
-        "gender": "boy",
-        "wishes": ""
-      },
-      "groupID": 1,
-      "admin": true,
-      "id": 1
-    },
-    {
-      "data": {
-        "name": "31231",
-        "email": "312312"
-      },
-      "gift": {
-        "age": "2",
-        "gender": "boy"
-      },
-      "groupID": 1,
-      "admin": false,
-      "id": 2
-    },
     {
       "data": {
         "name": "2",
@@ -61,7 +44,21 @@
       },
       "groupID": 2,
       "admin": true,
-      "id": 3
+      "id": 1
+    },
+    {
+      "data": {
+        "name": "2",
+        "email": "2"
+      },
+      "gift": {
+        "age": "1",
+        "gender": "boy",
+        "wishes": ""
+      },
+      "groupID": 3,
+      "admin": true,
+      "id": 2
     }
   ]
 }
