@@ -71,7 +71,7 @@ const GroupDate = (props) => {
         <TextField
           label="Бюджет"
           id="budgetInput"
-          type="text"
+          type="number"
           value={budgetInput}
           onChange={e => setBudget(e.target.value)}
           error={state.date.error === true}

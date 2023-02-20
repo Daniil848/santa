@@ -28,13 +28,13 @@ const GroupDone = () => {
         <Typography
           variant="caption"
           textAlign="center"
-          sx = {styles.typography}
+          sx={styles.typography}
         >(Отправьте ее друзьям что-бы обмениваться подарками)</Typography>
         
         <Typography
           variant="caption"
           textAlign="center"
-          sx = {styles.typography}
+          sx={styles.typography}
         >Ссылка на ваш профиль:</Typography>
         <a
           href={`/group/${state.group.id}/user/${state.user.id}`}
