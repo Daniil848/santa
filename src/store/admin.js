@@ -484,6 +484,7 @@ export const adminReducer = (state = adminState, action) => {
       }
       break;
     }
+  //===================================DEFAULT===================================
     default : {
       return state;
     }

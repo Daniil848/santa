@@ -15,11 +15,11 @@ import GlobalButton from "../constants/GlobalButton";
 const GroupDate = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
-  const [budgetInput, setBudget] = useState(state.date.budget);
-  const [registrationInput, setRegistration] = useState(dayjs());
-  const [choosingInput, setChoosing] = useState(dayjs());
-  const [exchangeInput, setExchange] = useState(dayjs());
   const { groupID } = useParams();
+  const [budgetInput, setBudget] = useState(groupID ? props.group.date.budget : state.date.budget);
+  const [registrationInput, setRegistration] = useState(groupID ? props.group.date.registration : dayjs());
+  const [choosingInput, setChoosing] = useState(groupID ? props.group.date.choosing : dayjs());
+  const [exchangeInput, setExchange] = useState(groupID ? props.group.date.exchange : dayjs());
   let groupDB = {
     name : groupID ? props.group.name : state.group.name,
     date : {

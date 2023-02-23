@@ -15,11 +15,11 @@ import GlobalButton from "../constants/GlobalButton";
 const YourGift = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
-  const [ageInput, setAge] = useState(state.gift.age);
-  const [wishesArea, setWishes] = useState(state.gift.wishes);
-  const [gender, setGender] = useState(state.gift.gender);
   const { groupID } = useParams();
   const { userID } = useParams();
+  const [ageInput, setAge] = useState(userID ? props.user.gift.age : state.gift.age);
+  const [wishesArea, setWishes] = useState(userID ? props.user.gift.gender : state.gift.gender);
+  const [gender, setGender] = useState(userID ? props.user.gift.wishes : state.gift.wishes);
   let userDB = {
     data : {
       name : userID ? props.user.data.name : state.user.name,
@@ -30,7 +30,7 @@ const YourGift = (props) => {
       gender : gender,
       wishes : wishesArea,
     },
-    groupID : Number(groupID ? groupID : state.group.id),
+    groupID : groupID ? groupID : state.group.id,
     admin : userID ? props.user.admin : props.admin,
   };
   const addGift = () => {

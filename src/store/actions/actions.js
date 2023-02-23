@@ -20,8 +20,19 @@ import {
   SWITCH_PAGE_DONE,
   GROUP_INFO_SWITCH,
 } from './actionTypes';
-import { USER_URL, GROUP_URL } from '../../components/constants/URL';
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  /*Timestamp,
+  query,
+  orderBy,
+  onSnapshot*/
+} from 'firebase/firestore';
+import db from '../../firebase';
 import { toast } from 'react-toastify';
+import { toastStyle } from '../../components/constants/toastStyle';
 
 //===================================CREATE GROUP & USER===================================
 
@@ -59,53 +70,17 @@ export const saveGroupName = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch(GROUP_URL + path.groupID, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(path.groupDB),
-        })
+        const docRef = doc(db, 'group', path.groupID);
+        await updateDoc(docRef, path.groupDB);
 
-        if (response.status < 300) {
-          dispatch(createGroupName({
-            group : path.groupDB.name,
-          }));
-          toast.success("Название группы изменено!", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else if (response.status >= 300) {
-          toast.error("Ошибка(", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          return false;
-        }
+        dispatch(createGroupName({
+          group : path.groupDB.name,
+        }));
+        toast.success("Название группы изменено!", toastStyle);
+
       } catch (err) {
+        toast.error("Ошибка(", toastStyle);
         console.error('Произошла ошибка!', err);
-        toast.error("Ошибка(", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
       };
     };
   };
@@ -115,102 +90,35 @@ export const saveGroupDate = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch(GROUP_URL + path.groupID, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(path.groupDB),
-        })
+        const docRef = doc(db, 'group', path.groupID);
+        await updateDoc(docRef, path.groupDB);
 
-        if (response.status < 300) {
-          dispatch(createGroupDate({
-            date : path.groupDB.date,
-          }));
-          toast.success("Дата изменена!", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else if (response.status >= 300) {
-          toast.error("Ошибка(", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          return false;
-        }
+        dispatch(createGroupDate({
+          date : path.groupDB.date,
+        }));
+        toast.success("Дата изменена!", toastStyle);
+
       } catch (err) {
+        toast.error("Ошибка(", toastStyle);
         console.error('Произошла ошибка!', err);
-        toast.error("Ошибка(", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
       };
     };
   } else if (path.groupID === null) {
     return async(dispatch) => {
       try {
-        const response = await fetch(GROUP_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(path.groupDB),
-        });
+        const docRef = await addDoc(collection(db, 'group'), path.groupDB); 
 
-        const data = await response.json();
-        console.log("data",data);
-
-        if (response.status < 300) {
-          dispatch(groupID({
-            group : {
-              id : data.id,
-            }
-          }));
-          dispatch(createGroupDate({
-            date : path.date,
-          }));
-          toast.success("Группа создана!!!", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else if (response.status >= 300) {
-          toast.error("Ошибка(", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          return false;
-        };
+        dispatch(groupID({
+          group : {
+            id : docRef.id,
+          }
+        }));
+        dispatch(createGroupDate({
+          date : path.date,
+        }));
+        toast.success("Группа создана!!!", toastStyle);
       } catch (err) {
+        toast.error("Ошибка(", toastStyle);
         console.error('Произошла ошибка!', err);
       }
     }
@@ -221,53 +129,18 @@ export const saveUserName = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch(USER_URL + path.userID, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(path.userDB),
-        })
+        console.log(path.userDB)
+        const docRef = doc(db, 'user', path.userID);
+        await updateDoc(docRef, path.userDB);
 
-        if (response.status < 300) {
-          dispatch(createUserName({
-            user : path.userDB.data,
-          }));
-          toast.success("Имя изменено!", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else if (response.status >= 300) {
-          toast.error("Ошибка(", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          return false;
-        }
+        dispatch(createUserName({
+          user : path.userDB.data,
+        }));
+        
+        toast.success("Имя изменено!", toastStyle);
       } catch (err) {
+        toast.error("Ошибка(", toastStyle);
         console.error('Произошла ошибка!', err);
-        toast.error("Ошибка(", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
       };
     };
   };
@@ -277,101 +150,35 @@ export const saveUser = (path) => {
   if (path.userID !== null) {
     return async(dispatch) => {
       try {
-        const response = await fetch(USER_URL + path.userID, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(path.userDB),
-        })
+        const docRef = doc(db, 'user', path.userID);
+        await updateDoc(docRef, path.userDB);
 
-        if (response.status < 300) {
-          dispatch(createUserGift({
-            gift : path.userDB.gift,
-          }));
-          toast.success("Ваш подарок изменен!!!", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else if (response.status >= 300) {
-          toast.error("Ошибка(", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          return false;
-        }
+        dispatch(createUserGift({
+          gift : path.userDB.gift,
+        }));
+        toast.success("Ваш подарок изменен!!!", toastStyle);
       } catch (err) {
+        toast.error("Ошибка(", toastStyle);
         console.error('Произошла ошибка!', err);
-        toast.error("Ошибка(", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
       }
     }
   } else if (path.userID === null) {
     return async(dispatch) => {
       try {
-        const response = await fetch(USER_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(path.userDB),
-        });
-  
-        const data = await response.json();
+        const docRef = await addDoc(collection(db, 'user'), path.userDB); 
         
-        if (response.status < 300) {
-          dispatch(userID({ 
-            user : {
-              id : data.id,
-            }
-          }));
-          dispatch(createUserGift({
-            gift : path.gift,
-          }));
-          toast.success("Пользователь создан!!!", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else if (response.status >= 300) {
-          toast.error("Ошибка(", {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          return false;
-        };
+        dispatch(userID({ 
+          user : {
+            id : docRef.id,
+          }
+        }));
+        dispatch(createUserGift({
+          gift : path.gift,
+        }));
+        toast.success("Пользователь создан!!!", toastStyle);
+        
       } catch (err) {
+        toast.error("Ошибка(", toastStyle);
         console.error('Произошла ошибка!', err);
       };
     };

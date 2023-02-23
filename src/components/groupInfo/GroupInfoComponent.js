@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { GROUP_URL } from "../constants/URL";
 import { Typography, Stack } from "@mui/material";
+import {
+  doc,
+  getDoc,
+} from 'firebase/firestore';
+import db from '../../firebase';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -19,13 +23,17 @@ const GroupInfoComponent = () => {
     my : 1,
   }
   useEffect(() => {
-    if (groupID) {
-      const fetchData = async () => {
-        const response = await fetch(GROUP_URL + groupID);
-        const data = await response.json();
-        setGroup(data);
-      };
-      fetchData(); 
+    const fetchData = async () => {
+      const docRef = doc(db, 'group', groupID);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setGroup(docSnap.data())
+      } else {
+        return null
+      }
+    };
+    if(groupID) {
+      fetchData();
     }
   },[groupID]);
 
@@ -74,10 +82,18 @@ const GroupInfoComponent = () => {
                 variant="caption"
                 sx = {styles}
               >Почта: {state.user.email}</Typography>}
-              {state.gift.wiches && <Typography
+              {state.gift.age && <Typography
                 variant="caption"
                 sx = {styles}
-              >Пожеланияя к подарку: {state.gift.wiches}</Typography>}
+              >Возраст: {state.gift.age}</Typography>}
+              {state.gift.age && <Typography
+                variant="caption"
+                sx = {styles}
+              >Пол: {state.gift.gender}</Typography>}
+              {state.gift.wishes && <Typography
+                variant="caption"
+                sx = {styles}
+              >Пожеланияя к подарку: {state.gift.wishes}</Typography>}
             </Stack>
           </AccordionDetails>
         </Accordion>

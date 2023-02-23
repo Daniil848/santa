@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import {
+  doc,
+  getDoc,
+} from 'firebase/firestore';
+import db from '../../firebase';
 import GroupName from "../group/GroupName";
 import GroupDate from "../group/GroupDate";
 import UserName from "../user/UserName";
 import YourGift from "../user/YourGift";
 import EditProfileComponent from "./EditProfileComponent";
-import { USER_URL, GROUP_URL } from "../constants/URL";
+
 
 const EditProfile = () => {
   const state = useSelector(state => state.adminReducer);
@@ -26,17 +31,25 @@ const EditProfile = () => {
   ) ? "form--animation5" : "";
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(GROUP_URL + groupID);
-      const data = await response.json();
-      setGroup(data);
+      const docRef = doc(db, 'group', groupID);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setGroup(docSnap.data())
+      } else {
+        return null
+      }
     };
     fetchData();
   },[groupID]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(USER_URL + userID);
-      const data = await response.json();
-      setUser(data);
+      const docRef = doc(db, 'user', userID);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUser(docSnap.data())
+      } else {
+        return null
+      }
     };
     fetchData();
   },[userID]);

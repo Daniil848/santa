@@ -9,10 +9,10 @@ import GlobalButton from "../constants/GlobalButton";
 const UserName = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.adminReducer);
-  const [userNameInput, setUserName] = useState(state.user.name);
-  const [userEmailInput, setUserEmail] = useState(state.user.email);
   const { groupID } = useParams();
   const { userID } = useParams();
+  const [userNameInput, setUserName] = useState(userID ? props.user.data.name : state.user.name,);
+  const [userEmailInput, setUserEmail] = useState(userID ? props.user.data.email : state.user.email);
   let userDB = {
     data : {
       name : userNameInput,
@@ -21,9 +21,9 @@ const UserName = (props) => {
     gift : {
       age : userID ? props.user.gift.age : state.gift.age,
       gender : userID ? props.user.gift.gender : state.gift.gender,
-      wishes : userID ? props.user.gift.wiches : state.gift.wishes,
+      wishes : userID ? props.user.gift.wishes : state.gift.wishes,
     },
-    groupID : Number(groupID ? groupID : state.group.id),
+    groupID : groupID ? groupID : state.group.id,
     admin : userID ? props.user.admin : props.admin,
   };
   const addUserName = () => {
