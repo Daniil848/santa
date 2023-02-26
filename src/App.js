@@ -15,7 +15,18 @@ const App = () => {
         <Route path="/group/:groupID" element={<User />}/>
         <Route path="/group/:groupID/user/:userID" element={<EditProfile />}/>
       </Routes>
-      <ToastContainer/>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

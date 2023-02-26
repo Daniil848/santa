@@ -32,7 +32,6 @@ import {
 } from 'firebase/firestore';
 import db from '../../firebase';
 import { toast } from 'react-toastify';
-import { toastStyle } from '../../components/constants/toastStyle';
 
 //===================================CREATE GROUP & USER===================================
 
@@ -76,10 +75,10 @@ export const saveGroupName = (path) => {
         dispatch(createGroupName({
           group : path.groupDB.name,
         }));
-        toast.success("Название группы изменено!", toastStyle);
+        toast.success("Название группы изменено!");
 
       } catch (err) {
-        toast.error("Ошибка(", toastStyle);
+        toast.error("Ошибка(");
         console.error('Произошла ошибка!', err);
       };
     };
@@ -96,10 +95,10 @@ export const saveGroupDate = (path) => {
         dispatch(createGroupDate({
           date : path.groupDB.date,
         }));
-        toast.success("Дата изменена!", toastStyle);
+        toast.success("Дата изменена!");
 
       } catch (err) {
-        toast.error("Ошибка(", toastStyle);
+        toast.error("Ошибка(");
         console.error('Произошла ошибка!', err);
       };
     };
@@ -116,9 +115,9 @@ export const saveGroupDate = (path) => {
         dispatch(createGroupDate({
           date : path.date,
         }));
-        toast.success("Группа создана!!!", toastStyle);
+        toast.success("Группа создана!!!");
       } catch (err) {
-        toast.error("Ошибка(", toastStyle);
+        toast.error("Ошибка(");
         console.error('Произошла ошибка!', err);
       }
     }
@@ -137,9 +136,9 @@ export const saveUserName = (path) => {
           user : path.userDB.data,
         }));
         
-        toast.success("Имя изменено!", toastStyle);
+        toast.success("Имя изменено!");
       } catch (err) {
-        toast.error("Ошибка(", toastStyle);
+        toast.error("Ошибка(");
         console.error('Произошла ошибка!', err);
       };
     };
@@ -156,9 +155,9 @@ export const saveUser = (path) => {
         dispatch(createUserGift({
           gift : path.userDB.gift,
         }));
-        toast.success("Ваш подарок изменен!!!", toastStyle);
+        toast.success("Ваш подарок изменен!!!");
       } catch (err) {
-        toast.error("Ошибка(", toastStyle);
+        toast.error("Ошибка(");
         console.error('Произошла ошибка!', err);
       }
     }
@@ -175,10 +174,10 @@ export const saveUser = (path) => {
         dispatch(createUserGift({
           gift : path.gift,
         }));
-        toast.success("Пользователь создан!!!", toastStyle);
+        toast.success("Пользователь создан!!!");
         
       } catch (err) {
-        toast.error("Ошибка(", toastStyle);
+        toast.error("Ошибка(");
         console.error('Произошла ошибка!', err);
       };
     };
