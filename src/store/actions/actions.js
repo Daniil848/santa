@@ -19,6 +19,7 @@ import {
   SWITCH_PAGE_GIFT,
   SWITCH_PAGE_DONE,
   GROUP_INFO_SWITCH,
+  USER_STEP_SWITCH,
 } from './actionTypes';
 import {
   collection,
@@ -274,4 +275,10 @@ export const switchPageDone = () => ({
 
 export const groupInfoSwitch = () => ({
   type : GROUP_INFO_SWITCH,
+});
+
+//===================================USER STEP SWITCH===================================
+
+export const userStepSwitch = () => ({
+  type : USER_STEP_SWITCH,
 });

@@ -4,10 +4,10 @@ import GroupInfoComponent from "./GroupInfoComponent";
 
 const GroupInfo = () => {
   return (
-    <>
+    <div data-testid="group-info">
       <GroupInfoButton/>
       <GroupInfoComponent/>
-    </>
+    </div>
   );
 };
 

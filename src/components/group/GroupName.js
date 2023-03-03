@@ -41,13 +41,14 @@ const GroupName = (props) => {
 
   if (state.group.edit || state.group.editProfile) {
     return (
-      <>
+      <div data-testid="group-name">
         <Typography
           variant="caption"
           sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}
         >Введите название группы:</Typography>
 
         <TextField
+          inputProps={{ "data-testid": "group-name-input" }}
           label="Обмен подарками 2023"
           id="groupNameInput"
           type="text"
@@ -60,7 +61,7 @@ const GroupName = (props) => {
         ></TextField>
 
         <GlobalButton click={addName}/>
-      </>
+      </div>
     );
   };
 };

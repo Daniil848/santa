@@ -19,6 +19,7 @@ import {
   EDIT_PROFILE_USER_NAME,
   EDIT_PROFILE_USER_GIFT,
   GROUP_INFO_SWITCH,
+  USER_STEP_SWITCH,
 } from './actions/actionTypes';
 
 const adminState = {
@@ -56,7 +57,7 @@ const adminState = {
   }, 
   admin : true,
   step : 1,
-  userStep : 1,
+  userStep : 0,
   groupInfo : false,
 }
 
@@ -101,9 +102,9 @@ export const adminReducer = (state = adminState, action) => {
       const dateRegistration = action.payload.date.registration;
       const dateChoosing = action.payload.date.choosing;
       const dateExchange = action.payload.date.exchange;
-      const stateStep = state.step;
+      const stateUserStep = state.userStep;
       
-      if (stateStep >= 3) {
+      if (stateUserStep >= 3) {
         return {
           ...state,
           date : {
@@ -115,7 +116,7 @@ export const adminReducer = (state = adminState, action) => {
             error : false,
             editProfile : false,
           },
-          step : stateStep,
+          userStep : state.userStep,
         }
       } else {
         return {
@@ -134,7 +135,6 @@ export const adminReducer = (state = adminState, action) => {
             ...state.user,
             edit : true,
           },
-          step : 3,
           userStep : 1,
         }
       }
@@ -143,9 +143,9 @@ export const adminReducer = (state = adminState, action) => {
       console.log("GROUP-USER", action.payload)
       const userName = action.payload.user.name;
       const userEmail = action.payload.user.email;
-      const stateStep = state.step;
+      const stateUserStep = state.userStep;
 
-      if (stateStep >= 4) {
+      if (stateUserStep >= 2) {
         return {
           ...state,
           user : {
@@ -155,7 +155,6 @@ export const adminReducer = (state = adminState, action) => {
             error : false,
             editProfile : false,
           },
-          step : stateStep,
           userStep : state.userStep,
         }
       } else {
@@ -173,7 +172,6 @@ export const adminReducer = (state = adminState, action) => {
             ...state.gift,
             edit : true,
           },
-          step : 4,
           userStep : 2,
         }
       }
@@ -183,9 +181,9 @@ export const adminReducer = (state = adminState, action) => {
       const giftAge = action.payload.gift.age;
       const giftWishes = action.payload.gift.wishes;
       const giftGender = action.payload.gift.gender;
-      const stateStep = state.step;
+      const stateUserStep = state.userStep;
 
-      if (stateStep >= 5) {
+      if (stateUserStep >= 3) {
         if (giftAge === "" ||  giftGender === "") {
           return {
             ...state,
@@ -205,7 +203,6 @@ export const adminReducer = (state = adminState, action) => {
               error : false,
               editProfile : false,
             },
-            step : stateStep,
             userStep : state.userStep,
           }
         }
@@ -221,7 +218,6 @@ export const adminReducer = (state = adminState, action) => {
             edit : false,
             editProfile : false,
           },
-          step : 5,
           userStep : 3,
         }
       }
@@ -484,7 +480,14 @@ export const adminReducer = (state = adminState, action) => {
       }
       break;
     }
-  //===================================DEFAULT===================================
+    //===================================USER STEP SWITCH===================================
+    case USER_STEP_SWITCH : {
+      return {
+        ...state,
+        userStep : 1,
+      }
+    }
+    //===================================DEFAULT===================================
     default : {
       return state;
     }

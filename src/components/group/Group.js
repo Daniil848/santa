@@ -10,6 +10,7 @@ import GroupInfo from "../groupInfo/GroupInfo";
 const Group = () => {
   const state = useSelector(state => state.adminReducer);
   const step = state.step;
+  const userStep = state.userStep;
   const formAnimationGroupName = (state.group.edit) ? "form--animation1" : "";
   const formAnimationGroupDate = (state.date.edit) ? "form--animation2" : "";
   const formAnimationUserName = (state.user.edit) ? "form--animation3" : "";
@@ -22,8 +23,8 @@ const Group = () => {
   ) ? "form--animation5" : "";
 
   return (
-    <>
-      <GroupInfo/>
+    <div data-testid="group">
+      <GroupInfo />
       <div className={
         `form
         ${formAnimationGroupName}
@@ -32,14 +33,14 @@ const Group = () => {
         ${formAnimationGift}
         ${formAnimationDone}`
       }>
-        <GroupPages/>
+        <GroupPages />
         {step >= 1 && <GroupName />}
         {step >= 2 && <GroupDate />}
-        {step >= 3 && <UserName admin={true}/>}
-        {step >= 4 && <YourGift admin={true}/>}
-        {step >= 5 && <GroupDone />}
+        {userStep >= 1 && <UserName admin={true}/>}
+        {userStep >= 2 && <YourGift admin={true}/>}
+        {userStep >= 3 && <GroupDone />}
       </div>
-    </>
+    </div>
   );
 };
 

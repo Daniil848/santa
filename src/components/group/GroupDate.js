@@ -62,7 +62,7 @@ const GroupDate = (props) => {
 
   if (state.date.edit || state.date.editProfile) {
     return (
-      <>
+      <div data-testid="group-date">
         <Typography
           variant="caption"
           sx = {styles.typography}
@@ -137,7 +137,7 @@ const GroupDate = (props) => {
         </LocalizationProvider>
 
         <GlobalButton click={addDate}/>
-      </>
+      </div>
     );
   };
 };
