@@ -262,9 +262,8 @@ export const adminReducer = (state = adminState, action) => {
     }
     //===================================SWICH PAGES===================================
     case SWITCH_PAGE_GROUP : {
-      const stateStep = state.step;
 
-      if (stateStep >= 1) {
+      if (state.step >= 1) {
         return {
           ...state,
           group : {
@@ -291,8 +290,7 @@ export const adminReducer = (state = adminState, action) => {
       }
     }
     case SWITCH_PAGE_DATE : {
-      const stateStep = state.step;
-      if (stateStep >= 2) {
+      if (state.step >= 2) {
         return {
           ...state,
           group : {
@@ -319,9 +317,8 @@ export const adminReducer = (state = adminState, action) => {
       }
     }
     case SWITCH_PAGE_USER : {
-      const stateStep = state.step;
 
-      if (stateStep >= 3) {
+      if (state.userStep >= 1) {
         return {
           ...state,
           group : {
@@ -349,8 +346,7 @@ export const adminReducer = (state = adminState, action) => {
       
     }
     case SWITCH_PAGE_GIFT : {
-      const stateStep = state.step;
-      if (stateStep >= 4) {
+      if (state.userStep >= 2) {
         return {
           ...state,
           group : {
@@ -377,8 +373,8 @@ export const adminReducer = (state = adminState, action) => {
       } 
     }
     case SWITCH_PAGE_DONE : {
-      const stateStep = state.step;
-      if (stateStep >= 4) {
+
+      if (state.userStep >= 3) {
         return {
           ...state,
           group : {

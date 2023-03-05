@@ -43,21 +43,21 @@ const GroupPages = () => {
         variant="contained"
         sx={styles.pages}
         color={state.date.error === true ? "error" : "primary"}
-        disabled={state.step < 1}
+        disabled={state.step < 2}
         onClick={() => dispatch(switchPageDate())}
       >2</Button>
       <Button
         variant="contained"
         sx={styles.pages}
         color={state.user.error === true ? "error" : "primary"}
-        disabled={state.userStep < 2}
+        disabled={state.userStep < 1}
         onClick={() => dispatch(switchPageUserName())}
       >3</Button>
       <Button
         variant="contained"
         sx={styles.pages}
         color={state.gift.error === true ? "error" : "primary"}
-        disabled={state.userStep < 3}
+        disabled={state.userStep < 2}
         onClick={() => dispatch(switchPageUserGift())}
       >4</Button>
       {state.userStep >= 3 && <Button
