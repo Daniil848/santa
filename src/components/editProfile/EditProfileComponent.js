@@ -137,7 +137,7 @@ const EditProfileComponent = (props) => {
             onClick={() => dispatch(editProfileUserGift())}
             sx={styles.button}
           ><EditRoundedIcon fontSize="small"/></Button>
-        </Stack> 
+        </Stack>
       </>
     );
   }; 
