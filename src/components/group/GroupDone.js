@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 
 const GroupDone = () => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const styles = {
     typography : {
       fontWeight : 500,

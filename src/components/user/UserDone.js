@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 const UserDone = () => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const { groupID } = useParams();
   const styles = {
     typography : {

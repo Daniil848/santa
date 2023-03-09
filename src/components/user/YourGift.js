@@ -14,7 +14,7 @@ import GlobalButton from "../constants/GlobalButton";
 
 const YourGift = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const { groupID } = useParams();
   const { userID } = useParams();
   const [ageInput, setAge] = useState(userID ? props.user.gift.age : state.gift.age);

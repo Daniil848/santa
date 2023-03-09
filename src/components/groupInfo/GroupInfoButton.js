@@ -5,7 +5,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const GroupInfoButton = () => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const dispatch = useDispatch();
   const styles = { 
     icon : {

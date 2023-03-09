@@ -10,7 +10,7 @@ import { Button, Stack, } from "@mui/material";
 
 const GroupPages = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const styles = {
     pages : {
       minWidth: 0,

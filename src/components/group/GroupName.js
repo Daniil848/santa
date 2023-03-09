@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 
 const GroupName = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const { groupID } = useParams();
   const [groupNameInput, setGroupName] = useState(groupID ? props.group.name : state.group.name); 
   let groupDB = {

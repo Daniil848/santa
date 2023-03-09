@@ -14,7 +14,7 @@ import GlobalButton from "../constants/GlobalButton";
 
 const GroupDate = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const { groupID } = useParams();
   const [budgetInput, setBudget] = useState(groupID ? props.group.date.budget : state.date.budget);
   const [registrationInput, setRegistration] = useState(groupID ? props.group.date.registration : dayjs());

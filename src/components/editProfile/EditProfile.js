@@ -14,7 +14,7 @@ import EditProfileComponent from "./EditProfileComponent";
 
 
 const EditProfile = () => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const [group , setGroup] = useState();
   const [user , setUser] = useState();
   const { groupID } = useParams();

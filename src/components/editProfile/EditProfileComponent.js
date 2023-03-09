@@ -11,7 +11,7 @@ import {Button} from "@mui/material";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 const EditProfileComponent = (props) => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const dispatch = useDispatch();
   const styles = {
     typography : {
@@ -138,6 +138,10 @@ const EditProfileComponent = (props) => {
             sx={styles.button}
           ><EditRoundedIcon fontSize="small"/></Button>
         </Stack>
+        <Button
+          variant="contained"
+          sx={{ boxShadow: 3, width : 1, height: 40,  mt : 1.5, }}
+        >Выбрать получателя</Button>
       </>
     );
   }; 

@@ -8,7 +8,7 @@ import GlobalButton from "../constants/GlobalButton";
 
 const UserName = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const { groupID } = useParams();
   const { userID } = useParams();
   const [userNameInput, setUserName] = useState(userID ? props.user.data.name : state.user.name,);
@@ -57,7 +57,7 @@ const UserName = (props) => {
     },
   };
 
-  if (state.user.edit || state.user.editProfile || state.userStep === 1) {
+  if (state.user.edit || state.user.editProfile) {
     return (
       <>
         <Typography

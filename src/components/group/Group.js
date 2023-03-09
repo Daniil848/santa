@@ -8,7 +8,7 @@ import GroupPages from "./GroupPages";
 import GroupInfo from "../groupInfo/GroupInfo";
 
 const Group = () => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const step = state.step;
   const userStep = state.userStep;
   const formAnimationGroupName = (state.group.edit) ? "form--animation1" : "";

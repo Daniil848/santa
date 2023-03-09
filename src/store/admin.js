@@ -61,7 +61,7 @@ const adminState = {
   groupInfo : false,
 }
 
-export const adminReducer = (state = adminState, action) => {
+export const santa = (state = adminState, action) => {
   switch(action.type) {
     case GROUP_NAME : {
       console.log("GROUP-NAME", action.payload)
@@ -140,7 +140,7 @@ export const adminReducer = (state = adminState, action) => {
       }
     }
     case USER_NAME : {
-      console.log("GROUP-USER", action.payload)
+      console.log("USER-NAME", action.payload)
       const userName = action.payload.user.name;
       const userEmail = action.payload.user.email;
       const stateUserStep = state.userStep;
@@ -413,7 +413,7 @@ export const adminReducer = (state = adminState, action) => {
       }
     }
     case SET_USER_ID : {
-      console.log("SET_GROUP_ID", action.payload)
+      console.log("SET_USER_ID", action.payload)
       const userID = action.payload.user.id;
       return {
         ...state,

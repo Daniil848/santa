@@ -13,7 +13,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const GroupInfoComponent = () => {
-  const state = useSelector(state => state.adminReducer);
+  const state = useSelector(state => state.santa);
   const [group , setGroup] = useState();
   const { groupID } = useParams();
   const formAnimationGroupInfo = (state.groupInfo) ? "form--animation1" : "";
