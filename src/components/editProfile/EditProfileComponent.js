@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from "react-redux";
 import { 
   editProfileGroupName,
@@ -15,12 +16,18 @@ const EditProfileComponent = (props) => {
   const dispatch = useDispatch();
   const styles = {
     typography : {
-      fontWeight : 500, fontSize: 18, my : 1.5
+      fontWeight : 500,
+      fontSize: 18,
+      my : 1.5,
     },
     button : {
-      minWidth: 0, width : 35, height : 35, borderRadius : "50%", boxSizing: "border-box"
-    }
-  }
+      minWidth: 0,
+      width : 35,
+      height : 35,
+      borderRadius : "50%",
+      boxSizing: "border-box",
+    },
+  };
 
   if (state.group.editProfile === false &&
     state.date.editProfile === false && 

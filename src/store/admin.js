@@ -488,4 +488,4 @@ export const santa = (state = adminState, action) => {
       return state;
     }
   }
-}
+};

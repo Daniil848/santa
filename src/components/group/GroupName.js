@@ -10,7 +10,7 @@ const GroupName = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.santa);
   const { groupID } = useParams();
-  const [groupNameInput, setGroupName] = useState(groupID ? props.group.name : state.group.name); 
+  const [groupNameInput, setGroupName] = useState(groupID ? props.group.name : state.group.name);
   let groupDB = {
     name : groupNameInput,
     date : {
@@ -18,6 +18,9 @@ const GroupName = (props) => {
       registration : groupID ? props.group.date.registration : state.date.registration,
       choosing : groupID ? props.group.date.choosing : state.date.choosing,
       exchange : groupID ? props.group.date.exchange : state.date.exchange,
+    },
+    recipients : {
+      
     },
   };
   const addName = () => {

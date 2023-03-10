@@ -28,6 +28,8 @@ const GroupDate = (props) => {
       choosing : dayjs(choosingInput).format("DD/MM/YYYY"),
       exchange : dayjs(choosingInput).format("DD/MM/YYYY"),
     },
+    recipients : {
+    },
   };
   const addDate = () => {
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {

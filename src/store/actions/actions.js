@@ -64,7 +64,7 @@ export const createUserGift = (path) => ({
   },
 });
 
-//===================================FETCH GROUP & USER===================================
+//===================================GROUP & USER===================================
 
 export const saveGroupName = (path) => {
   if (path.groupID !== null) {

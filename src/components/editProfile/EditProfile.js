@@ -30,7 +30,7 @@ const EditProfile = () => {
     state.gift.editProfile === false
   ) ? "form--animation5" : "";
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
       const docRef = doc(db, 'group', groupID);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -39,10 +39,10 @@ const EditProfile = () => {
         return null
       }
     };
-    fetchData();
+    getData();
   },[groupID]);
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
       const docRef = doc(db, 'user', userID);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -51,7 +51,7 @@ const EditProfile = () => {
         return null
       }
     };
-    fetchData();
+    getData();
   },[userID]);
 
   return (
