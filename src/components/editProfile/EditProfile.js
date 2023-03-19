@@ -18,7 +18,8 @@ const EditProfile = () => {
   const [group , setGroup] = useState();
   const [user , setUser] = useState();
   const { groupID } = useParams();
-  const { userID } = useParams(); 
+  const { userID } = useParams();
+
   const formAnimationGroupName = (state.group.editProfile) ? "form--animation1" : "";
   const formAnimationGroupDate = (state.date.editProfile) ? "form--animation2" : "";
   const formAnimationUserName = (state.user.editProfile) ? "form--animation3" : "";
@@ -29,6 +30,7 @@ const EditProfile = () => {
     state.user.editProfile === false && 
     state.gift.editProfile === false
   ) ? "form--animation5" : "";
+
   useEffect(() => {
     const getData = async () => {
       const docRef = doc(db, 'group', groupID);
@@ -37,10 +39,11 @@ const EditProfile = () => {
         setGroup(docSnap.data())
       } else {
         return null
-      }
+      } 
     };
-    getData();
+    getData(); 
   },[groupID]);
+
   useEffect(() => {
     const getData = async () => {
       const docRef = doc(db, 'user', userID);
@@ -49,7 +52,7 @@ const EditProfile = () => {
         setUser(docSnap.data())
       } else {
         return null
-      }
+      } 
     };
     getData();
   },[userID]);

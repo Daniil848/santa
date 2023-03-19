@@ -25,6 +25,7 @@ const UserName = (props) => {
     },
     groupID : groupID ? groupID : state.group.id,
     admin : userID ? props.user.admin : props.admin,
+    recipientID : null,
   };
   const addUserName = () => {
     if (userNameInput === "" || userEmailInput === "") {
@@ -59,7 +60,7 @@ const UserName = (props) => {
 
   if (state.user.edit || state.user.editProfile) {
     return (
-      <>
+      <div className="form_content">
         <Typography
           variant="caption"
           sx = {styles.typography}
@@ -90,7 +91,7 @@ const UserName = (props) => {
         ></TextField>
 
         <GlobalButton click={addUserName}/>
-      </>
+      </div>
     );
   };
 };

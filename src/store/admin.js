@@ -22,7 +22,7 @@ import {
   USER_STEP_SWITCH,
 } from './actions/actionTypes';
 
-const adminState = {
+const santaState = {
   group : {
     name : "",
     error : false,
@@ -61,7 +61,7 @@ const adminState = {
   groupInfo : false,
 }
 
-export const santa = (state = adminState, action) => {
+export const santa = (state = santaState, action) => {
   switch(action.type) {
     case GROUP_NAME : {
       console.log("GROUP-NAME", action.payload)
@@ -480,6 +480,10 @@ export const santa = (state = adminState, action) => {
     case USER_STEP_SWITCH : {
       return {
         ...state,
+        user : {
+          ...state.user,
+          edit : true,
+        },
         userStep : 1,
       }
     }

@@ -31,6 +31,7 @@ import {
   orderBy,
   onSnapshot*/
 } from 'firebase/firestore';
+import mixUsers from '../../helpers/mixUsers';
 import db from '../../firebase';
 import { toast } from 'react-toastify';
 
@@ -129,7 +130,6 @@ export const saveUserName = (path) => {
   if (path.groupID !== null) {
     return async(dispatch) => {
       try {
-        console.log(path.userDB)
         const docRef = doc(db, 'user', path.userID);
         await updateDoc(docRef, path.userDB);
 
@@ -282,3 +282,38 @@ export const groupInfoSwitch = () => ({
 export const userStepSwitch = () => ({
   type : USER_STEP_SWITCH,
 });
+
+//===================================RECIPIENTS===================================
+
+export const selectRecipient = (path) => {
+  let group = {
+    ...path.group,
+  };
+  const isUpdateRecipients = Object.values(group.recipients).length === 0;
+  if (isUpdateRecipients) {
+    const mixUsersArr = mixUsers(path.users);
+    path.users.forEach((user, index) => {
+      group.recipients[user.id] = mixUsersArr[index].id;
+    });
+  };
+  let user = {
+    ...path.user,
+    recipientID : group.recipients[path.userID],
+  };
+
+  return async () => {
+    try {
+      if (isUpdateRecipients) {
+        const docGroup = doc(db, 'group', path.groupID);
+        await updateDoc(docGroup, group);
+      };
+
+      const docUser = doc(db, 'user', path.userID);
+      await updateDoc(docUser, user);
+      toast.success("Получатель выбран!!!")
+    } catch (error) {
+      console.log(error);
+      toast.error("Ошибка(")
+    };
+  };
+};

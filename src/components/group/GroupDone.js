@@ -7,13 +7,13 @@ const GroupDone = () => {
     typography : {
       fontWeight : 500,
       fontSize: 18,
-      my : 1.5
+      my : 1.5,
     }
   }
 
   if (state.group.edit === false && state.date.edit === false && state.user.edit === false && state.gift.edit === false) {
     return (
-      <>
+      <div className="form_content">
         <Typography
           variant="caption"
           sx = {styles.typography}
@@ -41,7 +41,7 @@ const GroupDone = () => {
           target="_blank"
           rel="noreferrer">
         http://localhost:3000/group/{state.group.id}/user/{state.user.id}</a>
-      </>
+      </div>
     );
   };
 };

@@ -19,9 +19,7 @@ const GroupName = (props) => {
       choosing : groupID ? props.group.date.choosing : state.date.choosing,
       exchange : groupID ? props.group.date.exchange : state.date.exchange,
     },
-    recipients : {
-      
-    },
+    recipients : groupID ? props.group.recipients : {},
   };
   const addName = () => {
     if (groupNameInput === "") {
@@ -44,7 +42,7 @@ const GroupName = (props) => {
 
   if (state.group.edit || state.group.editProfile) {
     return (
-      <div data-testid="group-name">
+      <div className="form_content" data-testid="group-name">
         <Typography
           variant="caption"
           sx = {{ fontWeight : 500, fontSize: 18, my : 1.5}}

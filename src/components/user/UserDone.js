@@ -15,7 +15,7 @@ const UserDone = () => {
   console.log(state.user.id)
   if (state.user.edit === false && state.gift.edit === false) {
     return (
-      <>
+      <div className="form_content">
         <Typography
           variant="caption"
           sx = {styles.typography}
@@ -32,7 +32,7 @@ const UserDone = () => {
         target="_blank"
         rel="noreferrer">
         http://localhost:3000/group/{groupID}/user/{state.user.id}</a>
-      </>
+      </div>
     );
   }
 

@@ -32,6 +32,7 @@ const YourGift = (props) => {
     },
     groupID : groupID ? groupID : state.group.id,
     admin : userID ? props.user.admin : props.admin,
+    recipientID : null,
   };
   const addGift = () => {
     if (ageInput === "" || gender === "") {
@@ -66,7 +67,7 @@ const YourGift = (props) => {
 
   if (state.gift.edit || state.gift.editProfile) {
     return (
-      <>
+      <div className="form_content">
         <Typography
           variant="caption"
           sx = {styles.typography}
@@ -144,7 +145,7 @@ const YourGift = (props) => {
         />
 
         <GlobalButton click={addGift}/>
-      </>
+      </div>
     );
   };
 };

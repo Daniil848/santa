@@ -28,8 +28,7 @@ const GroupDate = (props) => {
       choosing : dayjs(choosingInput).format("DD/MM/YYYY"),
       exchange : dayjs(choosingInput).format("DD/MM/YYYY"),
     },
-    recipients : {
-    },
+    recipients : groupID ? props.group.recipients : {},
   };
   const addDate = () => {
     if (budgetInput === "" || registrationInput === "" || choosingInput === "" || exchangeInput === "") {
@@ -64,7 +63,7 @@ const GroupDate = (props) => {
 
   if (state.date.edit || state.date.editProfile) {
     return (
-      <div data-testid="group-date">
+      <div className="form_content" data-testid="group-date">
         <Typography
           variant="caption"
           sx = {styles.typography}

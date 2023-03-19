@@ -1,18 +1,28 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from "react-redux";
+import { useParams } from "react-router-dom";
 import { 
   editProfileGroupName,
   editProfileGroupDate,
   editProfileUserName,
   editProfileUserGift,
+  selectRecipient,
 } from "../../store/actions/actions";
-import { Typography } from "@mui/material";
-import { Stack } from "@mui/material";
-import {Button} from "@mui/material";
+import db from '../../firebase';
+import {
+  getDocs,
+  query,
+  collection,
+  where,
+} from 'firebase/firestore';
+import { Typography , Stack , Button } from "@mui/material";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 const EditProfileComponent = (props) => {
   const state = useSelector(state => state.santa);
+  const [users , setUsers] = useState();
+  const { groupID } = useParams();
+  const { userID } = useParams();
   const dispatch = useDispatch();
   const styles = {
     typography : {
@@ -28,6 +38,22 @@ const EditProfileComponent = (props) => {
       boxSizing: "border-box",
     },
   };
+
+  useEffect(() => {
+    const usersData = async() => {
+      const docRef = query(collection(db, "user"), where("groupID", "==", groupID));
+      const docs = await getDocs(docRef);
+      let allUsers = [];
+      
+      docs.forEach((doc) => {
+        const oneUser = doc.data()
+        oneUser.id = doc.id
+        allUsers.push(oneUser)
+      });
+      setUsers(allUsers);
+    }
+    usersData();
+  }, [groupID]);
 
   if (state.group.editProfile === false &&
     state.date.editProfile === false && 
@@ -148,6 +174,13 @@ const EditProfileComponent = (props) => {
         <Button
           variant="contained"
           sx={{ boxShadow: 3, width : 1, height: 40,  mt : 1.5, }}
+          onClick={() => dispatch(selectRecipient({
+            group : props.group,
+            groupID : groupID,
+            user : props.user,
+            userID : userID,
+            users : users,
+          }))}
         >Выбрать получателя</Button>
       </>
     );
