@@ -285,7 +285,7 @@ export const userStepSwitch = () => ({
 
 //===================================RECIPIENTS===================================
 
-export const selectRecipient = (path) => {
+export const shuffleRecipient = (path) => {
   let group = {
     ...path.group,
   };
@@ -312,7 +312,6 @@ export const selectRecipient = (path) => {
       await updateDoc(docUser, user);
       toast.success("Получатель выбран!!!")
     } catch (error) {
-      console.log(error);
       toast.error("Ошибка(")
     };
   };

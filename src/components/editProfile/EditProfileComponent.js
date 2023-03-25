@@ -6,7 +6,7 @@ import {
   editProfileGroupDate,
   editProfileUserName,
   editProfileUserGift,
-  selectRecipient,
+  shuffleRecipient,
 } from "../../store/actions/actions";
 import db from '../../firebase';
 import {
@@ -21,6 +21,8 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 const EditProfileComponent = (props) => {
   const state = useSelector(state => state.santa);
   const [users , setUsers] = useState();
+  const [click , setClick] = useState(false);
+  const [render , setRender] = useState(false);
   const { groupID } = useParams();
   const { userID } = useParams();
   const dispatch = useDispatch();
@@ -38,9 +40,8 @@ const EditProfileComponent = (props) => {
       boxSizing: "border-box",
     },
   };
-
   useEffect(() => {
-    const usersData = async() => {
+    const usersData = async () => {
       const docRef = query(collection(db, "user"), where("groupID", "==", groupID));
       const docs = await getDocs(docRef);
       let allUsers = [];
@@ -53,8 +54,29 @@ const EditProfileComponent = (props) => {
       setUsers(allUsers);
     }
     usersData();
-  }, [groupID]);
+    setTimeout(() => {
+      setRender(true);
+    }, 3000);
+  }, [groupID, click, render]);
 
+  const dispatchRecipient = () => {
+    dispatch(shuffleRecipient({
+      group : props.group,
+      groupID : groupID,
+      user : props.user,
+      userID : userID,
+      users : users,
+    }));
+    setClick(true);
+  };
+
+  const recipient = () => {
+    if (click || render) {
+      const user = users.find(user => user.id === props.user.recipientID)
+      return user.data.name;
+    }
+  }
+  
   if (state.group.editProfile === false &&
     state.date.editProfile === false && 
     state.user.editProfile === false && 
@@ -171,17 +193,14 @@ const EditProfileComponent = (props) => {
             sx={styles.button}
           ><EditRoundedIcon fontSize="small"/></Button>
         </Stack>
-        <Button
+        {props.user.recipientID === null &&<Button
           variant="contained"
           sx={{ boxShadow: 3, width : 1, height: 40,  mt : 1.5, }}
-          onClick={() => dispatch(selectRecipient({
-            group : props.group,
-            groupID : groupID,
-            user : props.user,
-            userID : userID,
-            users : users,
-          }))}
-        >Выбрать получателя</Button>
+          onClick={dispatchRecipient()}
+        >Выбрать получателя</Button>}
+        {props.user.recipientID !== null && recipient !== null && <Typography sx={styles.typography}>
+          Имя получателя: {recipient()}
+        </Typography>}
       </>
     );
   }; 

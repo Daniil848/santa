@@ -32,7 +32,7 @@ const YourGift = (props) => {
     },
     groupID : groupID ? groupID : state.group.id,
     admin : userID ? props.user.admin : props.admin,
-    recipientID : null,
+    recipientID : userID ? props.user.recipientID : null,
   };
   const addGift = () => {
     if (ageInput === "" || gender === "") {
