@@ -1,10 +1,10 @@
 import Group from './components/group/Group';
 import User from './components/user/User';
-import EditProfile from './components/editProfile/EditProfile';
 import Snow from './components/effects/Snow';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EditProfile from './components/editProfile/EditProfile';
 
 const App = () => {
   return (

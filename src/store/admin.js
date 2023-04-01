@@ -462,7 +462,7 @@ export const santa = (state = santaState, action) => {
     }
     //===================================GROUP INFO===================================
     case GROUP_INFO_SWITCH : {
-      const groupinfo = state.groupInfo
+      const groupinfo = state.groupInfo;
       if (groupinfo === false) {
         return {
           ...state,

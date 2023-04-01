@@ -289,6 +289,7 @@ export const shuffleRecipient = (path) => {
   let group = {
     ...path.group,
   };
+
   const isUpdateRecipients = Object.values(group.recipients).length === 0;
   if (isUpdateRecipients) {
     const mixUsersArr = mixUsers(path.users);
@@ -296,6 +297,7 @@ export const shuffleRecipient = (path) => {
       group.recipients[user.id] = mixUsersArr[index].id;
     });
   };
+
   let user = {
     ...path.user,
     recipientID : group.recipients[path.userID],
@@ -310,9 +312,11 @@ export const shuffleRecipient = (path) => {
 
       const docUser = doc(db, 'user', path.userID);
       await updateDoc(docUser, user);
-      toast.success("Получатель выбран!!!")
+
+      toast.success("Получатель выбран!!!");
     } catch (error) {
-      toast.error("Ошибка(")
+      toast.error("Ошибка(");
     };
   };
 };
+
