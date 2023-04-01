@@ -22,8 +22,9 @@ const GroupDone = () => {
         <a
           href={`/group/${state.group.id}`}
           target="_blank"
-          rel="noreferrer">
-        http://localhost:3000/group/{state.group.id}</a>
+          rel="noreferrer"
+          className="link"
+        >http://localhost:3000/group/{state.group.id}</a>
 
         <Typography
           variant="caption"
@@ -39,8 +40,9 @@ const GroupDone = () => {
         <a
           href={`/group/${state.group.id}/user/${state.user.id}`}
           target="_blank"
-          rel="noreferrer">
-        http://localhost:3000/group/{state.group.id}/user/{state.user.id}</a>
+          rel="noreferrer"
+          className="link"
+        >http://localhost:3000/group/{state.group.id}/user/{state.user.id}</a>
       </div>
     );
   };

@@ -27,11 +27,11 @@ const UserDone = () => {
         >Ссылка на ваш профиль:</Typography>
 
         <a
-        className="main_info"
-        href={`/group/${groupID}/user/${state.user.id}`}
-        target="_blank"
-        rel="noreferrer">
-        http://localhost:3000/group/{groupID}/user/{state.user.id}</a>
+          href={`/group/${groupID}/user/${state.user.id}`}
+          target="_blank"
+          rel="noreferrer"
+          className="link"
+        >http://localhost:3000/group/{groupID}/user/{state.user.id}</a>
       </div>
     );
   }

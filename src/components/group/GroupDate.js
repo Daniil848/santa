@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
 import InputAdornment from '@mui/material/InputAdornment';
-import GlobalButton from "../constants/GlobalButton";
+import GlobalButton from "../globalComponents/GlobalButton";
 
 const GroupDate = (props) => {
   const dispatch = useDispatch();

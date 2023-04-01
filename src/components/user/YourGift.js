@@ -10,7 +10,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import GlobalButton from "../constants/GlobalButton";
+import GlobalButton from "../globalComponents/GlobalButton";
 
 const YourGift = (props) => {
   const dispatch = useDispatch();

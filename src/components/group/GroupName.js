@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { groupNameError, saveGroupName, createGroupName } from "../../store/actions/actions";
-import GlobalButton from "../constants/GlobalButton";
+import GlobalButton from "../globalComponents/GlobalButton";
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 

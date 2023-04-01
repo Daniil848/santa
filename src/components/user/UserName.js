@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { groupUserNameError, saveUserName, createUserName, } from "../../store/actions/actions";
 import { Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
-import GlobalButton from "../constants/GlobalButton";
+import GlobalButton from "../globalComponents/GlobalButton";
 
 const UserName = (props) => {
   const dispatch = useDispatch();
