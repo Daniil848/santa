@@ -1,18 +1,28 @@
-import ClipboardJS from "clipboard";
+import { useState } from 'react';
+import { useClipboard } from 'use-clipboard-copy';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import DoneIcon from '@mui/icons-material/Done';
 
 const GlobalLink = (props) => {
-  new ClipboardJS('.btn');
+  const [copy, setCopy] = useState(false);
+  const clipboard = useClipboard();
+  const onFocus = (e) => e.target.select();
+  const onClick = () => {
+    clipboard.copy();
+    setCopy(true);
+    setTimeout(() => {
+      setCopy(false);
+    }, 1000);
+  }
 
   return (
     <div className="g-link">
-      
-      <input id="foo" value={props.value} className="g-link-input"></input>
+    
+      <input ref={clipboard.target} value={props.value} onFocus={onFocus} className="g-link-input"></input>
 
-      <button class="btn" data-clipboard-target="#foo" className="g-link-button">
-        <ContentCopyIcon sx={{ width: '12px', height: '12px'}}></ContentCopyIcon>
+      <button onClick={onClick} className="g-link-button">
+        {copy ? <DoneIcon sx={{ width: '12px', height: '12px', color: '#1976d2'}}/> :<ContentCopyIcon sx={{ width: '12px', height: '12px'}}></ContentCopyIcon>}
       </button>
-      <script src="dist/clipboard.min.js"></script>
     </div>
   );
 };
