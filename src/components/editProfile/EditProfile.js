@@ -32,7 +32,6 @@ const EditProfile = () => {
   const [users , setUsers] = useState();
   const isRecipient = state.isRecipient === true;
   const isEdit = state.isEdit === true;
-  console.log("isEdit", isEdit);
   const { groupID } = useParams();
   const { userID } = useParams();
   
@@ -65,7 +64,19 @@ const EditProfile = () => {
       width : 1,
       height: 40,
       mt : 1.5,
-      fontWeight : "bold"
+    },
+    recipient : {
+      width : 1,
+      height : 40,
+      py : "10px",
+      mt : "12px",
+      boxSizing : "border-box",
+      borderRadius: "4px",
+      boxShadow: 3,
+      backgroundColor : "#1976d2",
+      color : "white",
+      textAlign :"center",
+      fontWeight : "500",
     }
   };
   
@@ -110,7 +121,6 @@ const EditProfile = () => {
       setUsers(allUsers);
     }
     usersData();
-    console.log(1);
   }, [groupID, isRecipient,]);
 
   const handleChange = () => {
@@ -121,24 +131,22 @@ const EditProfile = () => {
       userID : userID,
       users : users,
     }));
-
   };
 
   const findRecipient = () => {
     if (state.recipientID !== null || isRecipient) {
       const userRecipient = users.find(userRecipient => userRecipient.id === state.recipientID);
-      return `Получатель : ${userRecipient.data.name}`;
-    } else {
-      return null;
-    }
+      return `Получатель: ${userRecipient.data.name}`;
+    } else if (user.recipientID) {
+      const userRecipient = users.find(userRecipient => userRecipient.id === user.recipientID);
+      return `Получатель: ${userRecipient.data.name}`;
+    };
   };
-
-
 
   if (!group && !user) return null;
   if (state.group.editProfile === false &&
-    state.date.editProfile === false && 
-    state.user.editProfile === false && 
+    state.date.editProfile === false &&
+    state.user.editProfile === false &&
     state.gift.editProfile === false) {
     return (
       <div className={`form ${formAnimationEditPage}`}>
@@ -253,12 +261,12 @@ const EditProfile = () => {
           ><EditRoundedIcon fontSize="small"/></Button>
         </Stack>
 
-        {<Button
+        {user.recipientID === null && state.recipientID === null && <Button
           variant="contained"
           sx={styles.recipientButton}
-          disabled={isRecipient}
           onClick={handleChange}
-        >{isRecipient ? findRecipient() : "Выбрать получателя"}</Button>}
+        >Выбрать получателя</Button>}
+        {<Typography sx={user.recipientID !== null || state.recipientID !== null ? styles.recipient : null}>{findRecipient()}</Typography>}
       </div>
     );
   } else {

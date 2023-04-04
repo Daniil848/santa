@@ -307,6 +307,7 @@ export const selectRecipient = (path) => {
     ...path.user,
     recipientID : group.recipients[path.userID],
   };
+  console.log("user.recipientID", user.recipientID);
 
   return async (dispatch) => {
     try {
@@ -318,7 +319,7 @@ export const selectRecipient = (path) => {
       const docUser = doc(db, 'user', path.userID);
       await updateDoc(docUser, user);
 
-      dispatch(isRecipient(user.recipientID));
+      dispatch(isRecipient({recipientID : user.recipientID}));
 
       toast.success("Получатель выбран!!!");
     } catch (error) {

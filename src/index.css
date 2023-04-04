@@ -136,3 +136,16 @@ body {
   border: none;
   outline: none;
 }
+.recipient {
+  width: 100%;
+  height : 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 10px;
+  background-color: #1976d2;
+  border-radius: 4px;
+  color: white;
+}

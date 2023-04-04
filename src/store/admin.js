@@ -503,6 +503,7 @@ export const santa = (state = santaState, action) => {
     //===================================SHUFFLE RECIPIENT===================================
     case IS_RECIPIENT : {
       const recipientID = action.payload.recipientID
+      console.log("IS_RECIPIENT", action.payload);
       return {
         ...state,
         isRecipient : true,
