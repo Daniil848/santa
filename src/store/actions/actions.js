@@ -20,6 +20,7 @@ import {
   SWITCH_PAGE_DONE,
   GROUP_INFO_SWITCH,
   USER_STEP_SWITCH,
+  IS_RECIPIENT,
 } from './actionTypes';
 import {
   collection,
@@ -282,10 +283,18 @@ export const groupInfoSwitch = () => ({
 export const userStepSwitch = () => ({
   type : USER_STEP_SWITCH,
 });
+//===================================SHUFFLE RECIPIENT===================================
+
+export const isRecipient = (path) => ({
+  type : IS_RECIPIENT,
+  payload : {
+    recipientID : path.recipientID,
+  }
+})
 
 //===================================RECIPIENTS===================================
 
-export const shuffleRecipient = (path) => {
+export const selectRecipient = (path) => {
   let group = {
     ...path.group,
   };
@@ -303,7 +312,7 @@ export const shuffleRecipient = (path) => {
     recipientID : group.recipients[path.userID],
   };
 
-  return async () => {
+  return async (dispatch) => {
     try {
       if (isUpdateRecipients) {
         const docGroup = doc(db, 'group', path.groupID);
@@ -312,6 +321,8 @@ export const shuffleRecipient = (path) => {
 
       const docUser = doc(db, 'user', path.userID);
       await updateDoc(docUser, user);
+
+      dispatch(isRecipient(user.recipientID));
 
       toast.success("Получатель выбран!!!");
     } catch (error) {

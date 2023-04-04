@@ -20,6 +20,7 @@ import {
   EDIT_PROFILE_USER_GIFT,
   GROUP_INFO_SWITCH,
   USER_STEP_SWITCH,
+  IS_RECIPIENT
 } from './actions/actionTypes';
 
 const santaState = {
@@ -59,6 +60,8 @@ const santaState = {
   step : 1,
   userStep : 0,
   groupInfo : false,
+  isRecipient : false,
+  recipientID : null,
 }
 
 export const santa = (state = santaState, action) => {
@@ -485,6 +488,15 @@ export const santa = (state = santaState, action) => {
           edit : true,
         },
         userStep : 1,
+      }
+    }
+    //===================================SHUFFLE RECIPIENT===================================
+    case IS_RECIPIENT : {
+      const recipientID = action.payload.recipientID
+      return {
+        ...state,
+        isRecipient : true,
+        recipientID : recipientID,
       }
     }
     //===================================DEFAULT===================================

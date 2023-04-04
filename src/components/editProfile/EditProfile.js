@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from "react-redux";
 import { useParams } from "react-router-dom";
 import { 
@@ -6,7 +6,8 @@ import {
   editProfileGroupDate,
   editProfileUserName,
   editProfileUserGift,
-  shuffleRecipient,
+  selectRecipient,
+  
 } from "../../store/actions/actions";
 import db from '../../firebase';
 import {
@@ -30,8 +31,8 @@ const EditProfile = () => {
   const [group , setGroup] = useState();
   const [user , setUser] = useState();
   const [users , setUsers] = useState();
-  const [rerender, setRerender] = useState(false);
-  const [clickRerender, setClickRerender] = useState(false);
+  const isRecipient = state.isRecipient === true;
+  console.log(isRecipient);
   const { groupID } = useParams();
   const { userID } = useParams();
   
@@ -95,8 +96,6 @@ const EditProfile = () => {
     getData();
   },[userID]);
 
-
-
   useEffect(() => {
     const usersData = async () => {
       const docRef = query(collection(db, "user"), where("groupID", "==", groupID));
@@ -109,31 +108,32 @@ const EditProfile = () => {
         allUsers.push(oneUser);
       });
       setUsers(allUsers);
-      setRerender(true);
     }
     usersData();
     console.log(1);
-  }, [groupID, rerender, clickRerender]);
-
-  const findRecipient = () => {
-    if ((rerender || clickRerender)) {
-      const userRecipient = users.find(userRecipient => userRecipient.id === user.recipientID);
-      return `Получатель : ${userRecipient.data.name}`;
-    } else {
-      return null;
-    }
-  };
+  }, [groupID, isRecipient,]);
 
   const handleChange = () => {
-    dispatch(shuffleRecipient({
+    dispatch(selectRecipient({
       group : group,
       groupID : groupID,
       user : user,
       userID : userID,
       users : users,
     }));
-    setClickRerender(true);
+
   };
+
+  const findRecipient = () => {
+    if (state.recipientID !== null || isRecipient) {
+      const userRecipient = users.find(userRecipient => userRecipient.id === state.recipientID);
+      return `Получатель : ${userRecipient.data.name}`;
+    } else {
+      return null;
+    }
+  };
+
+
 
   if (!group && !user) return null;
   if (state.group.editProfile === false &&
@@ -256,9 +256,9 @@ const EditProfile = () => {
         {<Button
           variant="contained"
           sx={styles.recipientButton}
-          disabled={user.recipientID !== null || clickRerender}
+          disabled={isRecipient}
           onClick={handleChange}
-        >{user.recipientID === null && (clickRerender || rerender) ? "Выбрать получателя" : findRecipient()}</Button>}
+        >{isRecipient ? findRecipient() : "Выбрать получателя"}</Button>}
       </div>
     );
   } else {
