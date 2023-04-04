@@ -20,7 +20,7 @@ import {
   EDIT_PROFILE_USER_GIFT,
   GROUP_INFO_SWITCH,
   USER_STEP_SWITCH,
-  IS_RECIPIENT
+  IS_RECIPIENT,
 } from './actions/actionTypes';
 
 const santaState = {
@@ -62,6 +62,7 @@ const santaState = {
   groupInfo : false,
   isRecipient : false,
   recipientID : null,
+  isEdit : false,
 }
 
 export const santa = (state = santaState, action) => {
@@ -80,6 +81,7 @@ export const santa = (state = santaState, action) => {
             editProfile : false,
           },
           step : stateStep,
+          isEdit : true,
         }
       } else {
         return {
@@ -96,6 +98,7 @@ export const santa = (state = santaState, action) => {
             edit : true,
           },
           step : 2,
+          isEdit : true,
         };
       }
     }
@@ -139,6 +142,7 @@ export const santa = (state = santaState, action) => {
             edit : true,
           },
           userStep : 1,
+          isEdit : true,
         }
       }
     }
@@ -176,6 +180,7 @@ export const santa = (state = santaState, action) => {
             edit : true,
           },
           userStep : 2,
+          isEdit : true,
         }
       }
     }
@@ -222,6 +227,7 @@ export const santa = (state = santaState, action) => {
             editProfile : false,
           },
           userStep : 3,
+          isEdit : true,
         }
       }
       break;
@@ -433,7 +439,8 @@ export const santa = (state = santaState, action) => {
         group : {
           ...state.group,
           editProfile : true,
-        }
+        },
+        isEdit : false,
       }
     }
     case EDIT_PROFILE_GROUP_DATE : {
@@ -442,7 +449,8 @@ export const santa = (state = santaState, action) => {
         date : {
           ...state.date,
           editProfile : true,
-        }
+        },
+        isEdit : false,
       }
     }
     case EDIT_PROFILE_USER_NAME : {
@@ -451,7 +459,8 @@ export const santa = (state = santaState, action) => {
         user : {
           ...state.user,
           editProfile : true,
-        }
+        },
+        isEdit : false,
       }
     }
     case EDIT_PROFILE_USER_GIFT : {
@@ -460,7 +469,8 @@ export const santa = (state = santaState, action) => {
         gift : {
           ...state.gift,
           editProfile : true,
-        }
+        },
+        isEdit : false,
       }
     }
     //===================================GROUP INFO===================================

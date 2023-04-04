@@ -27,10 +27,6 @@ import {
   doc,
   addDoc,
   updateDoc,
-  /*Timestamp,
-  query,
-  orderBy,
-  onSnapshot*/
 } from 'firebase/firestore';
 import mixUsers from '../../helpers/mixUsers';
 import db from '../../firebase';

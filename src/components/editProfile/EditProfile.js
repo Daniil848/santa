@@ -7,7 +7,6 @@ import {
   editProfileUserName,
   editProfileUserGift,
   selectRecipient,
-  
 } from "../../store/actions/actions";
 import db from '../../firebase';
 import {
@@ -32,7 +31,8 @@ const EditProfile = () => {
   const [user , setUser] = useState();
   const [users , setUsers] = useState();
   const isRecipient = state.isRecipient === true;
-  console.log(isRecipient);
+  const isEdit = state.isEdit === true;
+  console.log("isEdit", isEdit);
   const { groupID } = useParams();
   const { userID } = useParams();
   
@@ -81,7 +81,7 @@ const EditProfile = () => {
     };
     
     getData(); 
-  },[groupID,]);
+  },[groupID, isEdit]);
 
   useEffect(() => {
     const getData = async () => {
@@ -94,7 +94,7 @@ const EditProfile = () => {
       } 
     };
     getData();
-  },[userID]);
+  },[userID, isEdit]);
 
   useEffect(() => {
     const usersData = async () => {
