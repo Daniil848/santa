@@ -11,12 +11,26 @@ const UserName = (props) => {
   const state = useSelector(state => state.santa);
   const { groupID } = useParams();
   const { userID } = useParams();
-  const [userNameInput, setUserName] = useState(userID ? props.user.data.name : state.user.name,);
-  const [userEmailInput, setUserEmail] = useState(userID ? props.user.data.email : state.user.email);
+  const [userName, setUserName] = useState(userID ? props.user.data.name : state.user.name,);
+  const [userEmail, setUserEmail] = useState(userID ? props.user.data.email : state.user.email);
+  const [error, setError] = useState(null);
+  const isValidEmail = (userEmail) => {
+    return /\S+@\S+\.\S+/.test(userEmail);
+  };
+  const handleChange = (event) => {
+    if (!isValidEmail(event.target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+
+    setUserEmail(event.target.value);
+  };
+
   let userDB = {
     data : {
-      name : userNameInput,
-      email : userEmailInput,
+      name : userName,
+      email : userEmail,
     },
     gift : {
       age : userID ? props.user.gift.age : state.gift.age,
@@ -28,8 +42,9 @@ const UserName = (props) => {
     recipientID : userID ? props.user.recipientID : null,
   };
   const addUserName = () => {
-    if (userNameInput === "" || userEmailInput === "") {
+    if (userName === "" || userEmail === ""|| error) {
       dispatch(groupUserNameError(true));
+
       return;
     }
     if (state.user.id !== null || userID) {
@@ -40,8 +55,8 @@ const UserName = (props) => {
     } else {
       dispatch(createUserName({
         user : {
-          name : userNameInput,
-          email : userEmailInput,
+          name : userName,
+          email : userEmail,
         },
       }));
     }
@@ -68,9 +83,9 @@ const UserName = (props) => {
 
         <TextField
           label="Ваше имя(видно участникам)"
-          id="groupNameInput"
+          id="userName"
           type="text"
-          value={userNameInput}
+          value={userName}
           onChange={e => setUserName(e.target.value)}
           error={state.user.error === true}
           variant="outlined"
@@ -80,15 +95,16 @@ const UserName = (props) => {
 
         <TextField
           label="Ваш еmail(не видно ни кому)"
-          id="groupNameInput"
+          id="userEmail"
           type="text"
-          value={userEmailInput}
-          onChange={e => setUserEmail(e.target.value)}
-          error={state.user.error === true}
+          value={userEmail}
+          onChange={handleChange}
+          error={error}
           variant="outlined"
           size="small"
           sx={styles.textField}
         ></TextField>
+        {error && <Typography sx={{color:"#d32f2f", fontSize: "12px"}}>Неверный E-mail</Typography>}
 
         <GlobalButton click={addUserName}/>
       </div>
