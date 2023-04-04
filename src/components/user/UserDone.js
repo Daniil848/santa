@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import GlobalLink from "../globalComponents/GlobalLink";
 
 const UserDone = () => {
   const state = useSelector(state => state.santa);
@@ -26,12 +27,15 @@ const UserDone = () => {
           sx = {styles.typography}
         >Ссылка на ваш профиль:</Typography>
 
-        <a
+        <GlobalLink value={`http://localhost:3000/group/${groupID}/user/${state.user.id}`}></GlobalLink>
+        
+        <Button
           href={`/group/${groupID}/user/${state.user.id}`}
           target="_blank"
           rel="noreferrer"
           className="link"
-        >http://localhost:3000/group/{groupID}/user/{state.user.id}</a>
+          variant="contained"
+        >Перейти в профиль</Button>
       </div>
     );
   }
