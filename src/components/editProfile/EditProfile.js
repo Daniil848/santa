@@ -134,7 +134,7 @@ const EditProfile = () => {
   };
 
   const findRecipient = () => {
-    if (state.recipientID !== null || isRecipient) {
+    if (state.recipientID || isRecipient) {
       const userRecipient = users.find(userRecipient => userRecipient.id === state.recipientID);
       return `Получатель: ${userRecipient.data.name}`;
     } else if (user.recipientID) {
@@ -144,10 +144,10 @@ const EditProfile = () => {
   };
 
   if (!group && !user) return null;
-  if (state.group.editProfile === false &&
-    state.date.editProfile === false &&
-    state.user.editProfile === false &&
-    state.gift.editProfile === false) {
+  if (!state.group.editProfile &&
+    !state.date.editProfile &&
+    !state.user.editProfile &&
+    !state.gift.editProfile) {
     return (
       <div className={`form ${formAnimationEditPage}`}>
         <Typography
@@ -261,12 +261,12 @@ const EditProfile = () => {
           ><EditRoundedIcon fontSize="small"/></Button>
         </Stack>
 
-        {user.recipientID === null && state.recipientID === null && <Button
+        {!user.recipientID && !state.recipientID && <Button
           variant="contained"
           sx={styles.recipientButton}
           onClick={handleChange}
         >Выбрать получателя</Button>}
-        {<Typography sx={user.recipientID !== null || state.recipientID !== null ? styles.recipient : null}>{findRecipient()}</Typography>}
+        {<Typography sx={user.recipientID || state.recipientID ? styles.recipient : null}>{findRecipient()}</Typography>}
       </div>
     );
   } else {
