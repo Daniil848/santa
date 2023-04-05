@@ -11,9 +11,9 @@ import App from './App';
 const store = configureStore({reducer}, applyMiddleware(thunk));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HashRouter>
+  <BrowserRouter>
     <Provider store={store}>
       <App/>
     </Provider>
-  </HashRouter>
+  </BrowserRouter>
 );
