@@ -68,7 +68,6 @@ const santaState = {
 export const santa = (state = santaState, action) => {
   switch(action.type) {
     case GROUP_NAME : {
-      console.log("GROUP-NAME", action.payload)
       const groupName = action.payload.group.name
       const stateStep = state.step;
       if (stateStep >= 2) {
@@ -103,7 +102,6 @@ export const santa = (state = santaState, action) => {
       }
     }
     case GROUP_DATE : {
-      console.log("GROUP-DATE", action.payload);
       const dateBudget = action.payload.date.budget;
       const dateRegistration = action.payload.date.registration;
       const dateChoosing = action.payload.date.choosing;
@@ -147,7 +145,6 @@ export const santa = (state = santaState, action) => {
       }
     }
     case USER_NAME : {
-      console.log("USER-NAME", action.payload)
       const userName = action.payload.user.name;
       const userEmail = action.payload.user.email;
       const stateUserStep = state.userStep;
@@ -185,7 +182,6 @@ export const santa = (state = santaState, action) => {
       }
     }
     case USER_GIFT : {
-      console.log("USER-GIFT", action.payload);
       const giftAge = action.payload.gift.age;
       const giftWishes = action.payload.gift.wishes;
       const giftGender = action.payload.gift.gender;
@@ -503,7 +499,6 @@ export const santa = (state = santaState, action) => {
     //===================================SHUFFLE RECIPIENT===================================
     case IS_RECIPIENT : {
       const recipientID = action.payload.recipientID
-      console.log("IS_RECIPIENT", action.payload);
       return {
         ...state,
         isRecipient : true,

@@ -307,7 +307,6 @@ export const selectRecipient = (path) => {
     ...path.user,
     recipientID : group.recipients[path.userID],
   };
-  console.log("user.recipientID", user.recipientID);
 
   return async (dispatch) => {
     try {
