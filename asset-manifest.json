@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5148b54b.css",
+    "main.js": "/static/js/main.bf260727.js",
+    "static/media/layered-waves-haikei.svg": "/static/media/layered-waves-haikei.06252c6436d9f7783e6d.svg",
+    "index.html": "/index.html",
+    "main.5148b54b.css.map": "/static/css/main.5148b54b.css.map",
+    "main.bf260727.js.map": "/static/js/main.bf260727.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5148b54b.css",
+    "static/js/main.bf260727.js"
+  ]
+}
