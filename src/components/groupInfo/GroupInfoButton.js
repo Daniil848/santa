@@ -18,7 +18,7 @@ const GroupInfoButton = () => {
     },
     button : {
       boxShadow: 3,
-      height: "auto",
+      height: "31px",
       mb : state.groupInfo ? "10px" : 0,
       py : "5px",
       fontSize : 12,
