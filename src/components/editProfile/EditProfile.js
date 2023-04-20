@@ -134,13 +134,20 @@ const EditProfile = () => {
   };
 
   const findRecipient = () => {
-    if (state.recipientID || isRecipient) {
-      const userRecipient = users.find(userRecipient => userRecipient.id === state.recipientID);
-      return `Получатель: ${userRecipient.data.name}`;
-    } else if (user.recipientID) {
-      const userRecipient = users.find(userRecipient => userRecipient.id === user.recipientID);
-      return `Получатель: ${userRecipient.data.name}`;
+    if (!(state.recipientID || isRecipient) && !user.recipientID) {
+      return null;
     };
+
+    let recipientId;
+
+    if (state.recipientID || isRecipient) {
+      recipientId = state.recipientID;
+    } else if (user.recipientID) {
+      recipientId = user.recipientID;
+    };
+
+    const userRecipient = users.find(userRecipient => userRecipient.id === recipientId);
+    return `Получатель: ${userRecipient.data.name}`;
   };
 
   if (!group && !user) return null;
