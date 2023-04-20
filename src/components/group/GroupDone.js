@@ -21,7 +21,7 @@ const GroupDone = () => {
           sx = {styles.typography}
         >Ссылка на вашу группу:</Typography>
 
-        <GlobalLink value={`http://localhost:3000/group/${state.group.id}`}></GlobalLink>
+        <GlobalLink value={`http://localhost:3000/#/group/${state.group.id}`}></GlobalLink>
 
         <Typography
           variant="caption"
@@ -35,10 +35,10 @@ const GroupDone = () => {
           sx={styles.typography}
         >Ссылка на ваш профиль:</Typography>
 
-        <GlobalLink value={`http://localhost:3000/group/${state.group.id}/user/${state.user.id}`}></GlobalLink>
+        <GlobalLink value={`http://localhost:3000/#/group/${state.group.id}/user/${state.user.id}`}></GlobalLink>
         
         <Button
-          href={`/group/${state.group.id}/user/${state.user.id}`}
+          href={`/#/group/${state.group.id}/user/${state.user.id}`}
           target="_blank"
           rel="noreferrer"
           className="link"
