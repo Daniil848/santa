@@ -30,7 +30,7 @@ const UserDone = () => {
         <GlobalLink value={`http://localhost:3000/group/${groupID}/user/${state.user.id}`}></GlobalLink>
         
         <Button
-          href={`/group/${groupID}/user/${state.user.id}`}
+          href={`#/group/${groupID}/user/${state.user.id}`}
           target="_blank"
           rel="noreferrer"
           className="link"
