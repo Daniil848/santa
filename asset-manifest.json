@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/santa/static/css/main.dba72efa.css",
-    "main.js": "/santa/static/js/main.7946e6c6.js",
+    "main.js": "/santa/static/js/main.e719e1ff.js",
     "static/media/layered-waves-haikei.svg": "/santa/static/media/layered-waves-haikei.06252c6436d9f7783e6d.svg",
     "index.html": "/santa/index.html",
     "main.dba72efa.css.map": "/santa/static/css/main.dba72efa.css.map",
-    "main.7946e6c6.js.map": "/santa/static/js/main.7946e6c6.js.map"
+    "main.e719e1ff.js.map": "/santa/static/js/main.e719e1ff.js.map"
   },
   "entrypoints": [
     "static/css/main.dba72efa.css",
-    "static/js/main.7946e6c6.js"
+    "static/js/main.e719e1ff.js"
   ]
 }
